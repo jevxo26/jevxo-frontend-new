@@ -120,6 +120,116 @@ export default function Home() {
           </Link>
         </div>
       </main>
+
+      {/* Portfolio Showcase Grid Section */}
+      <section className="relative z-10 w-full max-w-7xl mx-auto px-4 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Card 1 - Analytics Dashboard */}
+          <div className="bg-white rounded-3xl p-4 shadow-sm border border-gray-100/80 hover:shadow-md transition-shadow group flex flex-col justify-between">
+            <div className="bg-[#f8fafc] rounded-2xl p-3 overflow-hidden border border-gray-100 mb-4 h-48 flex items-center justify-center relative">
+              <div className="w-full h-full bg-white rounded-xl shadow-xs p-2.5 flex flex-col gap-2">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <div className="h-3 w-16 bg-emerald-100 rounded-full" />
+                  <div className="h-3 w-10 bg-gray-100 rounded-full" />
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-emerald-50/60 p-2 rounded-lg border border-emerald-100/50">
+                    <span className="text-[10px] text-emerald-600 font-bold block">$832,920</span>
+                    <span className="text-[8px] text-gray-400">Active Campaign</span>
+                  </div>
+                  <div className="bg-gray-50 p-2 rounded-lg">
+                    <span className="text-[10px] text-gray-800 font-bold block">$264,846</span>
+                    <span className="text-[8px] text-gray-400">Raised (Active)</span>
+                  </div>
+                </div>
+                <div className="flex-1 bg-gradient-to-t from-emerald-100/40 to-transparent rounded-lg flex items-end justify-between px-2 pb-1">
+                  <div className="w-2.5 h-6 bg-emerald-400 rounded-t-xs" />
+                  <div className="w-2.5 h-10 bg-emerald-500 rounded-t-xs" />
+                  <div className="w-2.5 h-4 bg-emerald-300 rounded-t-xs" />
+                  <div className="w-2.5 h-8 bg-emerald-500 rounded-t-xs" />
+                  <div className="w-2.5 h-12 bg-emerald-600 rounded-t-xs" />
+                </div>
+              </div>
+            </div>
+            <div className="px-1">
+              <span className="text-[11px] font-semibold text-emerald-600 uppercase tracking-wider">B2B SaaS</span>
+              <h3 className="text-base font-bold text-gray-900 mt-0.5">Fintech & Analytics Platform</h3>
+            </div>
+          </div>
+
+          {/* Card 2 - Desktop Display Mockup */}
+          <div className="bg-[#111318] text-white rounded-3xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div className="bg-[#1a1d24] rounded-2xl p-3 overflow-hidden border border-gray-800 mb-4 h-48 flex flex-col items-center justify-center relative">
+              {/* Monitor frame representation */}
+              <div className="w-11/12 h-36 bg-black rounded-lg border border-gray-700 p-1 flex flex-col shadow-2xl">
+                <div className="bg-[#0f172a] flex-1 rounded p-2 text-left">
+                  <div className="w-20 h-2 bg-emerald-500 rounded-full mb-2" />
+                  <div className="text-[9px] text-white font-bold leading-tight mb-1">
+                    Empowering Organizations With One Platform.
+                  </div>
+                  <div className="w-full h-10 bg-slate-800/80 rounded mt-2 border border-slate-700/50 p-1 flex items-center justify-between">
+                    <div className="w-6 h-6 rounded bg-emerald-500/20" />
+                    <div className="w-12 h-3 bg-emerald-500 rounded-full" />
+                  </div>
+                </div>
+              </div>
+              <div className="w-12 h-2 bg-gray-700 rounded-b-md mt-1" />
+            </div>
+            <div className="px-1">
+              <span className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider">Web Platform</span>
+              <h3 className="text-base font-bold text-white mt-0.5">Humanitarian Smart Portal</h3>
+            </div>
+          </div>
+
+          {/* Card 3 - Mobile App Workouts */}
+          <div className="bg-white rounded-3xl p-4 shadow-sm border border-gray-100/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div className="bg-[#17181c] rounded-2xl p-3 overflow-hidden border border-gray-800 mb-4 h-48 flex items-center justify-center gap-2 relative">
+              {/* Phone 1 */}
+              <div className="w-20 h-36 bg-black rounded-2xl border-2 border-gray-700 p-1 flex flex-col justify-between shadow-xl">
+                <div className="w-8 h-1 bg-gray-800 rounded-full mx-auto" />
+                <div className="bg-[#1f2026] flex-1 rounded-xl p-1.5 flex flex-col justify-between my-1">
+                  <div className="text-[7px] text-gray-300 font-bold">Full Body Burn</div>
+                  <div className="w-full h-12 bg-lime-400/20 rounded-lg border border-lime-400/30 flex items-center justify-center text-[8px] text-lime-400 font-bold">
+                    1500 kcal
+                  </div>
+                  <div className="w-full py-1 bg-lime-400 rounded-md text-[7px] text-black font-extrabold text-center">
+                    Start Workout
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="px-1">
+              <span className="text-[11px] font-semibold text-lime-600 uppercase tracking-wider">Mobile App</span>
+              <h3 className="text-base font-bold text-gray-900 mt-0.5">Fitness & Workout Tracker</h3>
+            </div>
+          </div>
+
+          {/* Card 4 - Healthcare Website Laptop */}
+          <div className="bg-white rounded-3xl p-4 shadow-sm border border-gray-100/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div className="bg-[#eef2ff] rounded-2xl p-3 overflow-hidden border border-indigo-100/50 mb-4 h-48 flex items-center justify-center relative">
+              <div className="w-full bg-white rounded-xl shadow-xs border border-indigo-50 p-2.5 flex flex-col gap-1.5">
+                <div className="flex justify-between items-center">
+                  <div className="w-12 h-2.5 bg-emerald-500 rounded" />
+                  <div className="flex gap-1">
+                    <div className="w-3 h-1 bg-gray-300 rounded" />
+                    <div className="w-3 h-1 bg-gray-300 rounded" />
+                  </div>
+                </div>
+                <div className="text-[9px] font-extrabold text-gray-800 leading-tight">
+                  Dignity Health Trusted Care For Every Stage Of Life
+                </div>
+                <div className="w-16 h-3 bg-emerald-600 rounded-full text-[6px] text-white flex items-center justify-center font-bold">
+                  Book Appointment
+                </div>
+              </div>
+            </div>
+            <div className="px-1">
+              <span className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider">Healthcare</span>
+              <h3 className="text-base font-bold text-gray-900 mt-0.5">Medical Care Portal</h3>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
