@@ -1,16 +1,16 @@
-import Hero from "./components/banner/Hero";
-import Cta from "./components/banner/Cta";
-import Partners from "./components/partners/page";
-import AboutUs from "./components/aboutus/page";
-import OurService from "./components/ourservice/page";
-import ProcessSection from "./components/process/ProcessSection";
-import AiSection from "./components/ai/AiSection";
-import ComparisonSection from "./components/comparison/ComparisonSection";
-import CaseStudies from "./components/casestudies/page";
-import ReadyToBuildSection from "./components/cta/ReadyToBuildSection";
-import MeetSpecialistSection from "./components/team/MeetSpecialistSection";
-import FaqSection from "./components/faq/FaqSection";
-import BlogSection from "./components/blog/BlogSection";
+import Hero from "./components/landing/banner/Hero";
+import Cta from "./components/landing/banner/Cta";
+import Partners from "./components/landing/partners/page";
+import AboutUs from "./components/landing/aboutus/page";
+import OurService from "./components/landing/ourservice/page";
+import ProcessSection from "./components/landing/process/ProcessSection";
+import AiSection from "./components/landing/ai/AiSection";
+import ComparisonSection from "./components/landing/comparison/ComparisonSection";
+import CaseStudies from "./components/landing/casestudies/page";
+import ReadyToBuildSection from "./components/landing/cta/ReadyToBuildSection";
+import MeetSpecialistSection from "./components/landing/team/MeetSpecialistSection";
+import FaqSection from "./components/landing/faq/FaqSection";
+import BlogSection from "./components/landing/blog/BlogSection";
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
       {/* <FaqSection /> */}
       <BlogSection />
       <ReadyToBuildSection />
-      
+
 
     </div>
   );
