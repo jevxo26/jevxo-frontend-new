@@ -61,7 +61,7 @@ export default function HeroBottom() {
             {row1List.map((src, index) => (
               <div
                 key={`row1-${index}`}
-                className="relative flex-shrink-0 w-[340px] sm:w-[480px] md:w-[580px] h-[210px] sm:h-[300px] md:h-[360px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
+                className="relative flex-shrink-0 w-[260px] sm:w-[360px] md:w-[440px] h-[160px] sm:h-[220px] md:h-[270px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={src}
@@ -81,7 +81,7 @@ export default function HeroBottom() {
             {row2List.map((src, index) => (
               <div
                 key={`row2-${index}`}
-                className="relative flex-shrink-0 w-[340px] sm:w-[480px] md:w-[580px] h-[210px] sm:h-[300px] md:h-[360px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
+                className="relative flex-shrink-0 w-[260px] sm:w-[360px] md:w-[440px] h-[160px] sm:h-[220px] md:h-[270px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={src}
@@ -101,7 +101,7 @@ export default function HeroBottom() {
             {row3List.map((src, index) => (
               <div
                 key={`row3-${index}`}
-                className="relative flex-shrink-0 w-[340px] sm:w-[480px] md:w-[580px] h-[210px] sm:h-[300px] md:h-[360px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
+                className="relative flex-shrink-0 w-[260px] sm:w-[360px] md:w-[440px] h-[160px] sm:h-[220px] md:h-[270px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={src}
