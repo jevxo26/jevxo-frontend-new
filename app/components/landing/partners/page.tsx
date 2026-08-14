@@ -115,8 +115,8 @@ const partners = [
 
 export default function Partners() {
   return (
-    <section className="py-24 bg-[#F8F9FA] flex flex-col items-center">
-      <div className="max-w-6xl w-full px-6">
+    <section className="py-24 -mt-8 bg-[#F8F9FA] flex flex-col items-center">
+      <div className="max-w-10/12 max-auto w-full px-6">
         <h2 className="text-4xl text-center mb-16 text-[#0A102E]">
           <span className="font-semibold">Top Partners That</span>{" "}
           <span className="font-light">We Worked With.</span>
