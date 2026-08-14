@@ -82,7 +82,7 @@ export default function OurService() {
 
   return (
     <section id="service" className="w-full py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
-      <div className="max-w-7xl w-full px-6 flex flex-col">
+      <div className="max-w-10/12 max-auto w-full px-6 flex flex-col">
         
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
