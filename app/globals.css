@@ -49,13 +49,13 @@ body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marquee 55s linear infinite;
 }
 
 .animate-marquee-reverse {
   display: flex;
   width: max-content;
-  animation: marquee-reverse 35s linear infinite;
+  animation: marquee-reverse 55s linear infinite;
 }
 
 .animate-marquee:hover,

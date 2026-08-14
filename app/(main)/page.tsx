@@ -1,4 +1,5 @@
 import Hero from "../components/landing/banner/Hero";
+import HeroBottom from "../components/landing/banner/HeroBottom";
 import Cta from "../components/landing/banner/Cta";
 import Partners from "../components/landing/partners/page";
 import AboutUs from "../components/landing/aboutus/page";
@@ -22,7 +23,7 @@ export default function Home() {
       <div className="absolute inset-0 hero-grid pointer-events-none z-0" />
       <div className="absolute inset-0 hero-radial-glow pointer-events-none z-0" />
       <Hero />
-      <Cta />
+      <HeroBottom />
       <Partners />
       <AboutUs />
       <OurService />
