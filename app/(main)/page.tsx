@@ -6,11 +6,14 @@ import OurService from "../components/landing/ourservice/page";
 import ProcessSection from "../components/landing/process/ProcessSection";
 import AiSection from "../components/landing/ai/AiSection";
 import ComparisonSection from "../components/landing/comparison/ComparisonSection";
+import PricingSection from "../components/landing/pricing/PricingSection";
 import CaseStudies from "../components/landing/casestudies/page";
 import ReadyToBuildSection from "../components/landing/cta/ReadyToBuildSection";
 import MeetSpecialistSection from "../components/landing/team/MeetSpecialistSection";
 import FaqSection from "../components/landing/faq/FaqSection";
 import BlogSection from "../components/landing/blog/BlogSection";
+import ContactSection from "../components/landing/contact/ContactSection";
+import TestimonialsSection from "../components/landing/testimonials/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -27,12 +30,13 @@ export default function Home() {
       <ProcessSection />
       <AiSection />
       <ComparisonSection />
+      <PricingSection />
       <MeetSpecialistSection />
+      <TestimonialsSection />
       {/* <FaqSection /> */}
       <BlogSection />
       <ReadyToBuildSection />
-
-
+      <ContactSection />
     </div>
   );
 }
