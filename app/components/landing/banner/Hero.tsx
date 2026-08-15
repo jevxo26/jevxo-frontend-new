@@ -26,7 +26,7 @@ export default function Hero() {
           <Image
             src="/hero1.png"
             alt="Startup logos"
-            width={120}
+            width={124}
             height={24}
             className="h-8 w-auto object-contain"
           />
@@ -36,7 +36,7 @@ export default function Hero() {
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-[74px] font-medium text-[#0a0c1f] tracking-tight leading-[1.1] max-w-5xl">
+        <h1 className="text-4xl  md:text-[74px] font-medium text-[#0a0c1f] tracking-tight leading-[1.1] max-w-7xl">
           We Design &amp; Dev Agency <br className="hidden sm:inline" />
           For B2B{" "}
           <span className="italic font-serif font-medium">

@@ -89,7 +89,7 @@ export default function AboutUs() {
 
   return (
     <section className="w-full py-24 flex justify-center border-t border-gray-100 ">
-      <div className="max-w-10/12 max-auto w-full px-6 flex flex-col md:flex-row gap-16 lg:gap-32">
+      <div className="max-w-10/12 mx-auto w-full px-6 flex flex-col md:flex-row gap-16 lg:gap-32">
         {/* Left Column */}
         <div className="flex flex-col items-start gap-6 md:w-1/2 lg:w-1/3 shrink-0 mt-3">
           {/* About Us Pill */}
@@ -246,35 +246,35 @@ export default function AboutUs() {
           {/* Stats Matching Screenshot */}
           <div
             ref={statsRef}
-            className="flex flex-wrap items-center mt-20 gap-x-12 gap-y-10 lg:gap-x-24"
+            className="flex flex-row items-center justify-between mt-10 sm:mt-14 gap-2 sm:gap-6 lg:gap-10 w-full"
           >
             <div className="flex flex-col">
-              <span className="text-5xl lg:text-[76px] font-light text-[#222] tracking-tight leading-none">
+              <span className="text-2xl sm:text-4xl lg:text-5xl font-light text-[#222] tracking-tight leading-none">
                 {countDeliveries}+
               </span>
-              <span className="text-gray-600 mt-4 font-medium text-xl">
+              <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm lg:text-base">
                 Project Deliveries
               </span>
             </div>
 
-            <div className="hidden sm:block w-[1px] h-24 bg-gray-200"></div>
+            <div className="w-[1px] h-10 sm:h-14 lg:h-16 bg-gray-200 shrink-0" />
 
             <div className="flex flex-col">
-              <span className="text-5xl lg:text-[76px] font-light text-[#222] tracking-tight leading-none">
+              <span className="text-2xl sm:text-4xl lg:text-5xl font-light text-[#222] tracking-tight leading-none">
                 {countExperts}+
               </span>
-              <span className="text-gray-600 mt-4 font-medium text-xl">
+              <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm lg:text-base">
                 In-House Experts
               </span>
             </div>
 
-            <div className="hidden sm:block w-[1px] h-24 bg-gray-200"></div>
+            <div className="w-[1px] h-10 sm:h-14 lg:h-16 bg-gray-200 shrink-0" />
 
             <div className="flex flex-col">
-              <span className="text-5xl lg:text-[76px] font-light text-[#222] tracking-tight leading-none">
+              <span className="text-2xl sm:text-4xl lg:text-5xl font-light text-[#222] tracking-tight leading-none">
                 {countClients}%
               </span>
-              <span className="text-gray-600 mt-4 font-medium text-xl">
+              <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm lg:text-base">
                 Satisfied Clients
               </span>
             </div>
