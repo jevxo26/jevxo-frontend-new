@@ -12,8 +12,15 @@ const navigation = [
   { name: "Partners", href: "/admin/partners", icon: Handshake },
   { name: "Packages", href: "/admin/package", icon: PackageIcon },
   { name: "Bookings", href: "/admin/package-booking", icon: ReceiptText },
-  { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Banner", href: "/admin/banner", icon: FileText },
+  { name: "Category", href: "/admin/category", icon: FileText },
+  { name: "Orders", href: "/admin/orders", icon: ReceiptText },
+
+  // { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
+  // { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Case Studies", href: "/admin/casestudies", icon: FileText },
+
+
 ];
 
 export default function Sidebar() {
@@ -59,7 +66,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="border-t border-slate-700/50 p-4">
-        <button 
+        <button
           onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-slate-300 transition-all hover:bg-slate-800 hover:text-white group"
         >
