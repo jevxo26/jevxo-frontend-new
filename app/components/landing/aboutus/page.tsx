@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 export default function AboutUs() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [hasStartedCount, setHasStartedCount] = useState(false);
   const [countDeliveries, setCountDeliveries] = useState(0);
   const [countExperts, setCountExperts] = useState(0);
   const [countClients, setCountClients] = useState(0);
+  const [countPartners, setCountPartners] = useState(0);
 
   const fullText =
     "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. at Jevxo, we blend creativity with technology to craft digital experiences that truly resonate with users and drive business success.";
@@ -40,244 +39,166 @@ export default function AboutUs() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Intersection Observer for counting numbers
+  // Re-trigger counter animation whenever stats element enters viewport (top or bottom)
   useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !hasStartedCount) {
-          setHasStartedCount(true);
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          if (timer) clearInterval(timer);
+
+          setCountDeliveries(0);
+          setCountExperts(0);
+          setCountClients(0);
+          setCountPartners(0);
+
+          const duration = 1800;
+          const steps = 50;
+          const intervalTime = duration / steps;
+          let step = 0;
+
+          timer = setInterval(() => {
+            step++;
+            const progress = step / steps;
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+            setCountDeliveries(Math.floor(easeProgress * 700));
+            setCountExperts(Math.floor(easeProgress * 10));
+            setCountClients(Math.floor(easeProgress * 90));
+            setCountPartners(Math.floor(easeProgress * 50));
+
+            if (step >= steps) {
+              setCountDeliveries(700);
+              setCountExperts(10);
+              setCountClients(90);
+              setCountPartners(50);
+              if (timer) clearInterval(timer);
+            }
+          }, intervalTime);
+        } else {
+          if (timer) clearInterval(timer);
+          setCountDeliveries(0);
+          setCountExperts(0);
+          setCountClients(0);
+          setCountPartners(0);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     if (statsRef.current) {
       observer.observe(statsRef.current);
     }
 
-    return () => observer.disconnect();
-  }, [hasStartedCount]);
-
-  // Smooth counter animation
-  useEffect(() => {
-    if (!hasStartedCount) return;
-
-    const duration = 2000;
-    const steps = 60;
-    const intervalTime = duration / steps;
-    let step = 0;
-
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-
-      setCountDeliveries(Math.floor(easeProgress * 700));
-      setCountExperts(Math.floor(easeProgress * 20));
-      setCountClients(Math.floor(easeProgress * 90));
-
-      if (step >= steps) {
-        setCountDeliveries(700);
-        setCountExperts(20);
-        setCountClients(90);
-        clearInterval(timer);
-      }
-    }, intervalTime);
-
-    return () => clearInterval(timer);
-  }, [hasStartedCount]);
+    return () => {
+      if (timer) clearInterval(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <section className="w-full py-24 flex justify-center border-t border-gray-100 ">
-      <div className="max-w-10/12 mx-auto w-full px-6 flex flex-col md:flex-row gap-16 lg:gap-32">
-        {/* Left Column */}
-        <div className="flex flex-col items-start gap-6 md:w-1/2 lg:w-1/3 shrink-0 mt-3">
-          {/* About Us Pill */}
-          <div className="bg-[#E9F0FF] text-[#1B64FF] px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide inline-flex items-center gap-2 shadow-xs border border-blue-100">
-            <span className="w-2 h-2 rounded-full bg-[#1B64FF] animate-pulse" />
-            About Us
-          </div>
+    <section className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
+      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-start">
+        {/* About Us Pill */}
+        <div className="bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 border border-blue-100 mb-6 sm:mb-8">
+          <span className="w-2 h-2 rounded-full bg-[#1B64FF] animate-pulse" />
+          About Us
+        </div>
 
-          {/* Customer Satisfaction rating */}
-          <div className="flex flex-col gap-3 mt-2 bg-[#f8fafc] p-5 rounded-2xl border border-gray-100 w-full shadow-xs">
-            {/* Stars (4 Gold, 1 Gray) */}
-            <div className="flex items-center gap-1.5">
-              {[...Array(4)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-5 h-5 text-[#FFC107] fill-[#FFC107]"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                </svg>
-              ))}
-              <svg
-                className="w-5 h-5 text-gray-300 fill-gray-300"
-                viewBox="0 0 24 24"
+        {/* Scroll Reveal Main Paragraph */}
+        <p
+          ref={textRef}
+          className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.4] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12"
+        >
+          {words.map((word, i) => {
+            const targetProgress = (i + 1) / words.length;
+            const isRevealed = scrollProgress >= targetProgress;
+            return (
+              <span
+                key={i}
+                className={`inline-block mr-[0.25em] transition-colors duration-300 ${
+                  isRevealed
+                    ? "text-[#1E1E1E] font-normal opacity-100"
+                    : "text-gray-400 font-normal opacity-40"
+                }`}
               >
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-              </svg>
-            </div>
-
-            {/* Customer Satisfaction text */}
-            <div className="flex flex-col">
-              <span className="text-gray-900 font-bold text-base">
-                Customer Satisfactions
+                {word}
               </span>
-              <span className="text-xs text-gray-500 font-medium">
-                4.9/5 Rating from 2k+ reviews
-              </span>
-            </div>
+            );
+          })}
+        </p>
 
-            {/* Avatars */}
-            <div className="flex items-center -space-x-2.5 mt-1">
-              <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200 relative shadow-xs">
-                <Image
-                  src="/images/team_1.png"
-                  alt="User 1"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200 relative shadow-xs">
-                <Image
-                  src="/images/team_2.png"
-                  alt="User 2"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200 relative shadow-xs">
-                <Image
-                  src="/images/team_3.png"
-                  alt="User 3"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full border-2 border-white bg-[#1B64FF] text-white flex items-center justify-center font-bold text-xs relative z-10 shadow-md">
-                2k
-              </div>
-            </div>
+        {/* Mission & Vision Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full mb-12 sm:mb-16">
+          {/* Our Mission */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-blue-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] flex flex-col justify-start">
+            <h3 className="text-xl sm:text-2xl font-semibold text-[#0A102E] mb-3">
+              Our Mission
+            </h3>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+              We blend strategy, creativity, production, media and AI technology to transform ambition into execution. From breaking silos to building scalable systems, we design growth that is both meaningful and measurable.
+            </p>
           </div>
 
-          {/* Software Agency Core Highlights (Filling the red circled space) */}
-          <div className="flex flex-col gap-3 w-full bg-[#f8fafc] p-5 rounded-2xl border border-gray-100">
-            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
-              Why Choose Jevxo
-            </h4>
-
-            {/* Highlight 1 */}
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-lg bg-blue-100 text-[#1B64FF] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                ✓
-              </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-gray-900 leading-tight">
-                  User-Centric Design
-                </span>
-                <span className="text-xs text-gray-500 font-normal mt-0.5 leading-snug">
-                  Crafted for maximum engagement & conversion
-                </span>
-              </div>
-            </div>
-
-            {/* Highlight 2 */}
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                ⚡
-              </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-gray-900 leading-tight">
-                  Agile Development
-                </span>
-                <span className="text-xs text-gray-500 font-normal mt-0.5 leading-snug">
-                  Fast, scalable 2-week sprint cycles
-                </span>
-              </div>
-            </div>
-
-            {/* Highlight 3 */}
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                🛡️
-              </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-gray-900 leading-tight">
-                  Dedicated Tech Leads
-                </span>
-                <span className="text-xs text-gray-500 font-normal mt-0.5 leading-snug">
-                  Direct communication with senior engineers
-                </span>
-              </div>
-            </div>
+          {/* Our Vision */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-blue-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] flex flex-col justify-start">
+            <h3 className="text-xl sm:text-2xl font-semibold text-[#0A102E] mb-3">
+              Our Vision
+            </h3>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+              We believe the future belongs to brands that move first, think differently, and build beyond conventions. Our vision: to shape that future by transforming how brands compete, connect, and endure, across every sectors.
+            </p>
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="flex flex-col md:w-3/4">
-          <h3 className="text-[#1A6242] text-2xl font-medium tracking-wide mb-6">
-            Welcome to Jevxo Team
-          </h3>
+        {/* Stats Row */}
+        <div
+          ref={statsRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-center justify-between w-full pt-2"
+        >
+          {/* Stat 1 */}
+          <div className="flex flex-col items-start md:items-center text-left md:text-center relative">
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+              {countDeliveries}+
+            </span>
+            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+              Project Deliveries
+            </span>
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200" />
+          </div>
 
-          {/* Scroll Reveal Paragraph */}
-          <p
-            ref={textRef}
-            className="text-3xl md:text-4xl lg:text-[30px] leading-[1.3] font-normal tracking-tight text-[#1E1E1E] max-w-4xl"
-          >
-            {words.map((word, i) => {
-              const targetProgress = (i + 1) / words.length;
-              const isRevealed = scrollProgress >= targetProgress;
-              return (
-                <span
-                  key={i}
-                  className={`inline-block mr-[0.25em] transition-colors duration-300 ${
-                    isRevealed
-                      ? "text-[#1E1E1E] font-normal opacity-100"
-                      : "text-gray-400 font-normal opacity-40"
-                  }`}
-                >
-                  {word}
-                </span>
-              );
-            })}
-          </p>
+          {/* Stat 2 */}
+          <div className="flex flex-col items-start md:items-center text-left md:text-center relative">
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+              {countExperts}+
+            </span>
+            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+              In-House Experts
+            </span>
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200" />
+          </div>
 
-          {/* Stats Matching Screenshot */}
-          <div
-            ref={statsRef}
-            className="flex flex-row items-center justify-between mt-10 sm:mt-14 gap-2 sm:gap-6 lg:gap-10 w-full"
-          >
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-4xl lg:text-5xl font-light text-[#222] tracking-tight leading-none">
-                {countDeliveries}+
-              </span>
-              <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm lg:text-base">
-                Project Deliveries
-              </span>
-            </div>
+          {/* Stat 3 */}
+          <div className="flex flex-col items-start md:items-center text-left md:text-center relative">
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+              {countClients}%
+            </span>
+            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+              Satisfied Clients
+            </span>
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200" />
+          </div>
 
-            <div className="w-[1px] h-10 sm:h-14 lg:h-16 bg-gray-200 shrink-0" />
-
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-4xl lg:text-5xl font-light text-[#222] tracking-tight leading-none">
-                {countExperts}+
-              </span>
-              <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm lg:text-base">
-                In-House Experts
-              </span>
-            </div>
-
-            <div className="w-[1px] h-10 sm:h-14 lg:h-16 bg-gray-200 shrink-0" />
-
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-4xl lg:text-5xl font-light text-[#222] tracking-tight leading-none">
-                {countClients}%
-              </span>
-              <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm lg:text-base">
-                Satisfied Clients
-              </span>
-            </div>
+          {/* Stat 4 */}
+          <div className="flex flex-col items-start md:items-center text-left md:text-center">
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+              {countPartners}+
+            </span>
+            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+              Business Partner
+            </span>
           </div>
         </div>
       </div>
