@@ -163,21 +163,21 @@ export default function Partners() {
         }
       );
 
-      // Animate partner cards with stagger delay on scroll down and scroll up
+      // Animate partner cards sequentially one after another with smooth fade & subtle scale
       gsap.fromTo(
         ".partner-card",
-        { y: 50, opacity: 0 },
+        { opacity: 0, scale: 0.95, y: 15 },
         {
-          y: 0,
           opacity: 1,
-          duration: 0.75,
-          stagger: 0.06,
-          ease: "power3.out",
+          scale: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ".partner-grid",
-            start: "top 88%",
-            end: "bottom 12%",
-            toggleActions: "play reverse play reverse",
+            start: "top 85%",
+            toggleActions: "play none none none",
           },
         }
       );
