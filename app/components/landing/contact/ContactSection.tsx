@@ -38,9 +38,11 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="w-full py-16 md:py-24 bg-[#0d0e12] text-white flex justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-gray-900"
+      className="w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden"
     >
-      <div className="max-w-9/12 mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16 relative z-10">
+      <div className="max-w-9/12 mx-auto w-full">
+        {/* Dark Floating Card Container matching screenshot */}
+        <div className="w-full bg-[#121318] text-white rounded-[28px] p-6 sm:p-10 md:p-14 shadow-2xl flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-14 border border-gray-800/80">
         
         {/* Left Column: Headline, Photo, Profile Info */}
         <div className="w-full lg:w-5/12 flex flex-col items-start">
@@ -225,8 +227,8 @@ export default function ContactSection() {
             )}
           </div>
         </div>
-
       </div>
+    </div>
     </section>
   );
 }
