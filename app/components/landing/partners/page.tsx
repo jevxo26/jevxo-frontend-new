@@ -145,41 +145,43 @@ export default function Partners() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate title on scroll down and scroll up
-      gsap.fromTo(
-        ".partner-title",
-        { y: 35, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
+      // Ultra-smooth professional GSAP timeline for title & cards
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
 
-      // Animate partner cards sequentially one after another with smooth fade & subtle scale
-      gsap.fromTo(
-        ".partner-card",
-        { opacity: 0, scale: 0.95, y: 15 },
+      tl.fromTo(
+        ".partner-title",
+        { opacity: 0, y: 24, filter: "blur(4px)" },
         {
           opacity: 1,
-          scale: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".partner-grid",
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+          filter: "blur(0px)",
+          duration: 0.9,
+          ease: "power4.out",
         }
+      ).fromTo(
+        ".partner-card",
+        { opacity: 0, y: 30, scale: 0.96, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.85,
+          stagger: {
+            amount: 0.6,
+            grid: [2, 5],
+            from: "start",
+            ease: "sine.out",
+          },
+          ease: "power3.out",
+        },
+        "-=0.5"
       );
     }, sectionRef);
 
