@@ -37,7 +37,7 @@ export default function FaqSection() {
 
   return (
     <section id="faq" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
-      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           

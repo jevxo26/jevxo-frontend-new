@@ -19,7 +19,7 @@ export default function Hero() {
       {/* Radial glow to fade grid at edges */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.9)_0%,rgba(255,255,255,0)_60%)]" />
 
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 max-w-10/12 mx-auto">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 w-full max-w-7xl mx-auto">
         {/* Startup Badge */}
         <div className="inline-flex items-center gap-3 bg-white border border-gray-200/70 px-5 py-2.5 rounded-full shadow-md shadow-gray-200/60 mb-10 group hover:scale-[1.02] transition-transform cursor-pointer">
           <Image

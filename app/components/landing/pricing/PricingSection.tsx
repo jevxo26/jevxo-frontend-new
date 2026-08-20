@@ -230,7 +230,7 @@ export default function PricingSection() {
         style={{ animation: "glowPulseB 10s ease-in-out infinite" }}
       />
 
-      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center relative z-10">
         {/* Top Pill Badge */}
         <div className="bg-[#111827] border border-blue-500/30 text-blue-400 px-4 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-2 mb-6 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
