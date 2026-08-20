@@ -33,7 +33,7 @@ export default function AiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 w-full">
           
           {/* Card 1: UX Copy That Converts */}
-          <div className="bg-gradient-to-b from-[#FFF2E8] via-[#FFF6F0] to-[#FFFAF7] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-100/60 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[460px]">
+          <div className="bg-gradient-to-b from-[#FFE3D1] via-[#FFF0E5] to-[#FFF7F2] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[460px]">
             {/* Top 8 Dark AI Tool Icons Grid - Centered & Enlarged */}
             <div className="w-full flex justify-center my-auto pt-4 pb-8">
               <div className="grid grid-cols-4 gap-4 sm:gap-5 max-w-[400px]">
@@ -75,7 +75,7 @@ export default function AiSection() {
           </div>
 
           {/* Card 2: AI Visual Direction */}
-          <div className="bg-gradient-to-b from-[#FDF0FB] via-[#FAF2FD] to-[#FCF8FE] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-pink-100/60 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1">
+          <div className="bg-gradient-to-b from-[#FBE0FC] via-[#FBF0FE] to-[#FCF8FE] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-purple-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1">
             <div className="flex flex-col space-y-3.5 max-w-md mb-12 pt-2">
               {/* Row 1 */}
               <div className="bg-white p-4 rounded-2xl border border-gray-100/80 shadow-xs flex items-center gap-4">
