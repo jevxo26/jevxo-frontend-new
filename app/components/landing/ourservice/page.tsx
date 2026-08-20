@@ -140,8 +140,8 @@ export default function OurService() {
           </div>
         </div>
 
-        {/* Dynamic Horizontal Pinned Track for Desktop / Horizontal Swipe for Touch Mobile */}
-        <div className="w-full overflow-x-auto lg:overflow-visible scrollbar-none">
+        {/* Dynamic Horizontal Pinned Track clipped within max-w-9/12 bounds */}
+        <div className="w-full overflow-hidden">
           <div 
             ref={trackRef}
             className="flex flex-nowrap lg:flex-nowrap gap-6 w-max lg:w-max min-w-full"
