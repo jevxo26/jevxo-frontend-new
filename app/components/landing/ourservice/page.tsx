@@ -36,6 +36,34 @@ const services = [
     bg: "bg-[#f1edfb]",
     img: "/Jevxo/04.png",
   },
+  {
+    tag: "MOBILE APPS",
+    title: "Mobile App Development",
+    description: "Developing cross-platform native iOS & Android applications with fluid animations & offline support.",
+    bg: "bg-[#fefce8]",
+    img: "/Jevxo/05.png",
+  },
+  {
+    tag: "AI & AUTOMATION",
+    title: "AI & Automation Tools",
+    description: "Integrating intelligent workflow automations and custom generative AI models into products.",
+    bg: "bg-[#f0fdf4]",
+    img: "/Jevxo/06.png",
+  },
+  {
+    tag: "CLOUD INFRASTRUCTURE",
+    title: "Cloud & DevOps Architecture",
+    description: "Deploying high-availability infrastructure with 99.9% uptime and enterprise security compliance.",
+    bg: "bg-[#fdf2f8]",
+    img: "/Jevxo/07.png",
+  },
+  {
+    tag: "GROWTH & MARKETING",
+    title: "Digital Marketing & SEO",
+    description: "Data-driven organic growth strategies to maximize conversions, revenue, and customer loyalty.",
+    bg: "bg-[#eff6ff]",
+    img: "/Jevxo/08.png",
+  },
 ];
 
 export default function OurService() {
