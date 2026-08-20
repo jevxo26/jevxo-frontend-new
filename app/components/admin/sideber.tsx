@@ -11,6 +11,7 @@ const navigation = [
   { name: "Designation", href: "/admin/designation", icon: Briefcase },
   { name: "Partners", href: "/admin/partners", icon: Handshake },
   { name: "Packages", href: "/admin/package", icon: PackageIcon },
+  { name: "Package Category", href: "/admin/package-category", icon: FileText },
   { name: "Bookings", href: "/admin/package-booking", icon: ReceiptText },
   { name: "Banner", href: "/admin/banner", icon: FileText },
   { name: "Category", href: "/admin/category", icon: FileText },
