@@ -13,6 +13,7 @@ import {
   TableRow,
 } from '@/ui/table';
 import { Loader2, Plus, Trash2 } from 'lucide-react';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 export default function UserManagementPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -20,6 +21,7 @@ export default function UserManagementPage() {
   const [designations, setDesignations] = useState<Designation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { uploadImage, isUploading } = useImageUpload();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,6 +29,7 @@ export default function UserManagementPage() {
     role: 'employee',
     departmentId: '',
     designationId: '',
+    picture: '',
   });
 
   const fetchUsers = async () => {
@@ -66,8 +69,20 @@ export default function UserManagementPage() {
     fetchDesignations();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    
+    if (type === 'file') {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const url = await uploadImage(file);
+        if (url) {
+          setFormData((prev) => ({ ...prev, [name]: url }));
+        }
+      }
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -77,7 +92,9 @@ export default function UserManagementPage() {
     try {
       // Create user using formData, API handles relation mapping
       await userApi.createUser(formData);
-      setFormData({ name: '', email: '', password: '', role: 'employee', departmentId: '', designationId: '' });
+      setFormData({ name: '', email: '', password: '', role: 'employee', departmentId: '', designationId: '', picture: '' });
+      const fileInput = document.getElementById('picture-upload') as HTMLInputElement;
+      if (fileInput) fileInput.value = '';
       fetchUsers(); // Refresh the list
     } catch (error) {
       console.error('Failed to create user:', error);
@@ -162,6 +179,29 @@ export default function UserManagementPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Profile Picture
+              </label>
+              <input
+                id="picture-upload"
+                type="file"
+                name="picture"
+                accept="image/*"
+                onChange={handleChange}
+                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+              />
+              {formData.picture && (
+                <div className="mt-2 relative inline-block">
+                  <img src={formData.picture} alt="Preview" className="h-16 w-16 object-cover rounded border border-gray-200 dark:border-gray-700" />
+                  {isUploading && (
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded">
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Role
               </label>
               <select
@@ -215,10 +255,10 @@ export default function UserManagementPage() {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploading}
               className="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed mt-6"
             >
-              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create User'}
+              {isSubmitting || isUploading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create User'}
             </button>
           </form>
         </div>
@@ -245,7 +285,18 @@ export default function UserManagementPage() {
                 {users.length > 0 ? (
                   users.map((user) => (
                     <TableRow key={user.id}>
-                      <TableCell className="font-medium">{user.name}</TableCell>
+                      <TableCell className="font-medium">
+                        <div className="flex items-center gap-3">
+                          {user.picture ? (
+                            <img src={user.picture} alt={user.name} className="h-8 w-8 rounded-full object-cover" />
+                          ) : (
+                            <div className="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-medium">
+                              {user.name.charAt(0)}
+                            </div>
+                          )}
+                          {user.name}
+                        </div>
+                      </TableCell>
                       <TableCell>{user.email}</TableCell>
                       <TableCell>
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${user.role === 'admin' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
