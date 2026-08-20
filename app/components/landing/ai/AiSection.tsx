@@ -34,32 +34,32 @@ export default function AiSection() {
           
           {/* Card 1: UX Copy That Converts */}
           <div className="bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[470px]">
-            {/* Top 8 Dark AI Tool Icons Grid - Centered & Exact Gap */}
+            {/* Top 8 Dark AI Tool Icons Grid - Extra Large Tiles */}
             <div className="w-full flex justify-center pt-2 pb-6 my-auto">
-              <div className="grid grid-cols-4 gap-3.5 sm:gap-4 max-w-[380px]">
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/chgpt.png" alt="ChatGPT" width={44} height={44} className="object-contain" />
+              <div className="grid grid-cols-4 gap-4 sm:gap-5 max-w-[420px]">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/chgpt.png" alt="ChatGPT" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/junery.png" alt="Midjourney" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/junery.png" alt="Midjourney" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/figma 2.png" alt="Miro" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/figma 2.png" alt="Miro" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/cloud.png" alt="Claude" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/cloud.png" alt="Claude" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/loveable 2.png" alt="Framer" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/loveable 2.png" alt="Framer" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/cloud2.png" alt="Bolt" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/cloud2.png" alt="Bolt" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/yellow.png" alt="Firefly" width={44} height={44} className="object-contain" />
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/yellow.png" alt="Firefly" width={52} height={52} className="object-contain" />
                 </div>
               </div>
             </div>
