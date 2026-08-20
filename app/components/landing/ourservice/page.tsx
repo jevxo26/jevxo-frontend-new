@@ -82,7 +82,7 @@ export default function OurService() {
         return trackWidth - containerWidth + 80;
       };
 
-      // Bi-directional GSAP Entrance Reveal for Service Cards (Ultra-fast 0.2s blur clear)
+      // Single-direction entrance reveal for Service Cards (plays once on scroll down, no reverse on bottom-up scroll)
       gsap.fromTo(
         ".service-card",
         { opacity: 0, y: 25, scale: 0.98, filter: "blur(2px)" },
@@ -97,8 +97,8 @@ export default function OurService() {
           scrollTrigger: {
             trigger: trackRef.current,
             start: "top 88%",
-            end: "bottom 12%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none none",
+            once: true,
           },
         }
       );
