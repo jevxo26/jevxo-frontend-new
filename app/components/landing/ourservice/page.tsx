@@ -82,18 +82,18 @@ export default function OurService() {
         return trackWidth - containerWidth + 80;
       };
 
-      // Bi-directional GSAP Entrance Reveal for Service Cards
+      // Bi-directional GSAP Entrance Reveal for Service Cards (Ultra-fast 0.2s blur clear)
       gsap.fromTo(
         ".service-card",
-        { opacity: 0, y: 30, scale: 0.96, filter: "blur(6px)" },
+        { opacity: 0, y: 25, scale: 0.98, filter: "blur(2px)" },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 0.85,
-          stagger: 0.12,
-          ease: "power3.out",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: trackRef.current,
             start: "top 88%",

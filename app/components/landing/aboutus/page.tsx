@@ -25,18 +25,18 @@ export default function AboutUs() {
   // GSAP Bi-directional Scroll Animation for Cards and Stats
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Mission & Vision Cards Bi-directional GSAP Timeline
+      // Mission & Vision Cards Bi-directional GSAP Timeline (Ultra-fast 0.2s blur clear)
       gsap.fromTo(
         ".about-card",
-        { opacity: 0, y: 30, scale: 0.96, filter: "blur(6px)" },
+        { opacity: 0, y: 25, scale: 0.98, filter: "blur(2px)" },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 0.85,
-          stagger: 0.15,
-          ease: "power3.out",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ".about-cards-grid",
             start: "top 92%",
@@ -46,17 +46,17 @@ export default function AboutUs() {
         }
       );
 
-      // Stats Items Bi-directional GSAP Timeline
+      // Stats Items Bi-directional GSAP Timeline (Ultra-fast 0.2s blur clear)
       gsap.fromTo(
         ".about-stat",
-        { opacity: 0, y: 25, filter: "blur(4px)" },
+        { opacity: 0, y: 20, filter: "blur(3px)" },
         {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: statsRef.current,
             start: "top 95%",

@@ -68,38 +68,38 @@ export default function ComparisonSection() {
         },
       });
 
-      // Animate Header Cells first
+      // Animate Header Cells first with ultra-fast 0.2s blur clear
       tl.fromTo(
         ".comparison-header-cell",
-        { opacity: 0, y: 20, filter: "blur(4px)" },
+        { opacity: 0, y: 15, filter: "blur(2px)" },
         {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 0.65,
-          stagger: 0.08,
-          ease: "power3.out",
+          duration: 0.35,
+          stagger: 0.04,
+          ease: "power2.out",
         }
       )
       // Animate Individual Table Cells sequentially across rows & columns
       .fromTo(
         ".comparison-cell",
-        { opacity: 0, y: 18, filter: "blur(4px)", scale: 0.98 },
+        { opacity: 0, y: 12, filter: "blur(3px)", scale: 0.99 },
         {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
           scale: 1,
-          duration: 0.6,
+          duration: 0.35,
           stagger: {
-            amount: 0.9,
+            amount: 0.4,
             grid: [7, 4],
             from: "start",
             ease: "sine.out",
           },
           ease: "power2.out",
         },
-        "-=0.4"
+        "-=0.2"
       );
     }, sectionRef);
 

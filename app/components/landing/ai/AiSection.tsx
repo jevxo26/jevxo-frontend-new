@@ -12,18 +12,18 @@ export default function AiSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Bi-directional GSAP Entrance Reveal for AI Powered Design Cards
+      // Bi-directional GSAP Entrance Reveal for AI Powered Design Cards (Ultra-fast 0.2s blur clear)
       gsap.fromTo(
         ".ai-card",
-        { opacity: 0, y: 35, scale: 0.96, filter: "blur(6px)" },
+        { opacity: 0, y: 25, scale: 0.98, filter: "blur(2px)" },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 0.85,
-          stagger: 0.12,
-          ease: "power3.out",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 85%",
