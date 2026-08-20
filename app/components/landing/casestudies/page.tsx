@@ -1,6 +1,13 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const caseStudies = [
   {
@@ -30,8 +37,37 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Bi-directional GSAP Entrance Reveal for Case Study Cards
+      gsap.fromTo(
+        ".case-study-card",
+        { opacity: 0, y: 35, scale: 0.96, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.85,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".case-studies-grid",
+            start: "top 88%",
+            end: "bottom 12%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
+    <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
       <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
@@ -65,11 +101,11 @@ export default function CaseStudies() {
         </div>
 
         {/* 4 Cards Grid matching 100% first screenshot styling */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div className="case-studies-grid grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {caseStudies.map((study, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-[20px] p-6 sm:p-5 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/60 flex flex-col group hover:shadow-[0_12px_45px_rgba(0,0,0,0.08)] transition-all duration-300"
+              className="case-study-card bg-white rounded-[20px] p-6 sm:p-5 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/60 flex flex-col group hover:shadow-[0_12px_45px_rgba(0,0,0,0.08)] transition-all duration-300"
             >
               
               {/* Image Banner */}
