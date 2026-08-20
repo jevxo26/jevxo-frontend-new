@@ -203,27 +203,23 @@ export default function AiSection() {
           </div>
 
           {/* Bottom Card 3: AI-Assisted Launches */}
-          <div className="bg-gradient-to-b from-[#FFEEEE] via-[#FFF5F5] to-[#FFFAFA] rounded-[36px] p-7 flex flex-col justify-between h-[460px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-100/60 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
-            <div className="w-full h-[220px] flex flex-col items-center justify-center relative">
+          <div className="bg-gradient-to-b from-[#FFD5DC] via-[#FFEBEF] to-[#FFF5F7] rounded-[36px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
+            {/* Centered White Overlapping Circles Graphic */}
+            <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <Image 
                 src="/AIPoweredDesign/Group 1707480850.png" 
                 alt="AI-Assisted Launches Graphic" 
-                width={220} 
-                height={130} 
-                className="object-contain mb-4"
+                width={400} 
+                height={160} 
+                className="object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
               />
-              <div className="bg-[#3b82f6] text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-1.5 shadow-md">
-                <span>346</span>
-                <span>⚡</span>
-                <span>165</span>
-              </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-[#0f172a] tracking-tight mb-2.5">
+              <h3 className="text-2xl font-medium text-[#0a0c16] tracking-tight mb-2.5 leading-tight">
                 AI-Assisted Launches
               </h3>
-              <p className="text-[#64748b] text-sm leading-relaxed font-normal">
+              <p className="text-[#475569] text-sm leading-relaxed font-normal">
                 Reduce repetitive tasks and launch digital products more efficiently with faster execution workflows.
               </p>
             </div>
