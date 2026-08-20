@@ -132,10 +132,10 @@ export default function TestimonialsSection() {
     return (
       <div
         key={cardKey}
-        className="w-[460px] md:w-[500px] shrink-0 bg-white rounded-[24px] p-4 sm:p-5 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-5 transition-all duration-300 group"
+        className="w-[480px] md:w-[540px] shrink-0 bg-white rounded-[26px] p-5 sm:p-6 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-6 transition-all duration-300 group"
       >
-        {/* Left Side: Video / Image Thumbnail */}
-        <div className="w-[170px] sm:w-[190px] h-[170px] sm:h-[185px] rounded-[18px] relative overflow-hidden bg-gray-900 shrink-0">
+        {/* Left Side: Video / Image Thumbnail (Height enlarged) */}
+        <div className="w-[190px] sm:w-[215px] md:w-[225px] h-[195px] sm:h-[215px] md:h-[235px] rounded-[20px] relative overflow-hidden bg-gray-900 shrink-0">
           {isPlaying ? (
             <video
               src={item.video}
@@ -157,13 +157,13 @@ export default function TestimonialsSection() {
           {/* Play / Pause Floating Pill Button */}
           <button
             onClick={() => togglePlay(cardKey)}
-            className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-[#1658fe] backdrop-blur-md flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer z-10"
+            className="absolute bottom-3.5 left-3.5 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-[#1658fe] backdrop-blur-md flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer z-10"
             title={isPlaying ? "Pause Video" : "Play Video Testimonial"}
           >
             {isPlaying ? (
-              <Pause className="w-3.5 h-3.5 fill-current" />
+              <Pause className="w-4 h-4 fill-current" />
             ) : (
-              <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+              <Play className="w-4 h-4 fill-current ml-0.5" />
             )}
           </button>
         </div>
