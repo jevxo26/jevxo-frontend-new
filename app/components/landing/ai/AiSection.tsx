@@ -33,42 +33,42 @@ export default function AiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 w-full">
           
           {/* Card 1: UX Copy That Converts */}
-          <div className="bg-gradient-to-b from-[#FFE3D1] via-[#FFF0E5] to-[#FFF7F2] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[460px]">
-            {/* Top 8 Dark AI Tool Icons Grid - Centered & Enlarged */}
-            <div className="w-full flex justify-center my-auto pt-4 pb-8">
-              <div className="grid grid-cols-4 gap-4 sm:gap-5 max-w-[400px]">
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/chgpt.png" alt="ChatGPT" width={48} height={48} className="object-contain" />
+          <div className="bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[470px]">
+            {/* Top 8 Dark AI Tool Icons Grid - Centered & Exact Gap */}
+            <div className="w-full flex justify-center pt-2 pb-6 my-auto">
+              <div className="grid grid-cols-4 gap-3.5 sm:gap-4 max-w-[380px]">
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/chgpt.png" alt="ChatGPT" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/junery.png" alt="Midjourney" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/junery.png" alt="Midjourney" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/figma 2.png" alt="Miro" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/figma 2.png" alt="Miro" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/cloud.png" alt="Claude" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/cloud.png" alt="Claude" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/loveable 2.png" alt="Framer" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/loveable 2.png" alt="Framer" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/cloud2.png" alt="Bolt" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/cloud2.png" alt="Bolt" width={44} height={44} className="object-contain" />
                 </div>
-                <div className="w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-[24px] bg-[#090d16] flex items-center justify-center p-4 shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
-                  <Image src="/AIPoweredDesign/yellow.png" alt="Firefly" width={48} height={48} className="object-contain" />
+                <div className="w-[72px] h-[72px] sm:w-[80px] sm:h-[80px] rounded-[24px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.2)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                  <Image src="/AIPoweredDesign/yellow.png" alt="Firefly" width={44} height={44} className="object-contain" />
                 </div>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0f172a] tracking-tight mb-3">
+            <div className="pt-2">
+              <h3 className="text-2xl sm:text-[32px] font-medium text-[#0a0c16] tracking-tight mb-2.5 leading-tight">
                 UX Copy That Converts
               </h3>
-              <p className="text-[#64748b] text-base leading-relaxed max-w-md font-normal">
+              <p className="text-[#475569] text-base leading-relaxed max-w-md font-normal">
                 Generate strategic UX copy, CTAs, and messaging designed to improve clarity and engagement.
               </p>
             </div>
