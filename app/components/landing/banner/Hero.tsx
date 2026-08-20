@@ -53,7 +53,9 @@ export default function Hero() {
         {/* Action Button */}
         <div className="mt-10 flex justify-center w-full sm:w-auto">
           <Link
-            href="#book"
+            href="https://calendly.com/jevxo-info/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto flex items-center justify-center gap-3.5 bg-gradient-to-b from-[#2a2c30] to-[#121316] hover:from-[#32353a] hover:to-[#1a1b1f] text-white px-8 py-4 rounded-full font-medium text-lg sm:text-xl shadow-[0_10px_25px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-white/10"
           >
             <Image

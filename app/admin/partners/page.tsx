@@ -11,6 +11,7 @@ import {
   TableRow,
 } from '@/ui/table';
 import { Loader2, Plus, Trash2, ExternalLink } from 'lucide-react';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 export default function PartnersManagementPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -23,6 +24,7 @@ export default function PartnersManagementPage() {
     url: '',
     isActive: true,
   });
+  const { uploadImage, isUploading } = useImageUpload();
 
   const fetchPartners = async () => {
     setIsLoading(true);
@@ -40,17 +42,16 @@ export default function PartnersManagementPage() {
     fetchPartners();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
 
     if (type === 'file') {
       const file = e.target.files?.[0];
       if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setFormData((prev) => ({ ...prev, logo: reader.result as string }));
-        };
-        reader.readAsDataURL(file);
+        const url = await uploadImage(file);
+        if (url) {
+          setFormData((prev) => ({ ...prev, logo: url }));
+        }
       }
       return;
     }
@@ -143,8 +144,13 @@ export default function PartnersManagementPage() {
                 className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white"
               />
               {formData.logo && (
-                <div className="mt-2">
+                <div className="mt-2 relative inline-block">
                   <img src={formData.logo} alt="Preview" className="h-16 w-auto object-contain bg-slate-100 rounded p-1" />
+                  {isUploading && (
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded">
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -188,10 +194,10 @@ export default function PartnersManagementPage() {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploading}
               className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed mt-6"
             >
-              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Partner'}
+              {isSubmitting || isUploading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Partner'}
             </button>
           </form>
         </div>

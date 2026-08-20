@@ -11,6 +11,7 @@ import {
   TableRow,
 } from '@/ui/table';
 import { Loader2, Plus, Trash2 } from 'lucide-react';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 export default function BannerManagementPage() {
   const [banners, setBanners] = useState<Banner[]>([]);
@@ -21,6 +22,7 @@ export default function BannerManagementPage() {
     order: 0,
     isActive: true,
   });
+  const { uploadImage, isUploading } = useImageUpload();
 
   const fetchBanners = async () => {
     setIsLoading(true);
@@ -38,8 +40,19 @@ export default function BannerManagementPage() {
     fetchBanners();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
+
+    if (type === 'file') {
+      const file = e.target.files?.[0];
+      if (file) {
+        const url = await uploadImage(file);
+        if (url) {
+          setFormData((prev) => ({ ...prev, [name]: url }));
+        }
+      }
+      return;
+    }
 
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
@@ -57,6 +70,10 @@ export default function BannerManagementPage() {
     try {
       await bannerApi.createBanner(formData);
       setFormData({ photoUrl: '', order: 0, isActive: true });
+
+      const fileInput = document.getElementById('photoUrl-upload') as HTMLInputElement;
+      if (fileInput) fileInput.value = '';
+
       fetchBanners(); // Refresh the list
     } catch (error) {
       console.error('Failed to create banner:', error);
@@ -99,17 +116,27 @@ export default function BannerManagementPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Photo URL
+                Photo Upload
               </label>
               <input
-                type="text"
+                id="photoUrl-upload"
+                type="file"
                 name="photoUrl"
+                accept="image/*"
                 required
-                value={formData.photoUrl}
                 onChange={handleChange}
                 className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
-                placeholder="https://example.com/image.jpg"
               />
+              {formData.photoUrl && (
+                <div className="mt-2 relative inline-block">
+                  <img src={formData.photoUrl} alt="Preview" className="h-16 w-auto object-cover rounded border border-gray-200 dark:border-gray-700" />
+                  {isUploading && (
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded">
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -140,10 +167,10 @@ export default function BannerManagementPage() {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploading}
               className="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed mt-6"
             >
-              {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Banner'}
+              {isSubmitting || isUploading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Banner'}
             </button>
           </form>
         </div>

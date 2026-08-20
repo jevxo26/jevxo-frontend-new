@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Loader2 } from "lucide-react";
+import { contactApi } from "@/api/contactApi";
 
 const budgetOptions = [
   "Less than $500",
@@ -21,18 +22,27 @@ export default function ContactSection() {
     productDetails: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setIsSubmitting(true);
+    try {
+      await contactApi.createContact({ ...formData, budget: selectedBudget });
+      setSubmitted(true);
       setFormData({
         fullName: "",
         email: "",
         whatsapp: "",
         productDetails: "",
       });
-    }, 4000);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -219,11 +229,12 @@ export default function ContactSection() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-3 bg-[#1e2230] hover:bg-[#252a3b] text-white rounded-full pl-6 pr-2 py-2 text-sm sm:text-base font-normal transition-all cursor-pointer border border-gray-700/60 group"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center gap-3 bg-[#1e2230] hover:bg-[#252a3b] text-white rounded-full pl-6 pr-2 py-2 text-sm sm:text-base font-normal transition-all cursor-pointer border border-gray-700/60 group disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <span>Let Connect</span>
+                    <span>{isSubmitting ? "Connecting..." : "Let Connect"}</span>
                     <div className="w-8 h-8 rounded-full bg-[#1658fe] text-white flex items-center justify-center font-bold shadow-md group-hover:scale-105 transition-transform">
-                      <ArrowUpRight className="w-4 h-4" />
+                      {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowUpRight className="w-4 h-4" />}
                     </div>
                   </button>
                 </div>

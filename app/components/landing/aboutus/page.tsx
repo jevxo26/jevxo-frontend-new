@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { statsApi } from "@/api/statsApi";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,19 @@ export default function AboutUs() {
   const [countExperts, setCountExperts] = useState(0);
   const [countClients, setCountClients] = useState(0);
   const [countPartners, setCountPartners] = useState(0);
+
+  const [targetStats, setTargetStats] = useState({
+    projectDeliveries: 250,
+    inHouseExperts: 45,
+    satisfiedClients: 99,
+    businessPartners: 18
+  });
+
+  useEffect(() => {
+    statsApi.getStats().then((data) => {
+      if (data) setTargetStats(data);
+    }).catch(console.error);
+  }, []);
 
   const fullText =
     "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. At Jevxo, we blend creativity with cutting-edge technology to craft bespoke digital experiences that truly resonate with users, elevate brand equity, and drive sustainable business growth across global markets. We partner with ambitious brands to transform complex ideas into seamless software products.";
@@ -117,17 +131,17 @@ export default function AboutUs() {
             const progress = step / steps;
             const easeProgress = 1 - Math.pow(1 - progress, 3);
 
-            setCountDeliveries(Math.floor(easeProgress * 250));
-            setCountExperts(Math.floor(easeProgress * 45));
-            setCountClients(Math.floor(easeProgress * 120));
-            setCountPartners(Math.floor(easeProgress * 18));
+            setCountDeliveries(Math.floor(easeProgress * targetStats.projectDeliveries));
+            setCountExperts(Math.floor(easeProgress * targetStats.inHouseExperts));
+            setCountClients(Math.floor(easeProgress * targetStats.satisfiedClients));
+            setCountPartners(Math.floor(easeProgress * targetStats.businessPartners));
 
             if (step >= steps) {
               if (timer) clearInterval(timer);
-              setCountDeliveries(250);
-              setCountExperts(45);
-              setCountClients(120);
-              setCountPartners(18);
+              setCountDeliveries(targetStats.projectDeliveries);
+              setCountExperts(targetStats.inHouseExperts);
+              setCountClients(targetStats.satisfiedClients);
+              setCountPartners(targetStats.businessPartners);
             }
           }, intervalTime);
         } else {
@@ -149,7 +163,7 @@ export default function AboutUs() {
       if (timer) clearInterval(timer);
       observer.disconnect();
     };
-  }, []);
+  }, [targetStats]);
 
   return (
     <section ref={sectionRef} className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100">

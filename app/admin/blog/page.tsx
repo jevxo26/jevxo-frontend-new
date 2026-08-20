@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { Plus, Edit, Trash2, X } from "lucide-react";
 import { blogApi, Blog } from "../../../api/blogApi";
+import { useImageUpload } from "../../../hooks/useImageUpload";
+import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
 
@@ -11,6 +13,7 @@ const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 export default function AdminBlogPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { uploadImage, isUploading } = useImageUpload();
   
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,8 +75,20 @@ export default function AdminBlogPage() {
     setEditingId(null);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    
+    if (type === 'file') {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const url = await uploadImage(file);
+        if (url) {
+          setFormData((prev) => ({ ...prev, [name]: url }));
+        }
+      }
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
     
     // Auto-generate slug from title if creating a new post and typing in title
@@ -232,15 +247,24 @@ export default function AdminBlogPage() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image Upload</label>
                 <input
-                  type="text"
+                  type="file"
                   name="coverImage"
-                  value={formData.coverImage}
+                  accept="image/*"
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  placeholder="https://example.com/image.png"
                 />
+                {formData.coverImage && (
+                  <div className="mt-2 relative inline-block">
+                    <img src={formData.coverImage} alt="Preview" className="h-16 w-auto object-cover rounded border border-gray-300" />
+                    {isUploading && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded">
+                        <Loader2 className="w-5 h-5 text-white animate-spin" />
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div>
@@ -277,8 +301,10 @@ export default function AdminBlogPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium"
+                  disabled={isUploading}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
                 >
+                  {isUploading && <Loader2 className="w-4 h-4 animate-spin" />}
                   {editingId ? "Save Changes" : "Create Blog"}
                 </button>
               </div>
