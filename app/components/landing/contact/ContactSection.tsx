@@ -46,7 +46,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="w-full py-24 bg-[#F8F9FA] border-t border-gray-100 flex justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className="w-full py-12 md:py-16 bg-[#F8F9FA] border-t border-gray-100 flex justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
       {/* Background Soft Glows */}
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -55,20 +55,19 @@ export default function ContactSection() {
       <div className="max-w-7xl w-full flex flex-col items-center relative z-10">
         
         {/* Top Tag & Main Heading */}
-        <div className="flex flex-col items-center text-center max-w-3xl mb-16">
-          <div className="bg-[#E9F0FF] text-[#1B64FF] px-5 py-2 rounded-full text-xs font-semibold tracking-wide mb-4 inline-flex items-center gap-2">
-            <MessageSquare className="w-3.5 h-3.5" />
+        <div className="flex flex-col items-center text-center max-w-3xl mb-10 md:mb-12">
+          <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
             <span>Get In Touch</span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-[#111] tracking-tight leading-[1.15]">
-            Scale Smarter With <br className="hidden sm:inline" />
-            Custom{" "}
-            <span className="font-serif italic font-normal text-[#0052FF]">
-              Digital Solutions
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
+            Scale Smarter With{" "}
+            <span className="font-serif italic font-normal text-[#0f172a]">
+              Custom Digital Solutions
             </span>
           </h2>
-          <p className="text-gray-500 text-base md:text-lg mt-4 font-normal max-w-xl">
+          <p className="text-gray-500 text-sm md:text-base mt-3 font-normal max-w-xl">
             Have a project in mind? Fill in the details below and our team will craft a tailored strategy for your business.
           </p>
         </div>

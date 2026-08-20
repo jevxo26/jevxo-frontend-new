@@ -61,11 +61,10 @@ export default function ComparisonSection() {
               Why Choose Us
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="font-bold block text-[#0f172a]">Jevxo Team Alternative?</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="block text-[#0f172a]">Why Choose Us —</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-bold text-[#0f172a]">Think </span> 
-                <span className="font-serif italic font-medium text-[#0f172a]">One More Time!</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Jevxo Team</span> <span className="font-medium text-[#0f172a]">Alternative?</span>
               </span>
             </h2>
           </div>

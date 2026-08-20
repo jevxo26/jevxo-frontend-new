@@ -117,9 +117,11 @@ export default function Partners() {
   return (
     <section className="py-12 md:py-16 bg-[#F8F9FA] flex flex-col items-center">
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6">
-        <h2 className="text-2xl sm:text-3xl md:text-3xl text-center mb-8 md:mb-10 text-[#0A102E]">
-          <span className="font-semibold">Top Partners That</span>{" "}
-          <span className="font-light">We Worked With.</span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-center mb-8 md:mb-10 text-[#0f172a] tracking-tight leading-[1.15]">
+          <span className="block text-[#0f172a]">Top Partners That</span>
+          <span className="block mt-1 text-[#0f172a]">
+            <span className="font-serif italic font-normal text-[#0f172a]">We Worked</span> <span className="font-medium text-[#0f172a]">With.</span>
+          </span>
         </h2>
         
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
