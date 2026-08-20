@@ -112,7 +112,7 @@ export default function OurService() {
     <section 
       ref={sectionRef} 
       id="service" 
-      className="relative z-10 w-full py-12 md:py-16 bg-transparent flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
+      className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         
