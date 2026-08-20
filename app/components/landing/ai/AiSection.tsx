@@ -180,22 +180,23 @@ export default function AiSection() {
           </div>
 
           {/* Bottom Card 2: Faster Wireframing */}
-          <div className="bg-gradient-to-b from-[#FFF5EA] via-[#FAF6F2] to-[#FFFBF7] rounded-[36px] p-7 flex flex-col justify-between h-[460px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-100/60 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
-            <div className="relative w-full h-[220px] flex items-center justify-center pt-2">
+          <div className="bg-gradient-to-b from-[#FFEBD9] via-[#FFF3E8] to-[#FFF9F2] rounded-[36px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-200/50 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
+            {/* Centered Large Mockup Image */}
+            <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <Image 
                 src="/AIPoweredDesign/faster.png" 
                 alt="Faster Wireframing Mockups" 
-                width={280} 
-                height={200} 
-                className="object-contain drop-shadow-md"
+                width={360} 
+                height={240} 
+                className="object-contain "
               />
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-[#0f172a] tracking-tight mb-2.5">
+              <h3 className="text-2xl font-medium text-[#0a0c16] tracking-tight mb-2.5 leading-tight">
                 Faster Wireframing
               </h3>
-              <p className="text-[#64748b] text-sm leading-relaxed font-normal">
+              <p className="text-[#475569] text-sm leading-relaxed font-normal">
                 Rapidly transform ideas into wireframes and structured product flows with AI-assisted systems.
               </p>
             </div>
