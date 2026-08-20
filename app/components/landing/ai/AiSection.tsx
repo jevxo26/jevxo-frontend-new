@@ -80,7 +80,7 @@ export default function AiSection() {
             <div className="w-full flex justify-center items-center my-auto pt-4 pb-8">
               <div className="flex flex-col space-y-4 w-full max-w-[420px]">
                 {/* Row 1 */}
-                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md jtransition-shadow">
                   <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
                     <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={40} height={40} className="object-contain" />
                   </div>
@@ -130,44 +130,50 @@ export default function AiSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           
           {/* Bottom Card 1: Smarter UX Insights */}
-          <div className="bg-gradient-to-b from-[#EBEBFE] via-[#F2F2FE] to-[#F7F7FF] rounded-[36px] p-7 flex flex-col justify-between h-[460px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-100/60 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
-            <div className="flex flex-col space-y-3 pt-2">
-              <div className="bg-white p-3.5 rounded-2xl border border-gray-100/80 shadow-xs flex items-center gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center p-1.5 border border-gray-100 shrink-0">
-                  <Image src="/AIPoweredDesign/data.png" alt="Data Insights" width={22} height={22} className="object-contain" />
+          <div className="bg-gradient-to-b from-[#DCDCFE] via-[#ECECFF] to-[#F8F8FF] rounded-[36px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
+            {/* Centered White Row Badges */}
+            <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
+              <div className="flex flex-col space-y-3.5 w-full">
+                {/* Row 1 */}
+                <div className="bg-white p-3.5 sm:p-4 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-[#f0f4ff] to-[#e6edff] flex items-center justify-center p-2 border border-blue-100/60 shrink-0">
+                    <Image src="/AIPoweredDesign/data.png" alt="Data Insights" width={32} height={32} className="object-contain" />
+                  </div>
+                  <div className="flex-1 space-y-1.5">
+                    <div className="text-[#0a0c16] font-medium text-base tracking-tight">Data Insights</div>
+                    <div className="w-32 sm:w-40 h-1.5 bg-gray-100/90 rounded-full" />
+                  </div>
                 </div>
-                <div className="flex-1 space-y-1.5">
-                  <div className="text-[#0f172a] font-semibold text-xs sm:text-sm">Data Insights</div>
-                  <div className="w-32 h-1.5 bg-gray-100 rounded-full" />
-                </div>
-              </div>
 
-              <div className="bg-white p-3.5 rounded-2xl border border-gray-100/80 shadow-xs flex items-center gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center p-1.5 border border-gray-100 shrink-0">
-                  <Image src="/AIPoweredDesign/sketh.png" alt="Sketch & Wireframe" width={22} height={22} className="object-contain" />
+                {/* Row 2 */}
+                <div className="bg-white p-3.5 sm:p-4 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-[#fdf0f5] to-[#fce4ee] flex items-center justify-center p-2 border border-pink-100/60 shrink-0">
+                    <Image src="/AIPoweredDesign/sketh.png" alt="Sketch & Wireframe" width={32} height={32} className="object-contain" />
+                  </div>
+                  <div className="flex-1 space-y-1.5">
+                    <div className="text-[#0a0c16] font-medium text-base tracking-tight">Sketch &amp; Wireframe</div>
+                    <div className="w-28 sm:w-36 h-1.5 bg-gray-100/90 rounded-full" />
+                  </div>
                 </div>
-                <div className="flex-1 space-y-1.5">
-                  <div className="text-[#0f172a] font-semibold text-xs sm:text-sm">Sketch &amp; Wireframe</div>
-                  <div className="w-28 h-1.5 bg-gray-100 rounded-full" />
-                </div>
-              </div>
 
-              <div className="bg-white p-3.5 rounded-2xl border border-gray-100/80 shadow-xs flex items-center gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center p-1.5 border border-gray-100 shrink-0">
-                  <Image src="/AIPoweredDesign/cloud2.png" alt="Journey Analysis" width={22} height={22} className="object-contain" />
-                </div>
-                <div className="flex-1 space-y-1.5">
-                  <div className="text-[#0f172a] font-semibold text-xs sm:text-sm">Journey Analysis</div>
-                  <div className="w-36 h-1.5 bg-gray-100 rounded-full" />
+                {/* Row 3 */}
+                <div className="bg-white p-3.5 sm:p-4 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-[#eefbf6] to-[#dcf6ec] flex items-center justify-center p-2 border border-emerald-100/60 shrink-0">
+                    <Image src="/AIPoweredDesign/cloud2.png" alt="Journey Analysis" width={32} height={32} className="object-contain" />
+                  </div>
+                  <div className="flex-1 space-y-1.5">
+                    <div className="text-[#0a0c16] font-medium text-base tracking-tight">Journey Analysis</div>
+                    <div className="w-36 sm:w-44 h-1.5 bg-gray-100/90 rounded-full" />
+                  </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-[#0f172a] tracking-tight mb-2.5">
+              <h3 className="text-2xl font-medium text-[#0a0c16] tracking-tight mb-2.5 leading-tight">
                 Smarter UX Insights
               </h3>
-              <p className="text-[#64748b] text-sm leading-relaxed font-normal">
+              <p className="text-[#475569] text-sm leading-relaxed font-normal">
                 Use AI-powered analytics and heatmaps to understand user behavior before launch.
               </p>
             </div>
