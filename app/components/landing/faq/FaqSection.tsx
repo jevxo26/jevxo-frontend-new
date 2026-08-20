@@ -83,7 +83,11 @@ export default function FaqSection() {
               return (
                 <div 
                   key={index}
-                  className="bg-white rounded-[16px] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] overflow-hidden transition-all duration-300"
+                  className={`bg-white rounded-[16px] border transition-all duration-300 overflow-hidden ${
+                    isOpen 
+                      ? "border-blue-200/80 shadow-[0_8px_30px_rgba(22,88,254,0.06)]" 
+                      : "border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
+                  }`}
                 >
                   <button
                     onClick={() => toggleFaq(index)}
@@ -92,20 +96,27 @@ export default function FaqSection() {
                     <span className="text-lg sm:text-xl font-medium text-[#0f172a] tracking-tight leading-snug">
                       {faq.question}
                     </span>
-                    <div className="text-gray-600 group-hover:text-black transition-colors shrink-0">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 bg-[#1658fe]/10 text-[#1658fe]" : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"}`}>
                       {isOpen ? (
-                        <Minus className="w-5 h-5 stroke-[2]" />
+                        <Minus className="w-4 h-4 stroke-[2.2]" />
                       ) : (
-                        <Plus className="w-5 h-5 stroke-[2]" />
+                        <Plus className="w-4 h-4 stroke-[2.2]" />
                       )}
                     </div>
                   </button>
 
-                  {isOpen && (
-                    <div className="px-6 pb-6 text-[#64748b] text-sm sm:text-base leading-relaxed border-t border-gray-100/80 pt-4">
-                      {faq.answer}
+                  {/* Smooth Animated Collapsible Container */}
+                  <div 
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-6 pb-6 text-[#64748b] text-sm sm:text-base leading-relaxed border-t border-gray-100/80 pt-4">
+                        {faq.answer}
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })}

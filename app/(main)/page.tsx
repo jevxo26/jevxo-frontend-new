@@ -37,11 +37,13 @@ export default function Home() {
       <MeetSpecialistSection />
       <ReadyToBuildSection />
       <FaqSection />
+      <ContactSection />
+
       <TestimonialsSection />
       
       
       
-      <ContactSection />
+      
     </div>
   );
 }

@@ -56,7 +56,7 @@ function OrbitIcon({
 
 export default function ReadyToBuildSection() {
   return (
-    <section className="w-full py-32 bg-[#0052ff] text-white relative overflow-hidden flex justify-center items-center">
+    <section className="w-full py-32 bg-[#020817] text-white relative overflow-hidden flex justify-center items-center">
       {/* Keyframes */}
       <style>{`
         @keyframes orbitSpin {
@@ -76,7 +76,7 @@ export default function ReadyToBuildSection() {
           50% { opacity: 0.5; }
         }
         @keyframes glowPulse {
-          0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+          0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
           50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
         @keyframes capsulePulse {
@@ -85,24 +85,33 @@ export default function ReadyToBuildSection() {
         }
       `}</style>
 
-      {/* Radial Center Glow */}
+      {/* Base radial background: bright blue core fading to deep navy edges */}
       <div
-        className="absolute top-1/2 left-1/2 w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle,rgba(80,140,255,0.55)_0%,rgba(0,82,255,0)_70%)] pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 900px 700px at 50% 50%, #1a5cff 0%, #0b3ecf 28%, #061e7a 52%, #020a30 75%, #020817 100%)",
+        }}
+      />
+
+      {/* Radial Center Glow (extra brightness pulse on top of base) */}
+      <div
+        className="absolute top-1/2 left-1/2 w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle,rgba(120,170,255,0.55)_0%,rgba(0,82,255,0)_70%)] pointer-events-none"
         style={{ animation: "glowPulse 6s ease-in-out infinite" }}
       />
 
       {/* Concentric Dashed Orbit Rings */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
-          className="w-[500px] h-[500px] rounded-full border border-dashed border-white/20 absolute"
+          className="w-[500px] h-[500px] rounded-full border-2 border-dashed border-white/25 absolute"
           style={{ animation: "ringPulse 4s ease-in-out infinite" }}
         />
         <div
-          className="w-[800px] h-[800px] rounded-full border border-dashed border-white/20 absolute"
+          className="w-[800px] h-[800px] rounded-full border-2 border-dashed border-white/20 absolute"
           style={{ animation: "ringPulse 5s ease-in-out infinite" }}
         />
         <div
-          className="w-[1150px] h-[1150px] rounded-full border border-dashed border-white/15 absolute"
+          className="w-[1150px] h-[1150px] rounded-full border-2 border-dashed border-white/15 absolute"
           style={{ animation: "ringPulse 6s ease-in-out infinite" }}
         />
       </div>
