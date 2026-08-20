@@ -74,11 +74,11 @@ export default function ComparisonSection() {
           <div className="lg:pb-2">
             <Link
               href="#contact"
-              className="inline-flex items-center gap-3 bg-[#0052ff] hover:bg-blue-600 text-white px-7 py-3.5 rounded-full font-medium text-base shadow-xl shadow-blue-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] group"
+              className="inline-flex items-center gap-3.5 bg-gradient-to-r from-[#1658fe] to-[#004cf6] hover:from-[#004cf6] hover:to-[#1658fe] text-white pl-6 pr-2 py-2 rounded-full font-normal text-[15px] sm:text-base border border-blue-400/30 shadow-[0_8px_25px_rgba(22,88,254,0.35)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] group"
             >
-              <span>Request Free Audit</span>
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
-                <ArrowUpRight className="w-4.5 h-4.5 text-white" />
+              <span className="tracking-tight">Request Free Audit</span>
+              <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-md group-hover:rotate-45 transition-transform duration-300">
+                <ArrowUpRight className="w-5 h-5 text-black stroke-[2.2]" />
               </div>
             </Link>
           </div>
