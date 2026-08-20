@@ -79,10 +79,8 @@ export default function OurService() {
       const getScrollAmount = () => {
         const trackWidth = trackRef.current?.scrollWidth || 0;
         const containerWidth = trackRef.current?.parentElement?.offsetWidth || window.innerWidth;
-        return trackWidth - containerWidth;
+        return trackWidth - containerWidth + 80;
       };
-
-      const scrollAmount = getScrollAmount();
 
       gsap.to(trackRef.current, {
         x: () => -getScrollAmount(),
@@ -114,7 +112,7 @@ export default function OurService() {
     <section 
       ref={sectionRef} 
       id="service" 
-      className="w-full h-screen min-h-screen bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
+      className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         
