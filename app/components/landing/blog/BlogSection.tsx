@@ -34,12 +34,12 @@ export default function BlogSection() {
         </div>
 
         {/* Blog Grid (Left Main Card + Right 2 Cards Stack) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Left Column: Featured Main Blog Post Card */}
-          <div className="lg:col-span-6 bg-white rounded-[24px] p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
+          <div className="lg:col-span-6 bg-white rounded-[16px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
             {/* Main Featured Banner Image */}
-            <div className="w-full h-[280px] sm:h-[340px] md:h-[360px] rounded-[20px] relative overflow-hidden mb-6 bg-gray-100">
+            <div className="w-full h-[240px] sm:h-[290px] md:h-[310px] rounded-[12px] relative overflow-hidden mb-5 bg-gray-100">
               <Image
                 src="/BlogInsight/first.png"
                 alt="The Future of Branding Why Design Quality Matters More Than Ever."
@@ -50,11 +50,11 @@ export default function BlogSection() {
 
             {/* Content Details */}
             <div className="flex flex-col justify-between flex-1">
-              <div className="mb-6">
-                <span className="text-[#94a3b8] text-sm font-normal block mb-2">
+              <div>
+                <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
                   July 31, 2025
                 </span>
-                <h3 className="text-xl sm:text-2xl md:text-[26px] font-medium text-[#0a0c16] tracking-tight leading-snug">
+                <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
                   The Future of Branding Why Design Quality Matters More Than Ever.
                 </h3>
               </div>
@@ -62,11 +62,11 @@ export default function BlogSection() {
               <div>
                 <Link
                   href="#"
-                  className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 hover:scale-[1.03] group/btn"
+                  className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
                 >
                   <span className="text-xs sm:text-sm font-medium">Open Blog</span>
-                  <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
-                    <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
+                  <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                    <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
                   </div>
                 </Link>
               </div>
@@ -74,12 +74,12 @@ export default function BlogSection() {
           </div>
 
           {/* Right Column: 2 Stacked Cards */}
-          <div className="lg:col-span-6 flex flex-col space-y-6 justify-between">
+          <div className="lg:col-span-6 flex flex-col space-y-5 justify-between">
             
             {/* Right Card 1 */}
-            <div className="bg-white rounded-[24px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
+            <div className="bg-white rounded-[16px] p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
               {/* Image thumbnail */}
-              <div className="w-full sm:w-[220px] md:w-[240px] h-[190px] rounded-[20px] relative overflow-hidden shrink-0 bg-gray-100">
+              <div className="w-full sm:w-[190px] md:w-[210px] h-[150px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
                 <Image
                   src="/BlogInsight/second.png"
                   alt="Why Great UI/UX Is A Competitive Advantage"
@@ -89,24 +89,22 @@ export default function BlogSection() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-between h-full w-full py-1">
-                <div>
-                  <span className="text-[#94a3b8] text-sm font-normal block mb-2">
-                    July 31, 2025
-                  </span>
-                  <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
-                    Why Great UI/UX Is A Competitive Advantage
-                  </h3>
-                </div>
+              <div className="flex flex-col justify-center h-full w-full py-1">
+                <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
+                  July 31, 2025
+                </span>
+                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-3">
+                  Why Great UI/UX Is A Competitive Advantage
+                </h3>
 
                 <div>
                   <Link
                     href="#"
-                    className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 hover:scale-[1.03] group/btn"
+                    className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
                   >
                     <span className="text-xs sm:text-sm font-medium">Open Blog</span>
-                    <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
-                      <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
+                    <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                      <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
                     </div>
                   </Link>
                 </div>
@@ -114,9 +112,9 @@ export default function BlogSection() {
             </div>
 
             {/* Right Card 2 */}
-            <div className="bg-white rounded-[24px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
+            <div className="bg-white rounded-[16px] p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
               {/* Image thumbnail */}
-              <div className="w-full sm:w-[220px] md:w-[240px] h-[190px] rounded-[20px] relative overflow-hidden shrink-0 bg-gray-100">
+              <div className="w-full sm:w-[190px] md:w-[210px] h-[150px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
                 <Image
                   src="/BlogInsight/thired.png"
                   alt="Building Scalable Products Through Smart Design Systems"
@@ -126,24 +124,22 @@ export default function BlogSection() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-between h-full w-full py-1">
-                <div>
-                  <span className="text-[#94a3b8] text-sm font-normal block mb-2">
-                    July 31, 2025
-                  </span>
-                  <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
-                    Building Scalable Products Through Smart Design Systems
-                  </h3>
-                </div>
+              <div className="flex flex-col justify-center h-full w-full py-1">
+                <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
+                  July 31, 2025
+                </span>
+                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-3">
+                  Building Scalable Products Through Smart Design Systems
+                </h3>
 
                 <div>
                   <Link
                     href="#"
-                    className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 hover:scale-[1.03] group/btn"
+                    className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
                   >
                     <span className="text-xs sm:text-sm font-medium">Open Blog</span>
-                    <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
-                      <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
+                    <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                      <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
                     </div>
                   </Link>
                 </div>
