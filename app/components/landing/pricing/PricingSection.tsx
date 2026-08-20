@@ -1,199 +1,208 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Heart, Zap, Sparkles, ArrowUpRight } from "lucide-react";
+import { Check } from "lucide-react";
+
+const tabs = ["Website Design", "Web App", "Mobile App"];
 
 const pricingPlans = [
   {
     name: "Starter Plan",
-    badge: "Ultimate Plan",
-    icon: Heart,
-    iconBg: "bg-blue-50 text-[#0052FF]",
-    description: "Best For: Campaigns, product launches, MVP validation",
-    price: "$500",
+    description: "Perfect for larger organizations with advanced needs",
+    price: "$700",
+    period: "/ per month",
     isPopular: false,
-    cardBg: "bg-white text-gray-900 border border-gray-200/80 shadow-[0_4px_30px_rgb(0,0,0,0.03)] hover:shadow-xl",
-    dividerColor: "border-gray-100",
-    checkBg: "bg-blue-500 text-white",
-    descColor: "text-gray-500",
-    priceColor: "text-[#111]",
-    titleColor: "text-[#111]",
+    badgeText: null,
     features: [
-      "All Growth Facilities",
-      "Persona & journey mapping",
-      "Component-based design",
-      "Starter design system",
-      "Developer walkthrough",
-      "8–15 working Days",
-      "3–4 Weeks",
-      "4 revision rounds",
+      "Everything in Growth Plan",
+      "Investment Tracking",
+      "Integration Services",
+      "24/7 VIP Support",
+      "Premium Security",
+      "Premium Security",
+      "Premium Security",
+      "Premium Security",
     ],
-    buttonText: "Get Started",
-    buttonStyle:
-      "bg-white hover:bg-gray-50 text-gray-900 border border-gray-300 shadow-sm",
-    hasArrow: false,
+    buttonText: "Select This Plan",
+    buttonStyle: "bg-[#252b3b] hover:bg-[#32394c] text-white",
   },
   {
     name: "Growth Plan",
-    badge: "Ultimate Plan",
-    icon: Sparkles,
-    iconBg: "bg-white/20 text-white",
-    description: "Best For: Campaigns, product launches, MVP validation",
-    price: "$1200",
+    description: "Ideal for growing startups and mid-sized companies",
+    price: "$1500",
+    period: "/ per month",
     isPopular: true,
-    cardBg:
-      "bg-[#0052FF] text-white border-2 border-blue-400/30 shadow-2xl shadow-blue-500/25 relative z-10 lg:-translate-y-2",
-    dividerColor: "border-white/20",
-    checkBg: "bg-white/20 text-white",
-    descColor: "text-white/80",
-    priceColor: "text-white",
-    titleColor: "text-white",
+    badgeText: "Most Popular",
     features: [
-      "UX discovery workshop",
-      "Sitemap & navigation flow",
-      "Wireframes for all pages",
-      "High-fidelity UI (with responsive)",
-      "Interaction states",
-      "Create style guide",
-      "Dev-handoff support",
-      "4–7 pages",
-      "10–15 working days",
-      "3 revision rounds",
+      "Everything in Starter Plan",
+      "Advanced Budgeting Tools",
+      "Customizable Dashboards",
+      "Transaction Insights",
+      "Enhanced Security",
+      "Customizable Dashboards",
+      "Customizable Dashboards",
+      "Customizable Dashboards",
     ],
-    buttonText: "Get Started",
-    buttonStyle:
-      "bg-white text-[#0052FF] hover:bg-blue-50 border border-white/40 shadow-lg font-bold",
-    hasArrow: true,
+    buttonText: "Select This Plan",
+    buttonStyle: "bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] hover:from-[#2563eb] hover:to-[#3b82f6] text-white shadow-lg shadow-blue-500/30",
   },
   {
     name: "Business Plan",
-    badge: "Ultimate Plan",
-    icon: Zap,
-    iconBg: "bg-blue-50 text-[#0052FF]",
-    description: "Best For: Campaigns, product launches, MVP validation",
-    price: "$2500",
+    description: "Perfect for larger organizations with advanced needs",
+    price: "$4000",
+    period: "/ per month",
     isPopular: false,
-    cardBg:
-      "bg-white text-gray-900 border border-gray-200/80 shadow-[0_4px_30px_rgb(0,0,0,0.03)] hover:shadow-xl",
-    dividerColor: "border-gray-100",
-    checkBg: "bg-blue-500 text-white",
-    descColor: "text-gray-500",
-    priceColor: "text-[#111]",
-    titleColor: "text-[#111]",
+    badgeText: null,
     features: [
-      "All Growth Facilities",
-      "Persona & journey mapping",
-      "Component-based design",
-      "Starter design system",
-      "Developer walkthrough",
-      "8–15 working Days",
-      "3–4 Weeks",
-      "4 revision rounds",
+      "Everything in Growth Plan",
+      "Investment Tracking",
+      "Integration Services",
+      "24/7 VIP Support",
+      "Premium Security",
+      "Premium Security",
+      "Premium Security",
+      "Premium Security",
     ],
-    buttonText: "Get Started",
-    buttonStyle:
-      "bg-[#0052FF] hover:bg-blue-600 text-white shadow-md shadow-blue-500/20",
-    hasArrow: true,
+    buttonText: "Select This Plan",
+    buttonStyle: "bg-[#252b3b] hover:bg-[#32394c] text-white",
   },
 ];
 
 export default function PricingSection() {
+  const [activeTab, setActiveTab] = useState("Website Design");
+
   return (
     <section
       id="pricing"
-      className="w-full py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 relative overflow-hidden"
+      className="relative z-10 w-full py-20 md:py-28 bg-[#060913] text-white flex justify-center overflow-hidden border-t border-gray-900"
     >
-      <div className="max-w-7xl w-full px-6 flex flex-col items-center">
-        {/* Top Tag */}
-        <div className="bg-[#E9F0FF] text-[#1B64FF] px-5 py-2 rounded-full text-xs font-semibold tracking-wide mb-4">
+      {/* Background Subtle Grid Pattern */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,#1f293d_1px,transparent_1px),linear-gradient(to_bottom,#1f293d_1px,transparent_1px)] bg-[size:4rem_4rem]"
+      />
+      
+      {/* Radial Blue/Purple Ambient Glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-blue-900/25 via-indigo-900/20 to-purple-900/10 blur-[130px] pointer-events-none" />
+
+      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center relative z-10">
+        
+        {/* Top Pill Badge */}
+        <div className="bg-[#111827] border border-blue-500/30 text-blue-400 px-4 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-2 mb-6 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
           Pricing Plan
         </div>
 
-        {/* Main Section Heading */}
-        <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-[#111] text-center tracking-tight leading-[1.15] max-w-4xl mb-16">
+        {/* Headline Title */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white text-center tracking-tight leading-[1.18] max-w-4xl mb-10">
           Customize your plan to{" "}
-          <span className="font-serif italic font-medium">match your goals</span>,
-          scale, and business needs.
+          <span className="font-serif italic font-medium text-slate-100">match your goals</span>,
+          <br className="hidden sm:inline" /> scale, and business needs.
         </h2>
 
-        {/* Pricing Cards Grid */}
+        {/* Category Tabs Toggle Bar */}
+        <div className="bg-[#0b101d]/90 border border-gray-800 p-1.5 rounded-full flex items-center gap-1 mb-16 shadow-xl backdrop-blur-md">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === tab
+                  ? "bg-[#3b82f6] text-white shadow-md shadow-blue-500/30"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* 3 Pricing Cards Grid */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {pricingPlans.map((plan, idx) => {
-            const Icon = plan.icon;
-            return (
-              <div key={idx} className="flex flex-col">
-                {/* Subtitle Label above Card */}
-                <div className="text-center text-gray-400 text-xs md:text-sm font-medium tracking-wider mb-3 uppercase">
-                  {plan.badge}
-                </div>
+            const isHighlighted = plan.isPopular;
 
-                {/* Card Container */}
+            return (
+              <div
+                key={idx}
+                className={`relative rounded-[24px] transition-all duration-300 flex flex-col justify-between p-7 md:p-8 ${
+                  isHighlighted
+                    ? "p-[2.5px] bg-gradient-to-b from-[#60a5fa] via-[#3b82f6] via-[#ec4899] to-[#3b82f6] bg-[length:200%_200%] animate-[gradient_6s_linear_infinite] shadow-[0_15px_50px_rgba(59,130,246,0.25)]"
+                    : "bg-[#111622] border border-gray-800/80 shadow-xl hover:border-gray-700"
+                }`}
+              >
+                {/* Inner Card Background for Highlighted Plan */}
                 <div
-                  className={`w-full rounded-[32px] p-8 md:p-9 flex flex-col justify-between transition-all duration-300 ${plan.cardBg}`}
+                  className={`w-full h-full flex flex-col justify-between ${
+                    isHighlighted
+                      ? "bg-gradient-to-b from-[#162547] via-[#11192e] to-[#0d1322] rounded-[22.5px] p-7 md:p-8"
+                      : ""
+                  }`}
                 >
                   <div>
-                    {/* Header: Icon & Title */}
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${plan.iconBg}`}
-                      >
-                        <Icon className="w-5 h-5 fill-current stroke-[2.5]" />
-                      </div>
-                      <h3
-                        className={`text-2xl md:text-3xl font-extrabold tracking-tight ${plan.titleColor}`}
-                      >
+                    {/* Header: Title & Optional Badge */}
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-2xl font-semibold text-white tracking-tight">
                         {plan.name}
                       </h3>
+                      {plan.badgeText && (
+                        <span className="bg-[#3b82f6]/30 border border-blue-400/40 text-blue-300 text-[11px] font-medium px-3 py-1 rounded-full">
+                          {plan.badgeText}
+                        </span>
+                      )}
                     </div>
 
                     {/* Description */}
-                    <p className={`text-sm font-medium mt-3 ${plan.descColor}`}>
+                    <p className="text-gray-400 text-sm font-normal mb-6 min-h-[40px] leading-relaxed">
                       {plan.description}
                     </p>
 
-                    {/* Price */}
-                    <div
-                      className={`text-5xl md:text-6xl font-extrabold tracking-tight my-6 ${plan.priceColor}`}
-                    >
-                      {plan.price}
+                    {/* Price Display */}
+                    <div className="flex items-baseline gap-2 mb-8">
+                      <span className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+                        {plan.price}
+                      </span>
+                      <span className="text-gray-400 text-sm font-normal">
+                        {plan.period}
+                      </span>
                     </div>
 
-                    {/* Top Divider */}
-                    <div className={`border-b ${plan.dividerColor} mb-6`} />
-
-                    {/* Feature List */}
-                    <ul className="space-y-4 mb-8">
-                      {plan.features.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center gap-3">
-                          <div
-                            className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${plan.checkBg}`}
-                          >
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                          <span className="text-sm md:text-[15px] font-medium leading-snug">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    {/* Feature Items List Wrapper Box */}
+                    <div className="bg-[#0b101c]/80 border border-gray-800/90 rounded-[20px] p-5 mb-8">
+                      <ul className="space-y-3.5">
+                        {plan.features.map((feature, fIdx) => (
+                          <li key={fIdx} className="flex items-center gap-3">
+                            <div
+                              className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
+                                isHighlighted
+                                  ? "bg-[#3b82f6] text-white"
+                                  : "bg-[#252b3b] text-gray-400"
+                              }`}
+                            >
+                              <Check className="w-3 h-3 stroke-[2.5]" />
+                            </div>
+                            <span className="text-sm text-gray-300 font-normal">
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  {/* Bottom Divider & CTA Button */}
-                  <div>
-                    <div className={`border-b ${plan.dividerColor} mb-6`} />
-                    <Link
-                      href="#contact"
-                      className={`w-full py-3.5 px-6 rounded-full font-semibold text-base transition-all duration-200 flex items-center justify-center gap-2 group ${plan.buttonStyle}`}
-                    >
-                      <span>{plan.buttonText}</span>
-                      {plan.hasArrow && (
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      )}
-                    </Link>
-                  </div>
+                  {/* Select Plan Button */}
+                  <Link
+                    href="#contact"
+                    className={`w-full py-3.5 px-6 rounded-full font-medium text-center text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${plan.buttonStyle}`}
+                  >
+                    {plan.buttonText}
+                  </Link>
                 </div>
               </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );
