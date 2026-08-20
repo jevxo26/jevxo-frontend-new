@@ -117,6 +117,26 @@ const partners = [
         <span className="text-2xl sm:text-2xl font-black text-gray-800 tracking-tighter">edvive</span>
       </div>
     ),
+  },
+  {
+    id: 9,
+    name: "Apex Labs",
+    logo: (
+      <div className="flex items-center justify-center gap-1.5">
+        <div className="w-6 h-6 rounded-md bg-blue-600 text-white flex items-center justify-center font-bold text-xs">A</div>
+        <span className="text-base sm:text-lg font-bold text-gray-900 tracking-tight">ApexLabs</span>
+      </div>
+    ),
+  },
+  {
+    id: 10,
+    name: "Nexus Digital",
+    logo: (
+      <div className="flex items-center justify-center gap-1">
+        <span className="text-lg sm:text-xl font-extrabold text-[#0052fe]">NEXUS</span>
+        <span className="text-[0.65rem] font-semibold text-gray-500 uppercase tracking-widest">Digital</span>
+      </div>
+    ),
   }
 ];
 
@@ -125,7 +145,7 @@ export default function Partners() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate title
+      // Animate title on scroll down and scroll up
       gsap.fromTo(
         ".partner-title",
         { y: 35, opacity: 0 },
@@ -136,13 +156,14 @@ export default function Partners() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play reverse play reverse",
           },
         }
       );
 
-      // Animate partner cards with stagger delay
+      // Animate partner cards with stagger delay on scroll down and scroll up
       gsap.fromTo(
         ".partner-card",
         { y: 50, opacity: 0 },
@@ -150,12 +171,13 @@ export default function Partners() {
           y: 0,
           opacity: 1,
           duration: 0.75,
-          stagger: 0.08,
+          stagger: 0.06,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".partner-grid",
-            start: "top 85%",
-            toggleActions: "play none none none",
+            start: "top 88%",
+            end: "bottom 12%",
+            toggleActions: "play reverse play reverse",
           },
         }
       );
@@ -166,7 +188,7 @@ export default function Partners() {
 
   return (
     <section ref={sectionRef} className="py-12 md:py-16 bg-[#F8F9FA] flex flex-col items-center overflow-hidden">
-      <div className="max-w-10/12 mx-auto px-4 sm:px-6">
+      <div className="max-w-10/12 mx-auto px-4 sm:px-6 w-full">
         <h2 className="partner-title text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-center mb-8 md:mb-10 text-[#0f172a] tracking-tight leading-[1.15]">
           <span className="block text-[#0f172a]">Top Partners That</span>
           <span className="block mt-1 text-[#0f172a]">
@@ -174,11 +196,12 @@ export default function Partners() {
           </span>
         </h2>
         
-        <div className="partner-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+        {/* 5 columns per row layout across 2 rows */}
+        <div className="partner-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 md:gap-4 lg:gap-5">
           {partners.map((partner) => (
             <div 
               key={partner.id}
-              className="partner-card bg-white rounded-xl sm:rounded-2xl h-20 sm:h-24 flex items-center justify-center p-4 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-1"
+              className="partner-card bg-white rounded-xl sm:rounded-2xl h-20 sm:h-24 flex items-center justify-center p-3 sm:p-4 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-1"
             >
               {partner.logo}
             </div>
