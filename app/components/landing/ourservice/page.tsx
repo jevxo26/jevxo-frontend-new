@@ -78,26 +78,28 @@ export default function OurService() {
 
       const getScrollAmount = () => {
         const trackWidth = trackRef.current?.scrollWidth || 0;
-        const viewportWidth = window.innerWidth;
-        return -(trackWidth - viewportWidth + 60);
+        const containerWidth = trackRef.current?.parentElement?.offsetWidth || window.innerWidth;
+        return trackWidth - containerWidth;
       };
 
+      const scrollAmount = getScrollAmount();
+
       gsap.to(trackRef.current, {
-        x: getScrollAmount,
+        x: () => -getScrollAmount(),
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
-          scrub: 0.8,
+          pinSpacing: true,
+          scrub: 1,
           start: "top top",
-          end: () => `+=${Math.abs(getScrollAmount())}`,
+          end: () => `+=${getScrollAmount()}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
         },
       });
     }, sectionRef);
 
-    // Refresh ScrollTrigger to recalculate exact dimensions
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 200);
@@ -112,7 +114,7 @@ export default function OurService() {
     <section 
       ref={sectionRef} 
       id="service" 
-      className="relative z-20 w-full h-screen min-h-screen bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
+      className="w-full h-screen min-h-screen bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         
