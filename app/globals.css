@@ -10,6 +10,23 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-bai-jamjuree), var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono);
+  --container-8xl: 90rem;
+}
+
+@utility max-w-8xl {
+  max-width: 90rem;
+}
+
+.max-w-8xl {
+  max-width: 90rem;
+}
+
+@utility max-w-8/12 {
+  max-width: 66.666667%;
+}
+
+.max-w-8\/12 {
+  max-width: 66.666667%;
 }
 
 body {

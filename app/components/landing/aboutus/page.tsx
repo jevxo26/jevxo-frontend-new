@@ -153,7 +153,7 @@ export default function AboutUs() {
 
   return (
     <section ref={sectionRef} className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
-      <div className="w-full max-w-[95%] sm:max-w-10/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-start">
+      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-start">
         {/* About Us Pill */}
         <div className="bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 border border-blue-100 mb-6 sm:mb-8">
           <span className="w-2 h-2 rounded-full bg-[#1B64FF] animate-pulse" />

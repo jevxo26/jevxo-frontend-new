@@ -65,9 +65,30 @@ export default function CaseStudies() {
     return () => ctx.revert();
   }, [isLoading, caseStudies.length]);
 
+  const getValidImageSrc = (src?: string | null): string | null => {
+    if (!src || typeof src !== "string") return null;
+    const trimmed = src.trim();
+    if (!trimmed || trimmed === "null" || trimmed === "undefined") return null;
+
+    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+      try {
+        new URL(trimmed);
+        return trimmed;
+      } catch {
+        return null;
+      }
+    }
+
+    if (trimmed.startsWith("/")) {
+      return trimmed;
+    }
+
+    return `/${trimmed}`;
+  };
+
   return (
     <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
-      <div className="w-full max-w-[95%] sm:max-w-10/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
+      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
@@ -78,48 +99,43 @@ export default function CaseStudies() {
               Case Studies
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">Our Latest Work &amp;</span>
+              <span className="block text-[#0f172a]">Where Vision Meets</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Featured</span> <span className="font-medium text-[#0f172a]">Case Studies</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Flawless</span> <span className="font-medium text-[#0f172a]">Execution.</span>
               </span>
             </h2>
           </div>
           
-          {/* Right View All Capsule Button */}
-          <div className="pt-2 md:pt-8">
-            <Link
-              href="#contact"
-              className="inline-flex items-center bg-black hover:bg-neutral-900 text-white rounded-full pl-6 pr-1.5 py-1.5 text-sm font-medium transition-all shadow-md group"
-            >
-              <span className="mr-3 text-xs tracking-tight font-normal">View All</span>
-              <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
-              </div>
-            </Link>
+          {/* Right Description Text */}
+          <div className="md:w-[42%] pt-1 md:pt-6">
+            <p className="text-sm sm:text-base md:text-lg text-[#000000] font-normal leading-relaxed">
+              Explore how we've empowered innovative startups and established brands to achieve remarkable digital transformation and market success.
+            </p>
           </div>
         </div>
 
-        {/* 4 Cards Grid matching 100% first screenshot styling */}
-        <div className="case-studies-grid grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-          {!isLoading && caseStudies.map((study) => (
-            <div 
-              key={study.id} 
-              className="case-study-card bg-white rounded-[20px] p-6 sm:p-5 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/60 flex flex-col group hover:shadow-[0_12px_45px_rgba(0,0,0,0.08)] transition-all duration-300"
-            >
-              
-              {/* Image Banner */}
-              <div className={`w-full h-[320px] sm:h-[380px] rounded-[20px] bg-[#0a0a0a] mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
-                {study.photoUrl ? (
-                  <Image 
-                    src={study.photoUrl} 
-                    alt={study.title}
-                    fill
-                    className="object-cover object-center rounded-[28px]"
-                  />
-                ) : (
-                  <div className="text-white">No Image</div>
-                )}
-              </div>
+        {/* Case Studies Grid */}
+        {!isLoading && caseStudies.length > 0 && (
+          <div className="case-studies-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {caseStudies.map((study) => {
+              const photoSrc = getValidImageSrc(study.photoUrl);
+              return (
+                <div 
+                  key={study.id}
+                  className="case-card case-study-card bg-white rounded-[24px] p-5 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 group"
+                >
+                  {/* Image Banner */}
+                  <div className={`w-full h-[320px] sm:h-[380px] rounded-[20px] bg-[#0a0a0a] mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
+                    {photoSrc ? (
+                      <img 
+                        src={photoSrc} 
+                        alt={study.title}
+                        className="w-full h-full object-cover object-center rounded-[20px] transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="text-white">No Image</div>
+                    )}
+                  </div>
               
               {/* Card Body */}
               <div className="px-2 flex flex-col flex-1">
@@ -143,11 +159,12 @@ export default function CaseStudies() {
                   </Link>
                 </div>
               </div>
-
             </div>
-          ))}
+          );
+        })}
         </div>
-      </div>
-    </section>
+      )}
+    </div>
+  </section>
   );
 }

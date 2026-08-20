@@ -19,7 +19,7 @@ export default function Hero() {
       {/* Radial glow to fade grid at edges */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.9)_0%,rgba(255,255,255,0)_60%)]" />
 
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 w-full max-w-7xl mx-auto">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 w-full max-w-[95%] sm:max-w-8/12 mx-auto">
         {/* Startup Badge */}
         <div className="inline-flex items-center gap-3 bg-white border border-[#2563eb] px-4 py-1.5 sm:py-2 rounded-full shadow-xs mb-8 group hover:scale-[1.02] transition-transform cursor-pointer">
           <Image
@@ -35,7 +35,7 @@ export default function Hero() {
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl md:text-[74px] font-medium text-[#0a0c1f] tracking-tight leading-[1.1] max-w-7xl">
+        <h1 className="text-4xl md:text-[74px] font-medium text-[#0a0c1f] tracking-tight leading-[1.1] max-w-4xl">
           We Design &amp; Dev Agency <br className="hidden sm:inline" />
           For B2B{" "}
           <span className="italic font-serif font-medium">

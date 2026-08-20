@@ -1,15 +1,4 @@
-import axios from 'axios';
-
-// Get backend URL from environment or use proxy path
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
-
-// Setup axios instance
-const api = axios.create({
-  baseURL: `${API_URL}/package-category`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import api from '../hooks/baseApi';
 
 export interface PackageCategory {
   id: string;
@@ -21,27 +10,27 @@ export interface PackageCategory {
 
 export const packageCategoryApi = {
   getAll: async () => {
-    const response = await api.get('/');
+    const response = await api.get('/package-category');
     return response.data;
   },
 
   getById: async (id: string) => {
-    const response = await api.get(`/${id}`);
+    const response = await api.get(`/package-category/${id}`);
     return response.data;
   },
 
   create: async (data: Partial<PackageCategory>) => {
-    const response = await api.post('/', data);
+    const response = await api.post('/package-category', data);
     return response.data;
   },
 
   update: async (id: string, data: Partial<PackageCategory>) => {
-    const response = await api.patch(`/${id}`, data);
+    const response = await api.patch(`/package-category/${id}`, data);
     return response.data;
   },
 
   delete: async (id: string) => {
-    const response = await api.delete(`/${id}`);
+    const response = await api.delete(`/package-category/${id}`);
     return response.data;
   },
 };

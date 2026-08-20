@@ -237,7 +237,7 @@ export default function ReadyToBuildSection() {
         }}
       />
 
-      <div className="relative w-full max-w-[95%] sm:max-w-10/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-center">
+      <div className="relative w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-center">
 
         {/* ========================================================= */}
         {/* PART 1: TOP HERO - AUTOMATE WORK & NODE WORKFLOW DIAGRAM */}
