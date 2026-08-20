@@ -110,7 +110,7 @@ export default function AboutUs() {
         {/* Scroll Reveal Main Paragraph */}
         <p
           ref={textRef}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.45] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12 text-justify sm:text-left md:text-justify hyphens-auto"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.45] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
         >
           {words.map((word, i) => {
             const targetProgress = (i + 1) / words.length;
