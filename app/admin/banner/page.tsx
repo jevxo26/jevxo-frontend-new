@@ -10,13 +10,16 @@ import {
   TableHeader,
   TableRow,
 } from '@/ui/table';
-import { Loader2, Plus, Trash2 } from 'lucide-react';
+import { Loader2, Plus, Trash2, Edit, X } from 'lucide-react';
 import { useImageUpload } from '@/hooks/useImageUpload';
 
 export default function BannerManagementPage() {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const [formData, setFormData] = useState({
     photoUrl: '',
     order: 0,
@@ -68,19 +71,44 @@ export default function BannerManagementPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await bannerApi.createBanner(formData);
-      setFormData({ photoUrl: '', order: 0, isActive: true });
-
+      if (editingId) {
+        await bannerApi.updateBanner(editingId, formData);
+      } else {
+        await bannerApi.createBanner(formData);
+      }
+      
       const fileInput = document.getElementById('photoUrl-upload') as HTMLInputElement;
       if (fileInput) fileInput.value = '';
 
+      handleCloseModal();
       fetchBanners(); // Refresh the list
     } catch (error) {
-      console.error('Failed to create banner:', error);
-      alert('Failed to create banner. Check console for details.');
+      console.error(`Failed to ${editingId ? 'update' : 'create'} banner:`, error);
+      alert(`Failed to ${editingId ? 'update' : 'create'} banner. Check console for details.`);
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleOpenModal = (banner?: Banner) => {
+    if (banner) {
+      setEditingId(banner.id);
+      setFormData({
+        photoUrl: banner.photoUrl || '',
+        order: banner.order || 0,
+        isActive: banner.isActive,
+      });
+    } else {
+      setEditingId(null);
+      setFormData({ photoUrl: '', order: 0, isActive: true });
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingId(null);
+    setFormData({ photoUrl: '', order: 0, isActive: true });
   };
 
   const handleDelete = async (id: string) => {
@@ -97,91 +125,32 @@ export default function BannerManagementPage() {
 
   return (
     <div className="p-6 w-full mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-          Banner Management
-        </h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-2">
-          Manage homepage banners.
-        </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+            Banner Management
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2">
+            Manage homepage banners.
+          </p>
+        </div>
+        <button 
+          onClick={() => handleOpenModal()}
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg flex items-center gap-2 font-medium transition-colors shadow-sm"
+        >
+          <Plus className="w-5 h-5" />
+          Add Banner
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Create Banner Form */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm h-fit">
-          <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
-            <Plus className="w-5 h-5 text-indigo-500" />
-            Add New Banner
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Photo Upload
-              </label>
-              <input
-                id="photoUrl-upload"
-                type="file"
-                name="photoUrl"
-                accept="image/*"
-                required
-                onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
-              />
-              {formData.photoUrl && (
-                <div className="mt-2 relative inline-block">
-                  <img src={formData.photoUrl} alt="Preview" className="h-16 w-auto object-cover rounded border border-gray-200 dark:border-gray-700" />
-                  {isUploading && (
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded">
-                      <Loader2 className="w-5 h-5 text-white animate-spin" />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Order
-              </label>
-              <input
-                type="number"
-                name="order"
-                required
-                value={formData.order}
-                onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
-                placeholder="0"
-              />
-            </div>
-            <div className="flex items-center gap-2 mt-2">
-              <input
-                type="checkbox"
-                id="isActive"
-                name="isActive"
-                checked={formData.isActive}
-                onChange={handleChange}
-                className="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label htmlFor="isActive" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Is Active
-              </label>
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting || isUploading}
-              className="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed mt-6"
-            >
-              {isSubmitting || isUploading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Banner'}
-            </button>
-          </form>
-        </div>
-
-        {/* Banners Table */}
-        <div className="lg:col-span-2">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl">
-              <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
-            </div>
-          ) : (
+      {/* Banners Table */}
+      <div className="w-full">
+        {isLoading ? (
+          <div className="flex items-center justify-center py-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl">
+            <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+          </div>
+        ) : (
+          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -206,13 +175,22 @@ export default function BannerManagementPage() {
                         </span>
                       </TableCell>
                       <TableCell className="text-right">
-                        <button
-                          onClick={() => handleDelete(banner.id)}
-                          className="text-red-500 hover:text-red-700 p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
-                          title="Delete Banner"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        <div className="flex items-center justify-end gap-1">
+                          <button
+                            onClick={() => handleOpenModal(banner)}
+                            className="text-blue-500 hover:text-blue-700 p-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-colors"
+                            title="Edit Banner"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(banner.id)}
+                            className="text-red-500 hover:text-red-700 p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+                            title="Delete Banner"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))
@@ -225,9 +203,98 @@ export default function BannerManagementPage() {
                 )}
               </TableBody>
             </Table>
-          )}
-        </div>
+          </div>
+        )}
       </div>
+
+      {/* Add/Edit Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-800 sticky top-0 bg-white dark:bg-gray-900 z-10">
+              <h2 className="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
+                {editingId ? <Edit className="w-5 h-5 text-indigo-500" /> : <Plus className="w-5 h-5 text-indigo-500" />}
+                {editingId ? 'Edit Banner' : 'Create New Banner'}
+              </h2>
+              <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Photo Upload
+                </label>
+                <input
+                  id="photoUrl-upload"
+                  type="file"
+                  name="photoUrl"
+                  accept="image/*"
+                  onChange={handleChange}
+                  required={!formData.photoUrl}
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                />
+                {formData.photoUrl && (
+                  <div className="mt-2 relative inline-block">
+                    <img src={formData.photoUrl} alt="Preview" className="h-16 w-auto object-cover rounded border border-gray-200 dark:border-gray-700" />
+                    {isUploading && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded">
+                        <Loader2 className="w-5 h-5 text-white animate-spin" />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Order
+                </label>
+                <input
+                  type="number"
+                  name="order"
+                  required
+                  value={formData.order}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                  placeholder="0"
+                />
+              </div>
+              <div className="flex items-center gap-2 mt-2">
+                <input
+                  type="checkbox"
+                  id="isActive"
+                  name="isActive"
+                  checked={formData.isActive}
+                  onChange={handleChange}
+                  className="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label htmlFor="isActive" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Is Active
+                </label>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-800 mt-6">
+                <button
+                  type="button"
+                  onClick={handleCloseModal}
+                  disabled={isSubmitting || isUploading}
+                  className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg shadow-sm transition-colors disabled:opacity-70"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting || isUploading}
+                  className="py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed min-w-[120px]"
+                >
+                  {isSubmitting || isUploading ? <Loader2 className="w-5 h-5 animate-spin" /> : (editingId ? 'Update' : 'Create')}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
