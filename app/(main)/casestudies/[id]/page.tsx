@@ -88,7 +88,7 @@ export default function CaseStudyDetailsPage() {
         <div className="flex flex-col space-y-4">
           {caseStudy.category && (
             <div className="inline-flex items-center gap-2 bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold w-fit uppercase tracking-wider">
-              {caseStudy.category.title || caseStudy.category.name}
+              {caseStudy.category.title}
             </div>
           )}
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#0a0c16] tracking-tight leading-tight">
