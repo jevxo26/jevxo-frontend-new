@@ -13,7 +13,7 @@ export default function AboutUs() {
   const [countPartners, setCountPartners] = useState(0);
 
   const fullText =
-    "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. at Jevxo, we blend creativity with technology to craft digital experiences that truly resonate with users and drive business success.";
+    "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. At Jevxo, we blend creativity with cutting-edge technology to craft bespoke digital experiences that truly resonate with users, elevate brand equity, and drive sustainable business growth across global markets. We partner with ambitious brands to transform complex ideas into seamless software products.";
 
   const words = fullText.split(" ");
 
@@ -64,17 +64,17 @@ export default function AboutUs() {
             const progress = step / steps;
             const easeProgress = 1 - Math.pow(1 - progress, 3);
 
-            setCountDeliveries(Math.floor(easeProgress * 700));
-            setCountExperts(Math.floor(easeProgress * 10));
-            setCountClients(Math.floor(easeProgress * 90));
-            setCountPartners(Math.floor(easeProgress * 50));
+            setCountDeliveries(Math.floor(easeProgress * 250));
+            setCountExperts(Math.floor(easeProgress * 45));
+            setCountClients(Math.floor(easeProgress * 120));
+            setCountPartners(Math.floor(easeProgress * 18));
 
             if (step >= steps) {
-              setCountDeliveries(700);
-              setCountExperts(10);
-              setCountClients(90);
-              setCountPartners(50);
               if (timer) clearInterval(timer);
+              setCountDeliveries(250);
+              setCountExperts(45);
+              setCountClients(120);
+              setCountPartners(18);
             }
           }, intervalTime);
         } else {
@@ -110,7 +110,7 @@ export default function AboutUs() {
         {/* Scroll Reveal Main Paragraph */}
         <p
           ref={textRef}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.4] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.45] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12 text-justify sm:text-left md:text-justify hyphens-auto"
         >
           {words.map((word, i) => {
             const targetProgress = (i + 1) / words.length;
