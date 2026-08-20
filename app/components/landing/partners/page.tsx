@@ -145,12 +145,13 @@ export default function Partners() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Ultra-smooth professional GSAP timeline for title & cards
+      // Ultra-smooth professional GSAP timeline for title & cards with bi-directional scroll support (top-to-bottom and bottom-to-top)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
+          start: "top 85%",
+          end: "bottom 15%",
+          toggleActions: "play reverse play reverse",
         },
       });
 
