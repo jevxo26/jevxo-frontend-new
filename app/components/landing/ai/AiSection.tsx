@@ -1,8 +1,44 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AiSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Bi-directional GSAP Entrance Reveal for AI Powered Design Cards
+      gsap.fromTo(
+        ".ai-card",
+        { opacity: 0, y: 35, scale: 0.96, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.85,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="ai-section" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section ref={sectionRef} id="ai-section" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Area */}
@@ -33,7 +69,7 @@ export default function AiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 w-full">
           
           {/* Card 1: UX Copy That Converts */}
-          <div className="bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[470px]">
+          <div className="ai-card bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[470px]">
             {/* Top 8 Dark AI Tool Icons Grid - Extra Large Tiles */}
             <div className="w-full flex justify-center pt-2 pb-6 my-auto">
               <div className="grid grid-cols-4 gap-4 sm:gap-5 max-w-[420px]">
@@ -75,7 +111,7 @@ export default function AiSection() {
           </div>
 
           {/* Card 2: AI Visual Direction */}
-          <div className="bg-gradient-to-b from-[#FCD6FE] via-[#FAEEFF] to-[#FFF8FE] rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-purple-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1 min-h-[470px]">
+          <div className="ai-card bg-gradient-to-b from-[#FCD6FE] via-[#FAEEFF] to-[#FFF8FE] rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-purple-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1 min-h-[470px]">
             {/* Centered & Expanded Rows Container */}
             <div className="w-full flex justify-center items-center my-auto pt-4 pb-8">
               <div className="flex flex-col space-y-4 w-full max-w-[420px]">
@@ -130,7 +166,7 @@ export default function AiSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           
           {/* Bottom Card 1: Smarter UX Insights */}
-          <div className="bg-gradient-to-b from-[#DCDCFE] via-[#ECECFF] to-white rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
+          <div className="ai-card bg-gradient-to-b from-[#DCDCFE] via-[#ECECFF] to-white rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
             {/* Centered White Row Badges */}
             <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <div className="flex flex-col space-y-3.5 w-full">
@@ -180,7 +216,7 @@ export default function AiSection() {
           </div>
 
           {/* Bottom Card 2: Faster Wireframing */}
-          <div className="bg-gradient-to-b from-[#FFEBD9] via-[#FFF3E8] to-[#FFF9F2] rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-200/50 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
+          <div className="ai-card bg-gradient-to-b from-[#FFEBD9] via-[#FFF3E8] to-[#FFF9F2] rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-200/50 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
             {/* Centered Large Mockup Image */}
             <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <Image 
@@ -203,7 +239,7 @@ export default function AiSection() {
           </div>
 
           {/* Bottom Card 3: AI-Assisted Launches */}
-          <div className="bg-gradient-to-b from-[#FFD5DC] via-[#FFEBEF] to-[#FFF5F7] rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
+          <div className="ai-card bg-gradient-to-b from-[#FFD5DC] via-[#FFEBEF] to-[#FFF5F7] rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
             {/* Centered White Overlapping Circles Graphic */}
             <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <Image 
