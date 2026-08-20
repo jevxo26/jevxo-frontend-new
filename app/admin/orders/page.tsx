@@ -57,7 +57,7 @@ export default function OrdersManagementPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    
+
     if (name === 'budget' || name === 'advance') {
       setFormData((prev) => ({ ...prev, [name]: Number(value) }));
     } else {
@@ -97,7 +97,7 @@ export default function OrdersManagementPage() {
 
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this order?')) return;
-    
+
     try {
       await orderApi.deleteOrder(id);
       fetchData(); // Refresh the list
@@ -119,7 +119,7 @@ export default function OrdersManagementPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-8">
+    <div className="p-6 w-full mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
           Orders Management
@@ -206,7 +206,7 @@ export default function OrdersManagementPage() {
                 />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Client
@@ -223,7 +223,7 @@ export default function OrdersManagementPage() {
                 ))}
               </select>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Category
@@ -273,7 +273,7 @@ export default function OrdersManagementPage() {
                 </select>
               </div>
             </div>
-            
+
             <button
               type="submit"
               disabled={isSubmitting}
@@ -323,11 +323,10 @@ export default function OrdersManagementPage() {
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider ${getStatusBadgeColor(order.status)}`}>
                             {order.status}
                           </span>
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider ${
-                            order.paymentStatus === PaymentStatus.PAID ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                            order.paymentStatus === PaymentStatus.PARTIAL ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
-                            'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
-                          }`}>
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider ${order.paymentStatus === PaymentStatus.PAID ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                              order.paymentStatus === PaymentStatus.PARTIAL ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                                'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                            }`}>
                             {order.paymentStatus}
                           </span>
                         </div>

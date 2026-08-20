@@ -1,18 +1,40 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { blogApi, Blog } from "../../../../api/blogApi";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function BlogSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const data = await blogApi.getAllBlogs();
+        // data could be paginated or an array
+        const blogList = Array.isArray(data) ? data : data?.data || [];
+        setBlogs(blogList);
+      } catch (error) {
+        console.error("Failed to fetch blogs:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    if (isLoading || blogs.length === 0) return;
+
     const ctx = gsap.context(() => {
       // Bi-directional GSAP Entrance Reveal for Blog & Insight Cards (Ultra-fast 0.2s blur clear)
       gsap.fromTo(
@@ -37,7 +59,18 @@ export default function BlogSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoading, blogs.length]);
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
+
+  const mainBlog = blogs[0];
+  const sideBlogs = blogs.slice(1, 3);
 
   return (
     <section ref={sectionRef} id="blog" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
@@ -70,122 +103,102 @@ export default function BlogSection() {
         </div>
 
         {/* Blog Grid (Left Main Card + Right 2 Cards Stack) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          
-          {/* Left Column: Featured Main Blog Post Card */}
-          <div className="blog-card lg:col-span-6 bg-white rounded-[16px] p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
-            {/* Main Featured Banner Image - Height Enlarged */}
-            <div className="w-full h-[280px] sm:h-[340px] md:h-[360px] rounded-[12px] relative overflow-hidden mb-6 bg-gray-100">
-              <Image
-                src="/BlogInsight/first.png"
-                alt="The Future of Branding Why Design Quality Matters More Than Ever."
-                fill
-                className="object-cover object-center transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-
-            {/* Content Details */}
-            <div className="flex flex-col justify-between flex-1">
-              <div>
-                <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
-                  July 31, 2025
-                </span>
-                <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
-                  The Future of Branding Why Design Quality Matters More Than Ever.
-                </h3>
-              </div>
-
-              <div>
-                <Link
-                  href="#"
-                  className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
-                >
-                  <span className="text-xs sm:text-sm font-medium">Open Blog</span>
-                  <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: 2 Stacked Cards */}
-          <div className="lg:col-span-6 flex flex-col space-y-6 justify-between">
+        {!isLoading && blogs.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Right Card 1 */}
-            <div className="blog-card bg-white rounded-[16px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
-              {/* Image thumbnail - Height & Width Enlarged */}
-              <div className="w-full sm:w-[220px] md:w-[250px] h-[185px] sm:h-[195px] md:h-[210px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
-                <Image
-                  src="/BlogInsight/second.png"
-                  alt="Why Great UI/UX Is A Competitive Advantage"
-                  fill
-                  className="object-cover object-center transition-transform duration-500 hover:scale-105"
-                />
-              </div>
+            {/* Left Column: Featured Main Blog Post Card */}
+            {mainBlog && (
+              <div className="blog-card lg:col-span-6 bg-white rounded-[16px] p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
+                {/* Main Featured Banner Image */}
+                <div className="w-full h-[280px] sm:h-[340px] md:h-[360px] rounded-[12px] relative overflow-hidden mb-6 bg-gray-100 flex items-center justify-center">
+                  {mainBlog.coverImage ? (
+                    <Image
+                      src={mainBlog.coverImage}
+                      alt={mainBlog.title}
+                      fill
+                      className="object-cover object-center transition-transform duration-500 hover:scale-105"
+                    />
+                  ) : (
+                    <span className="text-gray-400 font-medium">No Image</span>
+                  )}
+                </div>
 
-              {/* Content */}
-              <div className="flex flex-col justify-center h-full w-full py-1">
-                <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
-                  July 31, 2025
-                </span>
-                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
-                  Why Great UI/UX Is A Competitive Advantage
-                </h3>
+                {/* Content Details */}
+                <div className="flex flex-col justify-between flex-1">
+                  <div>
+                    <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
+                      {formatDate(mainBlog.createdAt)}
+                    </span>
+                    <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-2 line-clamp-2">
+                      {mainBlog.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 line-clamp-3 mb-4">
+                      {mainBlog.excerpt || mainBlog.content?.replace(/<[^>]+>/g, '')}
+                    </p>
+                  </div>
 
-                <div>
-                  <Link
-                    href="#"
-                    className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
-                  >
-                    <span className="text-xs sm:text-sm font-medium">Open Blog</span>
-                    <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
-                      <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
-                    </div>
-                  </Link>
+                  <div>
+                    <Link
+                      href={`/blog/${mainBlog.slug || mainBlog.id}`}
+                      className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
+                    >
+                      <span className="text-xs sm:text-sm font-medium">Open Blog</span>
+                      <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                        <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Right Card 2 */}
-            <div className="blog-card bg-white rounded-[16px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
-              {/* Image thumbnail - Height & Width Enlarged */}
-              <div className="w-full sm:w-[220px] md:w-[250px] h-[185px] sm:h-[195px] md:h-[210px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
-                <Image
-                  src="/BlogInsight/thired.png"
-                  alt="Building Scalable Products Through Smart Design Systems"
-                  fill
-                  className="object-cover object-center transition-transform duration-500 hover:scale-105"
-                />
-              </div>
+            {/* Right Column: 2 Stacked Cards */}
+            <div className="lg:col-span-6 flex flex-col space-y-6 justify-between">
+              {sideBlogs.map((blog) => (
+                <div key={blog.id} className="blog-card bg-white rounded-[16px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
+                  {/* Image thumbnail */}
+                  <div className="w-full sm:w-[220px] md:w-[250px] h-[185px] sm:h-[195px] md:h-[210px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100 flex items-center justify-center">
+                    {blog.coverImage ? (
+                      <Image
+                        src={blog.coverImage}
+                        alt={blog.title}
+                        fill
+                        className="object-cover object-center transition-transform duration-500 hover:scale-105"
+                      />
+                    ) : (
+                      <span className="text-gray-400 font-medium text-sm">No Image</span>
+                    )}
+                  </div>
 
-              {/* Content */}
-              <div className="flex flex-col justify-center h-full w-full py-1">
-                <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
-                  July 31, 2025
-                </span>
-                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
-                  Building Scalable Products Through Smart Design Systems
-                </h3>
+                  {/* Content */}
+                  <div className="flex flex-col justify-center h-full w-full py-1">
+                    <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
+                      {formatDate(blog.createdAt)}
+                    </span>
+                    <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-2 line-clamp-2">
+                      {blog.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 mb-4">
+                      {blog.excerpt || blog.content?.replace(/<[^>]+>/g, '')}
+                    </p>
 
-                <div>
-                  <Link
-                    href="#"
-                    className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
-                  >
-                    <span className="text-xs sm:text-sm font-medium">Open Blog</span>
-                    <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
-                      <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
+                    <div>
+                      <Link
+                        href={`/blog/${blog.slug || blog.id}`}
+                        className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-800 text-white rounded-full pl-4 pr-1 py-1 transition-all duration-300 hover:scale-[1.03] group/btn"
+                      >
+                        <span className="text-xs sm:text-sm font-medium">Open Blog</span>
+                        <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                          <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.2]" />
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-
           </div>
-
-        </div>
-
+        )}
       </div>
     </section>
   );

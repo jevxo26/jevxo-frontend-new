@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { Check } from "lucide-react";
-
-type TabName = "Website Design" | "Web App" | "Mobile App";
+import { useEffect, useState } from "react";
+import { Check, X } from "lucide-react";
+import { packageCategoryApi, PackageCategory } from "../../../../api/packageCategoryApi";
+import { packageApi } from "../../../../api/packageApi";
+import { packageBookingApi } from "../../../../api/packageBookingApi";
 
 interface PricingPlan {
+  id: string;
   name: string;
   description: string;
   price: string;
@@ -14,169 +16,70 @@ interface PricingPlan {
   badgeText: string | null;
   features: string[];
   buttonText: string;
+  category: { id: string; name: string };
 }
 
-const tabs: TabName[] = ["Website Design", "Web App", "Mobile App"];
-
-const pricingData: Record<TabName, PricingPlan[]> = {
-  "Website Design": [
-    {
-      name: "Starter Plan",
-      description: "Perfect for small businesses launching their first site",
-      price: "$700",
-      period: "/ per month",
-      isPopular: false,
-      badgeText: null,
-      features: [
-        "5-page responsive website",
-        "Basic SEO setup",
-        "Contact form integration",
-        "1 round of revisions",
-        "Standard hosting support",
-      ],
-      buttonText: "Select This Plan",
-    },
-    {
-      name: "Growth Plan",
-      description: "Ideal for growing startups and mid-sized companies",
-      price: "$1500",
-      period: "/ per month",
-      isPopular: true,
-      badgeText: "Most Popular",
-      features: [
-        "Everything in Starter Plan",
-        "Up to 15 pages",
-        "Custom UI/UX design",
-        "Advanced SEO & analytics",
-        "CMS integration",
-        "3 rounds of revisions",
-      ],
-      buttonText: "Select This Plan",
-    },
-    {
-      name: "Business Plan",
-      description: "Perfect for larger organizations with advanced needs",
-      price: "$4000",
-      period: "/ per month",
-      isPopular: false,
-      badgeText: null,
-      features: [
-        "Everything in Growth Plan",
-        "Unlimited pages",
-        "E-commerce integration",
-        "24/7 VIP support",
-        "Premium security & backups",
-      ],
-      buttonText: "Select This Plan",
-    },
-  ],
-  "Web App": [
-    {
-      name: "Starter Plan",
-      description: "Great for MVPs and early-stage product validation",
-      price: "$1200",
-      period: "/ per month",
-      isPopular: false,
-      badgeText: null,
-      features: [
-        "Single-page web app",
-        "Core feature development",
-        "Basic authentication",
-        "Cloud hosting setup",
-        "Bug fixes for 30 days",
-      ],
-      buttonText: "Select This Plan",
-    },
-    {
-      name: "Growth Plan",
-      description: "Built for scaling products with growing user bases",
-      price: "$2800",
-      period: "/ per month",
-      isPopular: true,
-      badgeText: "Most Popular",
-      features: [
-        "Everything in Starter Plan",
-        "Custom dashboards",
-        "Third-party API integrations",
-        "Role-based access control",
-        "Performance optimization",
-        "Priority support",
-      ],
-      buttonText: "Select This Plan",
-    },
-    {
-      name: "Business Plan",
-      description: "For enterprise-grade web applications at scale",
-      price: "$6000",
-      period: "/ per month",
-      isPopular: false,
-      badgeText: null,
-      features: [
-        "Everything in Growth Plan",
-        "Microservices architecture",
-        "Advanced analytics suite",
-        "24/7 VIP support",
-        "Enterprise-grade security",
-      ],
-      buttonText: "Select This Plan",
-    },
-  ],
-  "Mobile App": [
-    {
-      name: "Starter Plan",
-      description: "Perfect for launching a simple mobile app quickly",
-      price: "$1500",
-      period: "/ per month",
-      isPopular: false,
-      badgeText: null,
-      features: [
-        "iOS or Android (single platform)",
-        "Up to 5 screens",
-        "Basic push notifications",
-        "App store submission",
-        "Bug fixes for 30 days",
-      ],
-      buttonText: "Select This Plan",
-    },
-    {
-      name: "Growth Plan",
-      description: "Ideal for startups scaling across both platforms",
-      price: "$3200",
-      period: "/ per month",
-      isPopular: true,
-      badgeText: "Most Popular",
-      features: [
-        "Everything in Starter Plan",
-        "iOS & Android (cross-platform)",
-        "In-app purchases setup",
-        "Analytics integration",
-        "Custom UI/UX design",
-        "Priority support",
-      ],
-      buttonText: "Select This Plan",
-    },
-    {
-      name: "Business Plan",
-      description: "For larger organizations with complex app needs",
-      price: "$7000",
-      period: "/ per month",
-      isPopular: false,
-      badgeText: null,
-      features: [
-        "Everything in Growth Plan",
-        "Offline mode support",
-        "Advanced backend integration",
-        "24/7 VIP support",
-        "Premium security & compliance",
-      ],
-      buttonText: "Select This Plan",
-    },
-  ],
-};
-
 export default function PricingSection() {
-  const [activeTab, setActiveTab] = useState<TabName>("Website Design");
-  const plans = pricingData[activeTab];
+  const [categories, setCategories] = useState<PackageCategory[]>([]);
+  const [packages, setPackages] = useState<PricingPlan[]>([]);
+  const [activeTabId, setActiveTabId] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Booking Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    userEmail: "",
+    companyName: "",
+    companyEmail: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [catsRes, pkgsRes] = await Promise.all([
+          packageCategoryApi.getAll(),
+          packageApi.getAllPackages()
+        ]);
+        
+        // Extract array if wrapped in standard response format
+        const cats = Array.isArray(catsRes) ? catsRes : catsRes?.data || [];
+        const pkgs = Array.isArray(pkgsRes) ? pkgsRes : pkgsRes?.data || [];
+        
+        setCategories(cats);
+        
+        // Format packages to match component structure
+        const formattedPackages = pkgs.map((pkg: any) => ({
+          id: pkg.id,
+          name: pkg.name,
+          description: pkg.description,
+          price: `$${pkg.price}`,
+          period: pkg.duration ? `/ ${pkg.duration}` : "",
+          isPopular: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro"),
+          badgeText: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro") ? "Most Popular" : null,
+          features: Array.isArray(pkg.features) ? pkg.features : (pkg.features ? JSON.parse(pkg.features) : []),
+          buttonText: "Select This Plan",
+          category: pkg.category
+        }));
+        
+        setPackages(formattedPackages);
+
+        if (cats.length > 0) {
+          setActiveTabId(cats[0].id);
+        }
+      } catch (error) {
+        console.error("Failed to fetch pricing data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const activePlans = packages.filter(pkg => pkg.category?.id === activeTabId);
 
   return (
     <section
@@ -247,25 +150,27 @@ export default function PricingSection() {
         </h2>
 
         {/* Category Tabs Toggle Bar */}
-        <div className="bg-[#0b101d]/90 border border-gray-800 p-1.5 rounded-full flex items-center gap-1 mb-16 shadow-xl backdrop-blur-md">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === tab
-                  ? "bg-[#3b82f6] text-white shadow-md shadow-blue-500/30"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        {!isLoading && categories.length > 0 && (
+          <div className="bg-[#0b101d]/90 border border-gray-800 p-1.5 rounded-full flex items-center gap-1 mb-16 shadow-xl backdrop-blur-md">
+            {categories.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTabId(tab.id)}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeTabId === tab.id
+                    ? "bg-[#3b82f6] text-white shadow-md shadow-blue-500/30"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                {tab.name}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* 3 Pricing Cards Grid */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {plans.map((plan, idx) => {
+          {!isLoading && activePlans.map((plan, idx) => {
             const isHighlighted = plan.isPopular;
             const buttonStyle = isHighlighted
               ? "bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] hover:from-[#2563eb] hover:to-[#3b82f6] text-white shadow-lg shadow-blue-500/30"
@@ -273,7 +178,7 @@ export default function PricingSection() {
 
             return (
               <div
-                key={`${activeTab}-${idx}`}
+                key={plan.id}
                 className={`relative rounded-[24px] transition-all duration-300 flex flex-col justify-between ${
                   isHighlighted
                     ? "p-[2.5px] bg-gradient-to-b from-[#60a5fa] via-[#3b82f6] via-[#ec4899] to-[#3b82f6] bg-[length:200%_200%] animate-[gradient_6s_linear_infinite] shadow-[0_15px_50px_rgba(59,130,246,0.25)]"
@@ -340,18 +245,109 @@ export default function PricingSection() {
                   </div>
 
                   {/* Select Plan Button */}
-                  <a
-                    href="#contact"
+                  <button
+                    onClick={() => {
+                      setSelectedPlan(plan);
+                      setIsModalOpen(true);
+                    }}
                     className={`w-full py-3.5 px-6 rounded-full font-medium text-center text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${buttonStyle}`}
                   >
                     {plan.buttonText}
-                  </a>
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
+
+      {/* Booking Modal */}
+      {isModalOpen && selectedPlan && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-[#111622] border border-gray-800 rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl relative text-left">
+            <button 
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <h3 className="text-2xl font-bold text-white mb-2">Book {selectedPlan.name}</h3>
+            <p className="text-gray-400 text-sm mb-6">Fill out the form below and we'll get in touch with you shortly.</p>
+            
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              setIsSubmitting(true);
+              try {
+                await packageBookingApi.createBooking({
+                  ...formData,
+                  billingCycle: selectedPlan.period.replace("/", "").trim() || "monthly",
+                  packageId: selectedPlan.id
+                });
+                alert("Booking successful! We will contact you soon.");
+                setIsModalOpen(false);
+                setFormData({ name: "", userEmail: "", companyName: "", companyEmail: "" });
+              } catch (error) {
+                console.error("Booking failed:", error);
+                alert("Booking failed. Please try again.");
+              } finally {
+                setIsSubmitting(false);
+              }
+            }} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                <input 
+                  required
+                  type="text" 
+                  value={formData.name}
+                  onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="John Doe"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
+                <input 
+                  required
+                  type="email" 
+                  value={formData.userEmail}
+                  onChange={e => setFormData(prev => ({ ...prev, userEmail: e.target.value }))}
+                  className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="john@example.com"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Company Name</label>
+                <input 
+                  required
+                  type="text" 
+                  value={formData.companyName}
+                  onChange={e => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
+                  className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="Acme Corp"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Company Email</label>
+                <input 
+                  required
+                  type="email" 
+                  value={formData.companyEmail}
+                  onChange={e => setFormData(prev => ({ ...prev, companyEmail: e.target.value }))}
+                  className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="contact@acme.com"
+                />
+              </div>
+              <button
+                disabled={isSubmitting}
+                type="submit"
+                className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white rounded-lg font-medium transition-colors mt-6"
+              >
+                {isSubmitting ? "Booking..." : "Confirm Booking"}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

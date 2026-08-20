@@ -1,45 +1,44 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { casestudiesApi, Casestudy } from "../../../../api/casestudiesApi";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const caseStudies = [
-  {
-    title: "SaaS Product Website Design and Development",
-    description: "Turn your SaaS idea into a reality. We specialize in full-stack SaaS product development — from user onboarding and subscriptions to scalable backend architecture.",
-    image: "/images/case_study_1.png",
-    bgClass: "bg-[#0a0a0a]",
-  },
-  {
-    title: "Mobile App Design and App Development",
-    description: "High-performance Android and iOS apps built with Flutter for seamless cross-platform experiences. We specialize in full-stack app development — from user onboarding and subscriptions.",
-    image: "/images/case_study_2.png",
-    bgClass: "bg-[#18181b]",
-  },
-  {
-    title: "Fintech AI Analytics & Trading Platform",
-    description: "Empowering financial teams with real-time predictive analytics, AI Insights, and high-frequency trading dashboards engineered for speed and security.",
-    image: "/images/case_study_3.png",
-    bgClass: "bg-[#0f172a]",
-  },
-  {
-    title: "E-Commerce Experience & Mobile Shopping App",
-    description: "A luxury mobile shopping app designed to increase conversion rates with fluid micro-interactions, instant checkout, and personalized AI product recommendations.",
-    image: "/images/case_study_4.png",
-    bgClass: "bg-[#18122B]",
-  },
-];
-
 export default function CaseStudies() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [caseStudies, setCaseStudies] = useState<Casestudy[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const fetchCaseStudies = async () => {
+      try {
+        const data = await casestudiesApi.getAllCasestudies();
+        if (Array.isArray(data)) {
+          setCaseStudies(data);
+        } else if (data && data.data && Array.isArray(data.data)) {
+          setCaseStudies(data.data);
+        } else {
+          setCaseStudies(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch case studies:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCaseStudies();
+  }, []);
+
+  useEffect(() => {
+    if (isLoading || caseStudies.length === 0) return;
+
     const ctx = gsap.context(() => {
       // Bi-directional GSAP Entrance Reveal for Case Study Cards (Ultra-fast 0.2s blur clear)
       gsap.fromTo(
@@ -64,7 +63,7 @@ export default function CaseStudies() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoading, caseStudies.length]);
 
   return (
     <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
@@ -102,20 +101,24 @@ export default function CaseStudies() {
 
         {/* 4 Cards Grid matching 100% first screenshot styling */}
         <div className="case-studies-grid grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-          {caseStudies.map((study, index) => (
+          {!isLoading && caseStudies.map((study) => (
             <div 
-              key={index} 
+              key={study.id} 
               className="case-study-card bg-white rounded-[20px] p-6 sm:p-5 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/60 flex flex-col group hover:shadow-[0_12px_45px_rgba(0,0,0,0.08)] transition-all duration-300"
             >
               
               {/* Image Banner */}
-              <div className={`w-full h-[320px] sm:h-[380px] rounded-[20px] ${study.bgClass} mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
-                <Image 
-                  src={study.image} 
-                  alt={study.title}
-                  fill
-                  className="object-cover object-center rounded-[28px]"
-                />
+              <div className={`w-full h-[320px] sm:h-[380px] rounded-[20px] bg-[#0a0a0a] mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
+                {study.photoUrl ? (
+                  <Image 
+                    src={study.photoUrl} 
+                    alt={study.title}
+                    fill
+                    className="object-cover object-center rounded-[28px]"
+                  />
+                ) : (
+                  <div className="text-white">No Image</div>
+                )}
               </div>
               
               {/* Card Body */}
@@ -124,13 +127,13 @@ export default function CaseStudies() {
                   {study.title}
                 </h3>
                 <p className="text-[#64748b] text-sm sm:text-base leading-relaxed mb-7 font-normal">
-                  {study.description}
+                  {study.shortDescription || study.fullDescription}
                 </p>
                 
                 {/* Action Capsule Button */}
                 <div className="mt-auto pb-1">
                   <Link 
-                    href="#contact"
+                    href={study.projectLink || `/casestudies/${study.slug || study.id}`}
                     className="inline-flex items-center bg-black hover:bg-neutral-900 text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm group/btn"
                   >
                     <span className="mr-3 text-xs tracking-tight">Open Project</span>

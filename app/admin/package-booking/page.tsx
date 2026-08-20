@@ -8,7 +8,7 @@ export default function PackageBookingPage() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [availablePackages, setAvailablePackages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  
+
   // State for manual booking entry
   const [formData, setFormData] = useState({
     name: '',
@@ -30,11 +30,11 @@ export default function PackageBookingPage() {
         packageBookingApi.getAllBookings(),
         packageApi.getAllPackages()
       ]);
-      
+
       if (bookingsRes && bookingsRes.data) {
         setBookings(bookingsRes.data);
       }
-      
+
       if (packagesRes && packagesRes.data) {
         setAvailablePackages(packagesRes.data);
         if (packagesRes.data.length > 0 && !formData.packageId) {
@@ -94,7 +94,7 @@ export default function PackageBookingPage() {
   };
 
   const getStatusColor = (status: string) => {
-    switch(status.toUpperCase()) {
+    switch (status.toUpperCase()) {
       case 'PENDING': return 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border-amber-200 dark:border-amber-800';
       case 'APPROVED': return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800';
       case 'REJECTED': return 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400 border-rose-200 dark:border-rose-800';
@@ -107,7 +107,7 @@ export default function PackageBookingPage() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="p-8 w-full mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
@@ -129,7 +129,7 @@ export default function PackageBookingPage() {
                 </label>
                 <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white" />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   User Email
@@ -143,7 +143,7 @@ export default function PackageBookingPage() {
                 </label>
                 <input type="text" name="companyName" required value={formData.companyName} onChange={handleChange} className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white" />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Company Email

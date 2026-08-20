@@ -42,7 +42,7 @@ export default function PartnersManagementPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'file') {
       const file = e.target.files?.[0];
       if (file) {
@@ -54,7 +54,7 @@ export default function PartnersManagementPage() {
       }
       return;
     }
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData((prev) => ({ ...prev, [name]: checked }));
@@ -71,10 +71,10 @@ export default function PartnersManagementPage() {
     try {
       await partnerApi.createPartner(formData);
       setFormData({ name: '', logo: '', order: 0, url: '', isActive: true });
-      
+
       const fileInput = document.getElementById('logo-upload') as HTMLInputElement;
       if (fileInput) fileInput.value = '';
-      
+
       fetchPartners();
     } catch (error) {
       console.error('Failed to create partner:', error);
@@ -86,7 +86,7 @@ export default function PartnersManagementPage() {
 
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this partner?')) return;
-    
+
     try {
       await partnerApi.deletePartner(id);
       fetchPartners();
@@ -97,7 +97,7 @@ export default function PartnersManagementPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-8">
+    <div className="p-6 w-full mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
           Partners Management
@@ -219,9 +219,9 @@ export default function PartnersManagementPage() {
                     partners.map((partner) => (
                       <TableRow key={partner.id}>
                         <TableCell>
-                          <img 
-                            src={partner.logo} 
-                            alt={partner.name} 
+                          <img
+                            src={partner.logo}
+                            alt={partner.name}
                             className="h-10 w-auto object-contain bg-slate-100 dark:bg-slate-800 rounded p-1"
                             onError={(e) => {
                               (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150x50?text=No+Logo';
@@ -238,9 +238,8 @@ export default function PartnersManagementPage() {
                         </TableCell>
                         <TableCell>{partner.order}</TableCell>
                         <TableCell>
-                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            partner.isActive ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-400'
-                          }`}>
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${partner.isActive ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-400'
+                            }`}>
                             {partner.isActive ? 'Active' : 'Inactive'}
                           </span>
                         </TableCell>

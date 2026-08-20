@@ -18,7 +18,7 @@ export default function CasestudiesManagementPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -56,7 +56,7 @@ export default function CasestudiesManagementPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData((prev) => ({ ...prev, [name]: checked }));
@@ -100,7 +100,7 @@ export default function CasestudiesManagementPage() {
 
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this casestudy?')) return;
-    
+
     try {
       await casestudiesApi.deleteCasestudy(id);
       fetchData(); // Refresh the list
@@ -111,7 +111,7 @@ export default function CasestudiesManagementPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-8">
+    <div className="p-6 w-full mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
           Casestudies Management
@@ -143,7 +143,7 @@ export default function CasestudiesManagementPage() {
                 placeholder="Title"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Slug
@@ -291,9 +291,8 @@ export default function CasestudiesManagementPage() {
                       <TableCell className="font-medium">{item.title}</TableCell>
                       <TableCell>{item.order}</TableCell>
                       <TableCell>
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          item.isActive ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-400'
-                        }`}>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${item.isActive ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-400'
+                          }`}>
                           {item.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </TableCell>

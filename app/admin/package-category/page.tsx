@@ -59,7 +59,7 @@ export default function PackageCategoryManagementPage() {
 
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
-    
+
     try {
       await packageCategoryApi.delete(id);
       fetchCategories(); // Refresh the list
@@ -70,7 +70,7 @@ export default function PackageCategoryManagementPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-8">
+    <div className="p-6 w-full mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
           Package Category Management
@@ -116,7 +116,7 @@ export default function PackageCategoryManagementPage() {
                 placeholder="Category description..."
               />
             </div>
-            
+
             <button
               type="submit"
               disabled={isSubmitting}

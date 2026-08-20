@@ -37,13 +37,8 @@ export default async function CaseStudyDetailsPage({
         </div>
 
         {/* Hero Mockup Banner */}
-        <div className="w-full h-[420px] bg-[#0d0f17] rounded-[32px] overflow-hidden relative border border-gray-800 shadow-2xl flex items-center justify-center p-8">
-          <Image
-            src="/images/case_study_1.png"
-            alt="Case Study Showcase"
-            fill
-            className="object-cover object-center"
-          />
+        <div className="w-full h-[420px] bg-[#0d0f17] rounded-[32px] overflow-hidden relative border border-gray-800 shadow-2xl flex items-center justify-center p-8 text-white/20">
+          No Image Available
         </div>
 
         {/* Overview Stats */}

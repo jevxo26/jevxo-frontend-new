@@ -34,7 +34,7 @@ export default function PackageManagementPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData((prev) => ({ ...prev, [name]: checked }));
@@ -50,7 +50,7 @@ export default function PackageManagementPage() {
     try {
       // Split features by comma and trim whitespace
       const featureArray = formData.features.split(',').map(f => f.trim()).filter(f => f.length > 0);
-      
+
       const submitData = {
         ...formData,
         features: featureArray
@@ -89,7 +89,7 @@ export default function PackageManagementPage() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="p-8 w-full mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
@@ -266,11 +266,10 @@ export default function PackageManagementPage() {
                           <div className="flex items-center justify-end space-x-3">
                             <button
                               onClick={() => toggleStatus(pkg)}
-                              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                                pkg.isActive 
+                              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${pkg.isActive
                                   ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 hover:bg-emerald-200'
                                   : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 hover:bg-slate-200'
-                              }`}
+                                }`}
                             >
                               {pkg.isActive ? 'Active' : 'Inactive'}
                             </button>

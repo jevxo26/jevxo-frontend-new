@@ -16,6 +16,8 @@ const navigation = [
   { name: "Banner", href: "/admin/banner", icon: FileText },
   { name: "Category", href: "/admin/category", icon: FileText },
   { name: "Orders", href: "/admin/orders", icon: ReceiptText },
+  { name: "Reviews", href: "/admin/review", icon: ReceiptText },
+  { name: "Blog", href: "/admin/blog", icon: ReceiptText },
 
   // { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
   // { name: "Settings", href: "/admin/settings", icon: Settings },

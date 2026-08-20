@@ -1,133 +1,51 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { Star, Play, Pause } from "lucide-react";
-
-interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  quote: string;
-  image: string;
-  video: string;
-}
-
-const row1: Testimonial[] = [
-  {
-    id: "r1-1",
-    name: "Bonnie M. Pattison",
-    role: "Founder, ModernSaaS",
-    quote: "Thanks to the personalized attention and guidance provided by Jevxo, our SaaS platform conversion rates skyrocketed within weeks. I highly recommend them to any growth team looking for exceptional quality, fast turnaround, and world-class digital product design execution.",
-    image: "/images/team_1.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  },
-  {
-    id: "r1-2",
-    name: "Alexander Wright",
-    role: "CEO, TechSphere",
-    quote: "Working with Jevxo was a breeze. They delivered a complete, world-class UI/UX design system in under 48 hours for our startup launch. Their attention to detail, motion design, and developer-ready handoffs made our launch seamless and effortless.",
-    image: "/images/team_2.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  },
-  {
-    id: "r1-3",
-    name: "Sophia Martinez",
-    role: "Head of Marketing",
-    quote: "The conversion rate on our new landing page went up by 180% right after launch. Exceptional quality, incredible design talent, and proactive communication. Jevxo truly elevated our brand presence far beyond our expectations.",
-    image: "/images/team_3.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  },
-  {
-    id: "r1-4",
-    name: "Daniel Vance",
-    role: "Product Lead, Elevate",
-    quote: "Jevxo's team is fast, reliable, and super intuitive. They transformed our raw product ideas into an enterprise-grade web application asset with fluid animations that our active users absolutely love daily.",
-    image: "/images/team_4.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoylikes.mp4",
-  },
-];
-
-const row2: Testimonial[] = [
-  {
-    id: "r2-1",
-    name: "Elena Rostova",
-    role: "VP of Product, FinTech",
-    quote: "Outstanding attention to detail and clean design system handoff. Best agency partner experience we've had in 5 years. They solved our complex fintech dashboard UX challenges with elegance, precision, and speed.",
-    image: "/images/team_4.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  },
-  {
-    id: "r2-2",
-    name: "Marcus Sterling",
-    role: "Co-Founder, AppWorks",
-    quote: "They took our heavy SaaS requirements and turned them into an ultra-smooth, easy to use dashboard UI. Our user onboarding drop-off decreased by 45% almost immediately after deploying the new interface.",
-    image: "/images/team_1.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-  },
-  {
-    id: "r2-3",
-    name: "Sarah Jenkins",
-    role: "Design Director, Apex",
-    quote: "I highly recommend Jevxo to anyone looking for high impact digital design with world-class execution speed. Their design team seamlessly integrated with our engineering workflow, saving us months of dev time.",
-    image: "/images/team_2.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheLakeside.mp4",
-  },
-  {
-    id: "r2-4",
-    name: "Liam O'Connor",
-    role: "CTO, CloudScale",
-    quote: "The Next.js implementation was fast, secure, and pixel-perfect. We went from initial design kickoff to production deployment without a single hitch. Their code quality and component modularity are top tier.",
-    image: "/images/team_3.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-  },
-];
-
-const row3: Testimonial[] = [
-  {
-    id: "r3-1",
-    name: "Nadia Al-Mansoor",
-    role: "Founder, GrowthKit",
-    quote: "Thanks to the Jevxo team, our product retention increased dramatically. They truly understand modern UX psychology, clean aesthetics, and conversion architecture. We will definitely collaborate on future builds.",
-    image: "/images/team_3.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-  },
-  {
-    id: "r3-2",
-    name: "David Miller",
-    role: "CMO, BrightMedia",
-    quote: "First class service from day one. Super responsive team, clear weekly syncs, and top tier design execution on all deliverables. They exceeded all our benchmarks and delivered ahead of deadline.",
-    image: "/images/team_1.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
-  },
-  {
-    id: "r3-3",
-    name: "Aria Takahashi",
-    role: "Lead Designer, AI Labs",
-    quote: "Sleek aesthetics, high performance micro-animations, and seamless user flows. We couldn't be happier with the results! Jevxo brought our artificial intelligence platform vision to life beautifully.",
-    image: "/images/team_2.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  },
-  {
-    id: "r3-4",
-    name: "Julian Thorne",
-    role: "Head of Operations",
-    quote: "Fast turnarounds without sacrificing quality. Jevxo is our go-to digital product design agency for all web and mobile application releases. Their design system approach saves us time on every update.",
-    image: "/images/team_4.png",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  },
-];
+import { useEffect, useState } from "react";
+import { Star, Play, Pause, User as UserIcon } from "lucide-react";
+import { reviewApi, Review } from "../../../../api/reviewApi";
 
 export default function TestimonialsSection() {
   const [playingId, setPlayingId] = useState<string | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const data = await reviewApi.getAllReviews();
+        const reviewList = Array.isArray(data) ? data : data?.data || [];
+        setReviews(reviewList);
+      } catch (error) {
+        console.error("Failed to fetch reviews:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchReviews();
+  }, []);
 
   const togglePlay = (id: string) => {
     setPlayingId(playingId === id ? null : id);
   };
 
-  const renderCard = (item: Testimonial, keySuffix: string) => {
+  const renderCard = (item: Review, keySuffix: string) => {
     const isPlaying = playingId === `${item.id}-${keySuffix}`;
     const cardKey = `${item.id}-${keySuffix}`;
+    
+    // Extract video ID from YouTube URL if it's a YouTube link, or use standard video URL
+    const getEmbedUrl = (url: string) => {
+      if (!url) return "";
+      // Handle standard youtube links
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      if (match && match[2].length === 11) {
+        return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0`;
+      }
+      return url; // fallback to the raw URL for raw .mp4 links
+    };
+
+    const rating = Math.min(Math.max(item.rating || 5, 1), 5); // Ensure 1-5
 
     return (
       <div
@@ -136,70 +54,102 @@ export default function TestimonialsSection() {
       >
         {/* Left Side: Video / Image Thumbnail Container */}
         <div className="w-[160px] sm:w-[180px] md:w-[195px] h-[160px] sm:h-[180px] md:h-[195px] rounded-[16px] relative overflow-hidden bg-gray-900 shrink-0">
-          {isPlaying ? (
+          {isPlaying && item.videoUrl ? (
             <iframe
-              src="https://www.youtube.com/embed/SJKr7BPOXY0?autoplay=1&rel=0"
+              src={getEmbedUrl(item.videoUrl)}
               title="Client Testimonial Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="w-full h-full object-cover border-0"
             />
           ) : (
-            <Image
-              src={item.image}
-              alt={item.name}
-              fill
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-            />
+            <div className="w-full h-full relative flex items-center justify-center bg-gray-200">
+              {item.thumbUrl ? (
+                <img src={item.thumbUrl} alt="Thumbnail" className="w-full h-full object-cover opacity-80" />
+              ) : (
+                <UserIcon className="w-16 h-16 text-gray-400" />
+              )}
+            </div>
           )}
 
           {/* Play / Pause Floating Pill Button */}
-          <button
-            onClick={() => togglePlay(cardKey)}
-            className={`absolute bottom-3 left-3 w-7 h-7 rounded-full backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 cursor-pointer z-20 ${
-              isPlaying 
-                ? "bg-black/70 text-white hover:bg-black" 
-                : "bg-[#c084fc]/85 hover:bg-[#a855f7] text-white"
-            }`}
-            title={isPlaying ? "Close Video" : "Play YouTube Video Testimonial"}
-          >
-            {isPlaying ? (
-              <Pause className="w-3.5 h-3.5 fill-current" />
-            ) : (
-              <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-            )}
-          </button>
+          {item.videoUrl && (
+            <button
+              onClick={() => togglePlay(cardKey)}
+              className={`absolute bottom-3 left-3 w-7 h-7 rounded-full backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 cursor-pointer z-20 ${
+                isPlaying 
+                  ? "bg-black/70 text-white hover:bg-black" 
+                  : "bg-[#c084fc]/85 hover:bg-[#a855f7] text-white"
+              }`}
+              title={isPlaying ? "Close Video" : "Play Video Testimonial"}
+            >
+              {isPlaying ? (
+                <Pause className="w-3.5 h-3.5 fill-current" />
+              ) : (
+                <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+              )}
+            </button>
+          )}
         </div>
 
         {/* Right Side: Rating, Quote, Client Info */}
         <div className="flex flex-col justify-between h-full py-0.5 pr-1 w-full">
           <div>
-            {/* 5 Warm Gold Stars */}
+            {/* Rating Stars */}
             <div className="flex items-center gap-1 mb-2 text-[#fbbf24]">
-              {[...Array(5)].map((_, i) => (
+              {[...Array(rating)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 fill-[#fbbf24] stroke-none" />
+              ))}
+              {[...Array(5 - rating)].map((_, i) => (
+                <Star key={`empty-${i}`} className="w-3.5 h-3.5 text-gray-300" />
               ))}
             </div>
 
             {/* Testimonial Quote */}
             <p className="text-[#64748b] text-xs sm:text-[13px] leading-relaxed mb-3 line-clamp-4 font-normal">
-              {item.quote}
+              {item.reviewText}
             </p>
           </div>
 
           {/* Author Name & Subtitle */}
           <div>
             <h4 className="font-medium text-[#1e293b] text-base sm:text-[17px] tracking-tight">
-              {item.name}
+              {item.client?.name || "Anonymous Client"}
             </h4>
             <p className="text-xs text-[#94a3b8] font-normal mt-0.5">
-              {item.role}
+              {item.client?.role || "Client"}
             </p>
           </div>
         </div>
       </div>
     );
   };
+
+  // Divide reviews into 3 rows for the marquee
+  // If there are very few reviews, we duplicate them so the marquee still looks full.
+  const getRowData = (rowNumber: number) => {
+    if (reviews.length === 0) return [];
+    
+    // Split into chunks roughly equal
+    const perRow = Math.ceil(reviews.length / 3);
+    const startIdx = (rowNumber - 1) * perRow;
+    const endIdx = startIdx + perRow;
+    
+    let rowReviews = reviews.slice(startIdx, endIdx);
+    
+    // Fallback: If one row is empty (because we have less than 3 reviews total), just use all of them
+    if (rowReviews.length === 0) {
+      rowReviews = [...reviews];
+    }
+    
+    // Duplicate enough times to make the marquee loop smoothly
+    const duplicated = [...rowReviews, ...rowReviews, ...rowReviews];
+    return duplicated;
+  };
+
+  const row1 = getRowData(1);
+  const row2 = getRowData(2);
+  const row3 = getRowData(3);
 
   return (
     <section
@@ -225,28 +175,30 @@ export default function TestimonialsSection() {
       </div>
 
       {/* 3 Infinite Marquee Rows (Top: Left, Mid: Right, Bottom: Left) */}
-      <div className="w-full space-y-6 relative z-10 overflow-hidden py-2">
-        {/* Row 1: Marquee Left */}
-        <div className="flex animate-marquee gap-6">
-          {[...row1, ...row1, ...row1].map((item, idx) =>
-            renderCard(item, `r1-${idx}`)
-          )}
-        </div>
+      {!isLoading && reviews.length > 0 && (
+        <div className="w-full space-y-6 relative z-10 overflow-hidden py-2">
+          {/* Row 1: Marquee Left */}
+          <div className="flex animate-marquee gap-6">
+            {row1.map((item, idx) => renderCard(item, `r1-${idx}`))}
+          </div>
 
-        {/* Row 2: Marquee Right */}
-        <div className="flex animate-marquee-reverse gap-6">
-          {[...row2, ...row2, ...row2].map((item, idx) =>
-            renderCard(item, `r2-${idx}`)
-          )}
-        </div>
+          {/* Row 2: Marquee Right */}
+          <div className="flex animate-marquee-reverse gap-6">
+            {row2.map((item, idx) => renderCard(item, `r2-${idx}`))}
+          </div>
 
-        {/* Row 3: Marquee Left */}
-        <div className="flex animate-marquee gap-6">
-          {[...row3, ...row3, ...row3].map((item, idx) =>
-            renderCard(item, `r3-${idx}`)
-          )}
+          {/* Row 3: Marquee Left */}
+          <div className="flex animate-marquee gap-6">
+            {row3.map((item, idx) => renderCard(item, `r3-${idx}`))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {!isLoading && reviews.length === 0 && (
+        <div className="text-center text-gray-500 pb-12">
+          No reviews yet. Check back later!
+        </div>
+      )}
     </section>
   );
 }
