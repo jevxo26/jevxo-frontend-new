@@ -40,14 +40,14 @@ export default function ContactSection() {
       id="contact"
       className="w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden"
     >
-      <div className="max-w-9/12 mx-auto w-full">
+      <div className="max-w-9/12 mx-auto w-full px-2 md:px-6 sm:px-4">
         {/* Dark Floating Card Container matching screenshot */}
-        <div className="w-full bg-[#121318] text-white rounded-[28px] p-6 sm:p-10 md:p-14 shadow-2xl flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-14 border border-gray-800/80">
+        <div className="w-full bg-[#121318] text-white rounded-[28px] p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12 border border-gray-800/80">
         
         {/* Left Column: Headline, Photo, Profile Info */}
         <div className="w-full lg:w-5/12 flex flex-col items-start">
           {/* Colorful Headline Matching Screenshot */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.18] mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[40px] font-bold tracking-tight leading-[1.18] mb-6 sm:mb-8">
             <span className="text-[#3b82f6]">Enhance </span>
             <span className="text-[#ef4444]">Your </span>
             <span className="text-white">Brand </span>
