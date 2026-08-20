@@ -39,8 +39,8 @@ export default function AboutUs() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".about-cards-grid",
-            start: "top 85%",
-            end: "bottom 15%",
+            start: "top 92%",
+            end: "bottom 8%",
             toggleActions: "play reverse play reverse",
           },
         }
@@ -59,8 +59,8 @@ export default function AboutUs() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: statsRef.current,
-            start: "top 88%",
-            end: "bottom 12%",
+            start: "top 95%",
+            end: "bottom 5%",
             toggleActions: "play reverse play reverse",
           },
         }
@@ -152,7 +152,7 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <section className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
+    <section ref={sectionRef} className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
       <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start">
         {/* About Us Pill */}
         <div className="bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 border border-blue-100 mb-6 sm:mb-8">
