@@ -172,7 +172,7 @@ export default function CasestudiesManagementPage() {
                 <option value="">Select a category</option>
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id}>
-                    {cat.name || cat.title || cat.id}
+                    {cat.name || cat.id}
                   </option>
                 ))}
               </select>
