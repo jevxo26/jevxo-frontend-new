@@ -61,54 +61,57 @@ const NODES = [
     label: "UX Copy & Brand",
     sub: "Strategy",
     icon: PenTool,
-    bg: "#c8b6ff",
-    border: "#a78bfa",
-    text: "#1e1b4b",
+    bg: "#dbeafe",
+    border: "#3b82f6",
+    text: "#1e3a8a",
   },
   {
     key: "wireframe",
     label: "AI Wireframing",
     sub: "Prototyping",
     icon: LayoutTemplate,
-    bg: "#b9fbc0",
-    border: "#86efac",
-    text: "#064e3b",
+    bg: "#2563eb",
+    border: "#1d4ed8",
+    text: "#ffffff",
+    iconBg: "bg-white text-[#2563eb]",
   },
   {
     key: "aws",
-    label: "AWS Cloud Infra",
-    sub: "Hosting & Scale",
+    label: "Clean Next.js Code",
+    sub: "Engineering",
     icon: Cloud,
-    bg: "#ffd9a8",
-    border: "#fdba74",
-    text: "#7c2d12",
+    bg: "#e0f2fe",
+    border: "#38bdf8",
+    text: "#0369a1",
   },
   {
     key: "cicd",
     label: "CI/CD Automation",
     sub: "Build & Deploy",
     icon: GitBranch,
-    bg: "#a8d8ff",
-    border: "#7dd3fc",
-    text: "#0c4a6e",
+    bg: "#0f172a",
+    border: "#334155",
+    text: "#ffffff",
+    iconBg: "bg-[#2563eb] text-white",
   },
   {
     key: "firebase",
-    label: "Firebase Backend",
-    sub: "Auth & Realtime DB",
+    label: "Scalable Backend",
+    sub: "Realtime & Cloud",
     icon: Flame,
-    bg: "#ffe08a",
-    border: "#fbbf24",
-    text: "#78350f",
+    bg: "#eff6ff",
+    border: "#60a5fa",
+    text: "#1e40af",
   },
   {
     key: "launch",
     label: "Fast Launch",
     sub: "48h Delivery",
     icon: Rocket,
-    bg: "#c8b6ff",
-    border: "#a78bfa",
-    text: "#1e1b4b",
+    bg: "#1d4ed8",
+    border: "#1e3a8a",
+    text: "#ffffff",
+    iconBg: "bg-white text-[#1d4ed8]",
   },
 ];
 
@@ -137,7 +140,7 @@ function NodeCard({
       } relative rounded-xl p-3 px-4.5 shadow-[3px_5px_0px_#000] flex items-center gap-3 w-56 sm:w-64 transition-transform`}
       style={{ backgroundColor: node.bg, borderWidth: 1, borderStyle: "solid", borderColor: node.border, color: node.text }}
     >
-      <div className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center shrink-0">
+      <div className={`w-8 h-8 rounded-lg ${node.iconBg || "bg-[#0f172a] text-white"} flex items-center justify-center shrink-0 shadow-xs`}>
         <Icon className="w-4 h-4" strokeWidth={2.2} />
       </div>
       <div className="text-left">
