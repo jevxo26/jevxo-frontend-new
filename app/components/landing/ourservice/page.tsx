@@ -74,38 +74,38 @@ export default function OurService() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Desktop GSAP horizontal pinned scroll animation using ScrollTrigger.matchMedia
-      ScrollTrigger.matchMedia({
-        "(min-width: 1024px)": function () {
-          if (!sectionRef.current || !trackRef.current) return;
+      if (!sectionRef.current || !trackRef.current) return;
 
-          const getScrollAmount = () => {
-            const trackWidth = trackRef.current?.scrollWidth || 0;
-            const containerWidth = trackRef.current?.offsetWidth || window.innerWidth;
-            return -(trackWidth - containerWidth);
-          };
+      const getScrollAmount = () => {
+        const trackWidth = trackRef.current?.scrollWidth || 0;
+        const viewportWidth = window.innerWidth;
+        return -(trackWidth - viewportWidth + 60);
+      };
 
-          const tween = gsap.to(trackRef.current, {
-            x: getScrollAmount,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              pin: true,
-              scrub: 1,
-              start: "top top",
-              end: () => `+=${Math.abs(getScrollAmount())}`,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          return () => {
-            tween.kill();
-          };
+      gsap.to(trackRef.current, {
+        x: getScrollAmount,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          pin: true,
+          scrub: 0.8,
+          start: "top top",
+          end: () => `+=${Math.abs(getScrollAmount())}`,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
         },
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger to recalculate exact dimensions
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (
