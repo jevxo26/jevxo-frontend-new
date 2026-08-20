@@ -48,7 +48,7 @@ const comparisonData = [
 
 export default function ComparisonSection() {
   return (
-    <section className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section id="why-choose-us" className="relative z-10 w-full py-12 md:py-16 bg-transparent flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Top Header Row */}

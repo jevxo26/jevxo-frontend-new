@@ -31,7 +31,7 @@ const caseStudies = [
 
 export default function CaseStudies() {
   return (
-    <section id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#f4f4f6] flex justify-center border-t border-gray-200/80">
+    <section id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-transparent flex justify-center border-t border-gray-200/80">
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
