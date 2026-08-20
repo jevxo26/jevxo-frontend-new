@@ -40,7 +40,7 @@ export default function ContactSection() {
       id="contact"
       className="w-full py-16 md:py-24 bg-[#0d0e12] text-white flex justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-gray-900"
     >
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16 relative z-10">
+      <div className="max-w-9/12 mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16 relative z-10">
         
         {/* Left Column: Headline, Photo, Profile Info */}
         <div className="w-full lg:w-5/12 flex flex-col items-start">

@@ -32,7 +32,7 @@ const caseStudies = [
 export default function CaseStudies() {
   return (
     <section id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
+      <div className="max-w-9/12 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
