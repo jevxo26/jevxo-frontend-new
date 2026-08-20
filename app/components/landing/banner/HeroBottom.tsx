@@ -29,7 +29,7 @@ export default function HeroBottom() {
 
   // Triplicating arrays to ensure a smooth, unbroken infinite marquee animation
   const row1List = [...row1, ...row1, ...row1];
-  const row3List = [...row3, ...row3, ...row3];
+  const row2List = [...row2, ...row2, ...row2];
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#c9d6f7] via-[#e2eafc] to-[#f6f8fc] pt-4 pb-16 md:pb-24 z-10">
@@ -50,11 +50,11 @@ export default function HeroBottom() {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-[#d3def9] to-transparent z-20" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-[#d3def9] to-transparent z-20" />
 
-      {/* Bottom Fade Gradient Overlay - Fading bottom of section/row 3 to white */}
+      {/* Bottom Fade Gradient Overlay */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 sm:h-80 md:h-[420px] bg-gradient-to-b from-transparent via-[#f6f8fc]/60 via-35% via-[#f6f8fc]/95 via-65% to-[#f6f8fc] z-20" />
 
       <div className="relative z-10 flex flex-col gap-3 sm:gap-4 md:gap-5 w-full">
-        {/* Row 1: Right to Left */}
+        {/* Row 1: Right to Left (animate-marquee) */}
         <div className="overflow-hidden w-full flex">
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5 animate-marquee">
             {row1List.map((src, index) => (
@@ -74,17 +74,17 @@ export default function HeroBottom() {
           </div>
         </div>
 
-        {/* Row 3: Right to Left */}
+        {/* Row 2: Left to Right (animate-marquee-reverse) */}
         <div className="overflow-hidden w-full flex">
-          <div className="flex items-center gap-3 sm:gap-4 md:gap-5 animate-marquee">
-            {row3List.map((src, index) => (
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-5 animate-marquee-reverse">
+            {row2List.map((src, index) => (
               <div
-                key={`row3-${index}`}
+                key={`row2-${index}`}
                 className="relative flex-shrink-0 w-[320px] sm:w-[440px] md:w-[540px] h-[220px] sm:h-[300px] md:h-[360px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={src}
-                  alt={`Portfolio showcase ${index + 11}`}
+                  alt={`Portfolio showcase ${index + 6}`}
                   fill
                   sizes="(max-width: 768px) 480px, 580px"
                   className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
