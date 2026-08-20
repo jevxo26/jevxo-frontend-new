@@ -132,10 +132,10 @@ export default function TestimonialsSection() {
     return (
       <div
         key={cardKey}
-        className="w-[500px] md:w-[560px] shrink-0 bg-white rounded-[26px] p-5 sm:p-6 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-6 transition-all duration-300 group"
+        className="w-[440px] md:w-[480px] shrink-0 bg-white rounded-[20px] p-4 sm:p-5 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-5 transition-all duration-300 group"
       >
         {/* Left Side: Video / Image Thumbnail */}
-        <div className="w-[190px] sm:w-[215px] md:w-[225px] h-[210px] sm:h-[230px] md:h-[245px] rounded-[20px] relative overflow-hidden bg-gray-900 shrink-0">
+        <div className="w-[160px] sm:w-[180px] md:w-[195px] h-[160px] sm:h-[180px] md:h-[195px] rounded-[16px] relative overflow-hidden bg-gray-900 shrink-0">
           {isPlaying ? (
             <video
               src={item.video}
@@ -154,42 +154,42 @@ export default function TestimonialsSection() {
             />
           )}
 
-          {/* Play / Pause Floating Pill Button */}
+          {/* Play / Pause Floating Pill Button (Purple tinted matching reference screenshot) */}
           <button
             onClick={() => togglePlay(cardKey)}
-            className="absolute bottom-3.5 left-3.5 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-[#1658fe] backdrop-blur-md flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer z-10"
+            className="absolute bottom-3 left-3 w-7 h-7 rounded-full bg-[#c084fc]/85 hover:bg-[#a855f7] text-white backdrop-blur-md flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer z-10"
             title={isPlaying ? "Pause Video" : "Play Video Testimonial"}
           >
             {isPlaying ? (
-              <Pause className="w-4 h-4 fill-current" />
+              <Pause className="w-3.5 h-3.5 fill-current" />
             ) : (
-              <Play className="w-4 h-4 fill-current ml-0.5" />
+              <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
             )}
           </button>
         </div>
 
         {/* Right Side: Rating, Quote, Client Info */}
-        <div className="flex flex-col justify-between h-full py-1 pr-1 w-full">
+        <div className="flex flex-col justify-between h-full py-0.5 pr-1 w-full">
           <div>
-            {/* 5 Yellow Stars */}
-            <div className="flex items-center gap-1 mb-2 text-amber-400">
+            {/* 5 Warm Gold Stars */}
+            <div className="flex items-center gap-1 mb-2 text-[#fbbf24]">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-amber-400 stroke-none" />
+                <Star key={i} className="w-3.5 h-3.5 fill-[#fbbf24] stroke-none" />
               ))}
             </div>
 
-            {/* Testimonial Quote - Displays 6 lines cleanly */}
-            <p className="text-[#475569] text-xs sm:text-[13px] leading-relaxed mb-3 line-clamp-6 font-normal">
+            {/* Testimonial Quote */}
+            <p className="text-[#64748b] text-xs sm:text-[13px] leading-relaxed mb-3 line-clamp-4 font-normal">
               {item.quote}
             </p>
           </div>
 
           {/* Author Name & Subtitle */}
           <div>
-            <h4 className="font-medium text-[#0f172a] text-base sm:text-lg tracking-tight">
+            <h4 className="font-medium text-[#1e293b] text-base sm:text-[17px] tracking-tight">
               {item.name}
             </h4>
-            <p className="text-xs text-gray-400 font-normal mt-0.5">
+            <p className="text-xs text-[#94a3b8] font-normal mt-0.5">
               {item.role}
             </p>
           </div>
