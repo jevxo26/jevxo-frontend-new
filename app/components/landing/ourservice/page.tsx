@@ -82,6 +82,27 @@ export default function OurService() {
         return trackWidth - containerWidth + 80;
       };
 
+      // Bi-directional GSAP Entrance Reveal for Service Cards
+      gsap.fromTo(
+        ".service-card",
+        { opacity: 0, y: 30, scale: 0.96, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.85,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: trackRef.current,
+            start: "top 88%",
+            end: "bottom 12%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
       gsap.to(trackRef.current, {
         x: () => -getScrollAmount(),
         ease: "none",
@@ -149,7 +170,7 @@ export default function OurService() {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className={`w-[300px] sm:w-[340px] lg:w-[360px] shrink-0 rounded-[36px] ${service.bg} pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                className={`service-card w-[300px] sm:w-[340px] lg:w-[360px] shrink-0 rounded-[36px] ${service.bg} pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
               >
                 <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
                   {service.title}
