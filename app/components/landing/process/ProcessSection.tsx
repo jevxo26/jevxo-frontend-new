@@ -30,26 +30,26 @@ const steps = [
   },
   {
     step: "Step 05",
-    title: "Develop",
-    description: "Frontend & backend development, API integration, performance optimization.",
+    title: "Testing",
+    description: "Interactive Prototyping, usability testing, feedback collection, and implementation.",
     icon: Code,
   },
   {
     step: "Step 06",
-    title: "Launch",
-    description: "Final QA testing, deployment, analytics setup, continuous iteration.",
+    title: "Approval",
+    description: "Submission for approval, Asset preparation, and final exports.",
     icon: Rocket,
   }
 ];
 
 export default function ProcessSection() {
-  const [currentIndex, setCurrentIndex] = useState(1); // 1-indexed to show 2/6 like screenshot
+  const [currentIndex, setCurrentIndex] = useState(1);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
     if (sliderRef.current) {
       const scrollLeft = sliderRef.current.scrollLeft;
-      const cardWidth = 320; // approximate card width + gap
+      const cardWidth = 300;
       const newIndex = Math.min(
         steps.length,
         Math.max(1, Math.round(scrollLeft / cardWidth) + 1)
@@ -71,60 +71,38 @@ export default function ProcessSection() {
   };
 
   return (
-    <section id="process" className="w-full py-28 bg-[#090214] text-white relative overflow-hidden flex justify-center">
-      {/* Background Gradient matching screenshot: dark blue-purple at top left fading to rich purple bottom left */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 90% 80% at 0% 100%, rgba(138, 43, 226, 0.75) 0%, rgba(93, 23, 172, 0.5) 45%, transparent 85%),
-            radial-gradient(ellipse 70% 60% at 100% 0%, rgba(15, 23, 42, 0.9) 0%, transparent 70%),
-            #0a0319
-          `
-        }}
-      />
-
-      {/* Grid Overlay Lines */}
-      <div 
-        className="absolute inset-0 opacity-20 pointer-events-none" 
-        style={{ 
-          backgroundImage: `
-            linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px)
-          `,
-          backgroundSize: '110px 110px'
-        }} 
-      />
-
-      <div className="max-w-7xl w-full px-6 flex flex-col relative z-10">
+    <section id="process" className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
-        {/* Top Tag */}
-        <div className="mb-6">
-          <span className="bg-white/10 text-gray-300 px-5 py-2 rounded-full text-xs font-medium tracking-wide backdrop-blur-md border border-white/10">
-            Design Process
-          </span>
-        </div>
-
-        {/* Title & Description Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
-          <div className="lg:col-span-7">
-            <h2 className="text-4xl md:text-5xl lg:text-[54px] font-semibold tracking-tight text-white leading-[1.15]">
-              A Faster Way To Design <br />
-              And Build <span className="font-serif italic font-normal text-gray-200">SaaS Products.</span>
+        {/* Header Area */}
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-12 md:mb-16 w-full">
+          {/* Left Title Area */}
+          <div className="flex flex-col items-start gap-4 lg:w-1/2">
+            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+              Design Process
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="font-bold block text-[#0f172a]">A Faster Way To Design</span>
+              <span className="block mt-1 text-[#0f172a]">
+                And Build <span className="font-serif italic font-medium text-[#0f172a]">SaaS Products.</span>
+              </span>
             </h2>
           </div>
-          <div className="lg:col-span-5 pt-2">
-            <p className="text-gray-300 text-lg leading-relaxed font-normal">
+          
+          {/* Right Description */}
+          <div className="lg:w-[46%] pt-1 lg:pt-8">
+            <p className="text-sm sm:text-base md:text-lg text-[#64748b] font-normal leading-relaxed">
               We simplify the product creation process for SaaS companies by combining strategy, design, and development into one efficient workflow focused on faster launches.
             </p>
           </div>
         </div>
 
-        {/* Horizontal Cards Slider */}
+        {/* Horizontal Cards Row */}
         <div 
           ref={sliderRef}
           onScroll={handleScroll}
-          className="flex items-center gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-8 pt-2 -mx-6 px-6"
+          className="flex items-center gap-5 sm:gap-6 overflow-x-auto scrollbar-none pb-6 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {steps.map((item, index) => {
@@ -132,27 +110,27 @@ export default function ProcessSection() {
             return (
               <div 
                 key={index}
-                className="min-w-[290px] md:min-w-[320px] snap-start bg-white text-[#0f172a] rounded-[32px] p-8 flex flex-col justify-between h-[340px] shadow-2xl shrink-0 transition-transform duration-300 hover:-translate-y-1"
+                className="w-[280px] sm:w-[310px] lg:w-[320px] shrink-0 bg-white rounded-[32px] p-7 flex flex-col justify-between h-[360px] border border-gray-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:scale-[1.04] hover:-translate-y-2 hover:shadow-[0_16px_36px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/50 group"
               >
                 <div>
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-full bg-gray-100/80 flex items-center justify-center mb-6 text-gray-900 border border-gray-200/60">
-                    <IconComponent className="w-6 h-6 stroke-[1.5]" />
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 text-[#0f172a] border border-gray-100 group-hover:bg-[#3b82f6]/10 group-hover:text-[#3b82f6] group-hover:border-[#3b82f6]/30 transition-colors duration-300">
+                    <IconComponent className="w-6 h-6 stroke-[1.75]" />
                   </div>
 
                   {/* Step Badge */}
-                  <span className="bg-gray-100 text-gray-600 px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide inline-block mb-4">
+                  <span className="bg-gray-100/80 text-[#64748b] px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide inline-block mb-4 group-hover:bg-[#3b82f6]/10 group-hover:text-[#3b82f6] transition-colors duration-300">
                     {item.step}
                   </span>
 
                   {/* Title */}
-                  <h3 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">
+                  <h3 className="text-2xl font-semibold text-[#0f172a] tracking-tight mb-3 group-hover:text-[#3b82f6] transition-colors duration-300">
                     {item.title}
                   </h3>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-500 text-[14.5px] leading-relaxed font-normal">
+                <p className="text-[#64748b] text-sm leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>
@@ -160,20 +138,20 @@ export default function ProcessSection() {
           })}
         </div>
 
-        {/* Bottom Page Indicator / Controls pill matching screenshot */}
+        {/* Bottom Pagination Controls */}
         <div className="flex justify-center mt-6">
-          <div className="bg-[#1c122e]/90 border border-white/10 rounded-full px-4 py-2 flex items-center gap-4 text-xs font-mono text-gray-300 shadow-2xl backdrop-blur-md">
+          <div className="bg-white border border-gray-200/80 rounded-full px-4 py-1.5 flex items-center gap-4 text-xs font-medium text-[#64748b] shadow-sm">
             <button 
               onClick={scrollPrev}
-              className="hover:text-white transition-colors p-1"
+              className="hover:text-black transition-colors p-1"
               aria-label="Previous step"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="tracking-widest font-semibold">{currentIndex} / {steps.length}</span>
+            <span className="tracking-widest font-semibold text-[#0f172a]">{currentIndex} / {steps.length}</span>
             <button 
               onClick={scrollNext}
-              className="hover:text-white transition-colors p-1"
+              className="hover:text-black transition-colors p-1"
               aria-label="Next step"
             >
               <ChevronRight className="w-4 h-4" />
