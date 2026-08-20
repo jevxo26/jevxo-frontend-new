@@ -134,16 +134,15 @@ export default function TestimonialsSection() {
         key={cardKey}
         className="w-[440px] md:w-[480px] shrink-0 bg-white rounded-[20px] p-4 sm:p-5 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-5 transition-all duration-300 group"
       >
-        {/* Left Side: Video / Image Thumbnail */}
+        {/* Left Side: Video / Image Thumbnail Container */}
         <div className="w-[160px] sm:w-[180px] md:w-[195px] h-[160px] sm:h-[180px] md:h-[195px] rounded-[16px] relative overflow-hidden bg-gray-900 shrink-0">
           {isPlaying ? (
-            <video
-              src={item.video}
-              autoPlay
-              loop
-              controls
-              playsInline
-              className="w-full h-full object-cover"
+            <iframe
+              src="https://www.youtube.com/embed/SJKr7BPOXY0?autoplay=1&rel=0"
+              title="Client Testimonial Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full object-cover border-0"
             />
           ) : (
             <Image
@@ -154,11 +153,15 @@ export default function TestimonialsSection() {
             />
           )}
 
-          {/* Play / Pause Floating Pill Button (Purple tinted matching reference screenshot) */}
+          {/* Play / Pause Floating Pill Button */}
           <button
             onClick={() => togglePlay(cardKey)}
-            className="absolute bottom-3 left-3 w-7 h-7 rounded-full bg-[#c084fc]/85 hover:bg-[#a855f7] text-white backdrop-blur-md flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer z-10"
-            title={isPlaying ? "Pause Video" : "Play Video Testimonial"}
+            className={`absolute bottom-3 left-3 w-7 h-7 rounded-full backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 cursor-pointer z-20 ${
+              isPlaying 
+                ? "bg-black/70 text-white hover:bg-black" 
+                : "bg-[#c084fc]/85 hover:bg-[#a855f7] text-white"
+            }`}
+            title={isPlaying ? "Close Video" : "Play YouTube Video Testimonial"}
           >
             {isPlaying ? (
               <Pause className="w-3.5 h-3.5 fill-current" />
