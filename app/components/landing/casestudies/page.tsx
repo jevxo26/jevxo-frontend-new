@@ -42,7 +42,7 @@ export default function CaseStudies() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
               Case Studies
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#0f172a] tracking-tight leading-[1.15]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#0f172a] tracking-tight leading-[1.15]">
               <span className="font-bold block text-[#0f172a]">Our Latest Work &amp;</span>
               <span className="block mt-1 text-[#0f172a]">
                 <span className="font-serif italic font-medium text-[#0f172a]">Featured</span> <span className="font-bold text-[#0f172a]">Case Studies</span>
