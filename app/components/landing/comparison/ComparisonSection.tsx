@@ -1,5 +1,12 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Check, X } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const comparisonData = [
   {
@@ -47,8 +54,60 @@ const comparisonData = [
 ];
 
 export default function ComparisonSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Ultra-smooth GSAP Timeline for Header & Table Cells with bi-directional scroll support (top-to-bottom and bottom-to-top)
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 88%",
+          end: "bottom 10%",
+          toggleActions: "play reverse play reverse",
+        },
+      });
+
+      // Animate Header Cells first
+      tl.fromTo(
+        ".comparison-header-cell",
+        { opacity: 0, y: 20, filter: "blur(4px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.65,
+          stagger: 0.08,
+          ease: "power3.out",
+        }
+      )
+      // Animate Individual Table Cells sequentially across rows & columns
+      .fromTo(
+        ".comparison-cell",
+        { opacity: 0, y: 18, filter: "blur(4px)", scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          scale: 1,
+          duration: 0.6,
+          stagger: {
+            amount: 0.9,
+            grid: [7, 4],
+            from: "start",
+            ease: "sine.out",
+          },
+          ease: "power2.out",
+        },
+        "-=0.4"
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="why-choose-us" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section ref={sectionRef} id="why-choose-us" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Top Header Row */}
@@ -93,10 +152,10 @@ export default function ComparisonSection() {
                 {/* Table Header Row */}
                 <thead>
                   <tr className="border-b border-gray-200/70 text-[#0f172a]">
-                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-[#0f172a] border-r border-gray-100/60">Features</th>
-                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Jevxo Team</th>
-                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Others Agency</th>
-                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a]">Freelancer</th>
+                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-[#0f172a] border-r border-gray-100/60">Features</th>
+                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Jevxo Team</th>
+                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Others Agency</th>
+                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a]">Freelancer</th>
                   </tr>
                 </thead>
 
@@ -105,12 +164,12 @@ export default function ComparisonSection() {
                   {comparisonData.map((row, index) => (
                     <tr key={index} className="hover:bg-gray-50/60 transition-colors duration-200">
                       {/* Feature Name */}
-                      <td className="py-5 px-8 font-bold text-[#0f172a] text-base border-r border-gray-100/60">
+                      <td className="comparison-cell py-5 px-8 font-bold text-[#0f172a] text-base border-r border-gray-100/60">
                         {row.feature}
                       </td>
 
                       {/* Jevxo Team Column */}
-                      <td className="py-5 px-8 text-[#0f172a] border-r border-gray-100/60">
+                      <td className="comparison-cell py-5 px-8 text-[#0f172a] border-r border-gray-100/60">
                         <div className="flex items-center gap-3 justify-start sm:justify-start">
                           <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
                             <Check className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -120,7 +179,7 @@ export default function ComparisonSection() {
                       </td>
 
                       {/* Others Agency Column */}
-                      <td className="py-5 px-8 text-[#334155] border-r border-gray-100/60">
+                      <td className="comparison-cell py-5 px-8 text-[#334155] border-r border-gray-100/60">
                         <div className="flex items-center gap-3">
                           {row.others.check ? (
                             <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
@@ -136,7 +195,7 @@ export default function ComparisonSection() {
                       </td>
 
                       {/* Freelancer Column */}
-                      <td className="py-5 px-8 text-[#334155]">
+                      <td className="comparison-cell py-5 px-8 text-[#334155]">
                         <div className="flex items-center gap-3">
                           {row.freelancer.check ? (
                             <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
