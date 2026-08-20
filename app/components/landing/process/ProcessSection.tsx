@@ -98,65 +98,39 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* Horizontal Cards Row */}
-        <div 
-          ref={sliderRef}
-          onScroll={handleScroll}
-          className="flex items-center gap-5 sm:gap-6 overflow-x-auto scrollbar-none pb-6 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
+        {/* Overlapping Horizontal Cards Row matching exact reference screenshot */}
+        <div className="flex items-center overflow-x-auto scrollbar-none pb-12 pt-6 -mx-4 px-4 sm:-mx-6 sm:px-6 relative">
           {steps.map((item, index) => {
             const IconComponent = item.icon;
             return (
               <div 
                 key={index}
-                className="w-[280px] sm:w-[310px] lg:w-[320px] shrink-0 bg-white rounded-[32px] p-7 flex flex-col justify-between h-[360px] border border-gray-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:scale-[1.04] hover:-translate-y-2 hover:shadow-[0_16px_36px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/50 group"
+                className="w-[240px] sm:w-[270px] md:w-[290px] shrink-0 bg-gradient-to-b from-white to-[#fcfcfd] rounded-[32px] p-6 sm:p-7 flex flex-col justify-between h-[380px] sm:h-[400px] border border-gray-200/90 shadow-[0_4px_25px_rgba(0,0,0,0.05)] transition-all duration-500 ease-out -mr-8 sm:-mr-12 last:mr-0 relative z-10 hover:z-30 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-[0_25px_50px_rgba(0,0,0,0.14)] hover:border-gray-300 group"
               >
                 <div>
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 text-[#0f172a] border border-gray-100 group-hover:bg-[#3b82f6]/10 group-hover:text-[#3b82f6] group-hover:border-[#3b82f6]/30 transition-colors duration-300">
-                    <IconComponent className="w-6 h-6 stroke-[1.75]" />
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 text-gray-800 border border-gray-100/80 group-hover:bg-gray-100 transition-colors duration-300">
+                    <IconComponent className="w-6 h-6 stroke-[1.5]" />
                   </div>
 
                   {/* Step Badge */}
-                  <span className="bg-gray-100/80 text-[#64748b] px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide inline-block mb-4 group-hover:bg-[#3b82f6]/10 group-hover:text-[#3b82f6] transition-colors duration-300">
+                  <span className="bg-gray-100/90 text-gray-500 px-3.5 py-1 rounded-full text-[11px] font-medium tracking-wide inline-block mb-4">
                     {item.step}
                   </span>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-semibold text-[#0f172a] tracking-tight mb-3 group-hover:text-[#3b82f6] transition-colors duration-300">
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-[#0a0c16] tracking-tight mb-3">
                     {item.title}
                   </h3>
                 </div>
 
                 {/* Description */}
-                <p className="text-[#64748b] text-sm leading-relaxed font-normal">
+                <p className="text-[#64748b] text-xs sm:text-sm leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>
             );
           })}
-        </div>
-
-        {/* Bottom Pagination Controls */}
-        <div className="flex justify-center mt-6">
-          <div className="bg-white border border-gray-200/80 rounded-full px-4 py-1.5 flex items-center gap-4 text-xs font-medium text-[#64748b] shadow-sm">
-            <button 
-              onClick={scrollPrev}
-              className="hover:text-black transition-colors p-1"
-              aria-label="Previous step"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <span className="tracking-widest font-semibold text-[#0f172a]">{currentIndex} / {steps.length}</span>
-            <button 
-              onClick={scrollNext}
-              className="hover:text-black transition-colors p-1"
-              aria-label="Next step"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
 
       </div>
