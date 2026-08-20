@@ -37,9 +37,9 @@ export default function BlogSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Left Column: Featured Main Blog Post Card */}
-          <div className="lg:col-span-6 bg-white rounded-[16px] p-5 sm:p-6 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
-            {/* Main Featured Banner Image */}
-            <div className="w-full h-[240px] sm:h-[290px] md:h-[310px] rounded-[12px] relative overflow-hidden mb-5 bg-gray-100">
+          <div className="lg:col-span-6 bg-white rounded-[16px] p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
+            {/* Main Featured Banner Image - Height Enlarged */}
+            <div className="w-full h-[280px] sm:h-[340px] md:h-[360px] rounded-[12px] relative overflow-hidden mb-6 bg-gray-100">
               <Image
                 src="/BlogInsight/first.png"
                 alt="The Future of Branding Why Design Quality Matters More Than Ever."
@@ -74,12 +74,12 @@ export default function BlogSection() {
           </div>
 
           {/* Right Column: 2 Stacked Cards */}
-          <div className="lg:col-span-6 flex flex-col space-y-5 justify-between">
+          <div className="lg:col-span-6 flex flex-col space-y-6 justify-between">
             
             {/* Right Card 1 */}
-            <div className="bg-white rounded-[16px] p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
-              {/* Image thumbnail */}
-              <div className="w-full sm:w-[190px] md:w-[210px] h-[150px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
+            <div className="bg-white rounded-[16px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
+              {/* Image thumbnail - Height & Width Enlarged */}
+              <div className="w-full sm:w-[220px] md:w-[250px] h-[185px] sm:h-[195px] md:h-[210px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
                 <Image
                   src="/BlogInsight/second.png"
                   alt="Why Great UI/UX Is A Competitive Advantage"
@@ -93,7 +93,7 @@ export default function BlogSection() {
                 <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
                   July 31, 2025
                 </span>
-                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-3">
+                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
                   Why Great UI/UX Is A Competitive Advantage
                 </h3>
 
@@ -112,9 +112,9 @@ export default function BlogSection() {
             </div>
 
             {/* Right Card 2 */}
-            <div className="bg-white rounded-[16px] p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
-              {/* Image thumbnail */}
-              <div className="w-full sm:w-[190px] md:w-[210px] h-[150px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
+            <div className="bg-white rounded-[16px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
+              {/* Image thumbnail - Height & Width Enlarged */}
+              <div className="w-full sm:w-[220px] md:w-[250px] h-[185px] sm:h-[195px] md:h-[210px] rounded-[12px] relative overflow-hidden shrink-0 bg-gray-100">
                 <Image
                   src="/BlogInsight/thired.png"
                   alt="Building Scalable Products Through Smart Design Systems"
@@ -128,7 +128,7 @@ export default function BlogSection() {
                 <span className="text-[#94a3b8] text-xs sm:text-sm font-normal block mb-1.5">
                   July 31, 2025
                 </span>
-                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-3">
+                <h3 className="text-base sm:text-lg md:text-[19px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
                   Building Scalable Products Through Smart Design Systems
                 </h3>
 
