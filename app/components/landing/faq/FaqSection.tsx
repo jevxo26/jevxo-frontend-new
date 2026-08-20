@@ -36,13 +36,13 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section id="faq" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Title & CTA Button */}
-          <div className="lg:col-span-5 flex flex-col items-start space-y-6">
+          <div className="lg:col-span-5 flex flex-col items-start space-y-5">
             {/* Pill Badge */}
             <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
@@ -50,10 +50,10 @@ export default function FaqSection() {
             </div>
 
             {/* Headline Title */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#0f172a] tracking-tight leading-[1.12]">
-              <span className="font-medium block text-[#0f172a]">Frequently</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.12]">
+              <span className="block text-[#0f172a]">Frequently</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-medium text-[#0f172a]">Asked Question</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Asked Question</span>
               </span>
             </h2>
 

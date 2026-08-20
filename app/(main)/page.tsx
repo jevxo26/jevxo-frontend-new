@@ -38,12 +38,7 @@ export default function Home() {
       <ReadyToBuildSection />
       <FaqSection />
       <ContactSection />
-
       <TestimonialsSection />
-      
-      
-      
-      
     </div>
   );
 }

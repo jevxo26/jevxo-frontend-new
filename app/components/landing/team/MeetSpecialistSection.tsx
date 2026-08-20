@@ -115,12 +115,12 @@ export default function MeetSpecialistSection() {
     <section 
       ref={sectionRef}
       id="specialist" 
-      className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
+      className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         
         {/* Header Row: Title & Customer Satisfactions */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 md:mb-14 w-full">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 md:mb-12 w-full">
           {/* Left Title Area */}
           <div className="flex flex-col items-start gap-3.5">
             {/* Pill Badge */}
@@ -129,7 +129,7 @@ export default function MeetSpecialistSection() {
               Our House Expertize
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-[#0f172a] tracking-tight leading-[1.15]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
               Meet Our Specialist
             </h2>
           </div>

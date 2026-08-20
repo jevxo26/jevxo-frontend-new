@@ -31,21 +31,21 @@ const caseStudies = [
 
 export default function CaseStudies() {
   return (
-    <section id="case-study" className="relative z-30 w-full py-16 md:py-24 bg-[#f4f4f6] flex justify-center border-t border-gray-200/80">
+    <section id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#f4f4f6] flex justify-center border-t border-gray-200/80">
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12 md:mb-16 w-full">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
           {/* Left Title Area */}
-          <div className="flex flex-col items-start gap-4">
+          <div className="flex flex-col items-start gap-3.5">
             <div className="bg-white border border-gray-300 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-medium tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
               Case Studies
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="font-bold block text-[#0f172a]">Our Latest Work &amp;</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="block text-[#0f172a]">Our Latest Work &amp;</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-medium text-[#0f172a]">Featured</span> <span className="font-bold text-[#0f172a]">Case Studies</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Featured</span> <span className="font-medium text-[#0f172a]">Case Studies</span>
               </span>
             </h2>
           </div>
