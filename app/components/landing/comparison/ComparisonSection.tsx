@@ -85,10 +85,10 @@ export default function ComparisonSection() {
         </div>
 
         {/* Live Animated Gradient Border Table Outer Container */}
-        <div className="relative p-[2px] rounded-[32px] overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-rose-500 via-amber-400 via-emerald-400 to-blue-500 bg-[length:300%_300%] animate-[gradient_8s_ease_infinite] shadow-[0_10px_40px_rgba(0,0,0,0.04)]">
+        <div className="relative p-[2.5px] rounded-[24px] bg-gradient-to-r from-[#2563eb] via-[#ec4899] via-[#f43f5e] via-[#3b82f6] to-[#2563eb] bg-[length:200%_200%] animate-[gradient_6s_linear_infinite] shadow-[0_12px_45px_rgba(37,99,235,0.12)] transition-all duration-300">
           
           {/* Inner Table Card */}
-          <div className="w-full bg-white rounded-[30px] overflow-hidden">
+          <div className="w-full bg-white rounded-[22.5px] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[760px]">
                 {/* Table Header Row */}
