@@ -5,43 +5,43 @@ import Image from "next/image";
 const steps = [
   {
     step: "Step 01",
-    title: "Understand",
-    description: "Business goals and strategies, persona and pinpoints, competitors analysis.",
+    title: "Discovery & Strategy",
+    description: "Aligning business objectives, user research, wireframing, and tech stack blueprinting.",
     icon: "/DesignProcess/Understand.png",
     bg: "bg-[#f0f3ff]",
   },
   {
     step: "Step 02",
-    title: "Define",
-    description: "UX Strategy, information architecture, userflows, moodboard, visual direction.",
+    title: "UX/UI Design System",
+    description: "Crafting intuitive user interfaces, scalable design tokens, interactive prototypes, and modern branding.",
     icon: "/DesignProcess/Define.png",
     bg: "bg-[#fff0f4]",
   },
   {
     step: "Step 03",
-    title: "Ideate",
-    description: "Brainstorming, problem solution propose, sketching, wireframing.",
+    title: "Architecture & Sprint",
+    description: "Setting up secure database schemas, cloud microservices, API integrations, and agile development sprints.",
     icon: "/DesignProcess/Ideate.png",
     bg: "bg-[#eef8f4]",
   },
   {
     step: "Step 04",
-    title: "Design",
-    description: "Brand Style guide, UI design, design system, user interface design.",
+    title: "Full-Stack Development",
+    description: "Engineering fast, SEO-optimized web and mobile applications backed by robust infrastructure.",
     icon: "/DesignProcess/Design.png",
     bg: "bg-[#f1edfb]",
   },
   {
     step: "Step 05",
-    title: "Testing",
-    description: "Interactive Prototyping, usability testing, feedback collection, and implementation.",
+    title: "QA & Security Audit",
+    description: "Comprehensive automated unit testing, end-to-end security audits, and cross-browser optimization.",
     icon: "/DesignProcess/Testing.png",
     bg: "bg-[#fefce8]",
   },
   {
     step: "Step 06",
-    title: "Approval",
-    description: "Submission for approval, Asset preparation, and final exports.",
+    title: "Deployment & Scaling",
+    description: "Seamless CI/CD production releases, 24/7 cloud server monitoring, and continuous product iteration.",
     icon: "/DesignProcess/Approval.png",
     bg: "bg-[#f0fdf4]",
   }
@@ -77,31 +77,31 @@ export default function ProcessSection() {
         </div>
 
         {/* Overlapping Horizontal Cards Row matching exact reference screenshot */}
-        <div className="flex items-center overflow-x-auto scrollbar-none pb-12 pt-6 -mx-4 px-4 sm:-mx-6 sm:px-6 relative">
+        <div className="flex items-center overflow-x-auto scrollbar-none pb-10 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6 relative">
           {steps.map((item, index) => (
             <div 
               key={index}
-              className={`w-[240px] sm:w-[270px] md:w-[290px] shrink-0 ${item.bg} rounded-[36px] p-6 sm:p-7 flex flex-col justify-between h-[380px] sm:h-[400px] border border-white/60 shadow-[0_4px_25px_rgba(0,0,0,0.04)] transition-all duration-500 ease-out -mr-8 sm:-mr-12 last:mr-0 relative z-10 hover:z-30 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-[0_25px_50px_rgba(0,0,0,0.12)] group`}
+              className={`w-[250px] sm:w-[280px] md:w-[300px] shrink-0 ${item.bg} rounded-[32px] p-5 sm:p-6 flex flex-col justify-between h-[300px] sm:h-[330px] border border-white/60 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-500 ease-out -mr-6 sm:-mr-10 last:mr-0 relative z-10 hover:z-30 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-[0_25px_50px_rgba(0,0,0,0.12)] group`}
             >
               <div>
-                {/* Image Icon */}
-                <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-xs border border-gray-100/80 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden p-2.5">
-                  <Image
-                    src={item.icon}
-                    alt={`${item.title} icon`}
-                    width={28}
-                    height={28}
-                    className="object-contain"
-                  />
+                {/* Header Row: Image Icon & Step Badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-2xs border border-gray-100/80 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden p-2">
+                    <Image
+                      src={item.icon}
+                      alt={`${item.title} icon`}
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="bg-white/80 text-gray-600 px-3 py-0.5 rounded-full text-[11px] font-semibold tracking-wide border border-gray-100">
+                    {item.step}
+                  </span>
                 </div>
 
-                {/* Step Badge */}
-                <span className="bg-gray-100/90 text-gray-500 px-3.5 py-1 rounded-full text-[11px] font-medium tracking-wide inline-block mb-4">
-                  {item.step}
-                </span>
-
                 {/* Title */}
-                <h3 className="text-2xl sm:text-3xl font-semibold text-[#0a0c16] tracking-tight mb-3">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[#0a0c16] tracking-tight mb-2 leading-snug">
                   {item.title}
                 </h3>
               </div>

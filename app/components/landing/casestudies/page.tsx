@@ -69,11 +69,11 @@ export default function CaseStudies() {
           {caseStudies.map((study, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-[36px] p-6 sm:p-7 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/60 flex flex-col group hover:shadow-[0_12px_45px_rgba(0,0,0,0.08)] transition-all duration-300"
+              className="bg-white rounded-[20px] p-6 sm:p-5 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/60 flex flex-col group hover:shadow-[0_12px_45px_rgba(0,0,0,0.08)] transition-all duration-300"
             >
               
               {/* Image Banner */}
-              <div className={`w-full h-[320px] sm:h-[380px] rounded-[28px] ${study.bgClass} mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
+              <div className={`w-full h-[320px] sm:h-[380px] rounded-[20px] ${study.bgClass} mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
                 <Image 
                   src={study.image} 
                   alt={study.title}
