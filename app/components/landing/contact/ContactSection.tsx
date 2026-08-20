@@ -77,10 +77,14 @@ export default function ContactSection() {
 
           {/* WhatsApp Direct Direct Booking Link */}
           <div className="flex flex-col items-start gap-1">
-            <div className="flex items-center gap-2 text-sm sm:text-base font-normal text-white">
-              <span className="w-5 h-5 rounded-full bg-emerald-500 text-black flex items-center justify-center font-bold text-xs">
-                💬
-              </span>
+            <div className="flex items-center gap-2.5 text-sm sm:text-base font-normal text-white">
+              <Image
+                src="/whatsapp.png"
+                alt="WhatsApp"
+                width={22}
+                height={22}
+                className="object-contain"
+              />
               <span>+1 2345 6578 145</span>
             </div>
             <Link
