@@ -191,7 +191,7 @@ export default function Partners() {
 
   return (
     <section ref={sectionRef} className="py-12 md:py-16 bg-[#F8F9FA] flex flex-col items-center overflow-hidden">
-      <div className="max-w-10/12 mx-auto px-4 sm:px-6 w-full">
+      <div className="w-full max-w-[95%] sm:max-w-10/12 mx-auto px-2 sm:px-6">
         <h2 className="partner-title text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-center mb-8 md:mb-10 text-[#0f172a] tracking-tight leading-[1.15]">
           <span className="block text-[#0f172a]">Top Partners That</span>
           <span className="block mt-1 text-[#0f172a]">

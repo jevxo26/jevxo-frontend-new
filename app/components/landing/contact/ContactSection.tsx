@@ -40,7 +40,7 @@ export default function ContactSection() {
       id="contact"
       className="w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden"
     >
-      <div className="max-w-10/12 mx-auto w-full px-2 md:px-6 sm:px-4">
+      <div className="w-full max-w-[95%] sm:max-w-10/12 mx-auto px-2 sm:px-4 md:px-6">
         {/* Dark Floating Card Container matching screenshot */}
         <div className="w-full bg-[#121318] text-white rounded-[10px] p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12 border border-gray-800/80">
         

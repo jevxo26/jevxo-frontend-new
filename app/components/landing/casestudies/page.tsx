@@ -68,7 +68,7 @@ export default function CaseStudies() {
 
   return (
     <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
-      <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
+      <div className="w-full max-w-[95%] sm:max-w-10/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
