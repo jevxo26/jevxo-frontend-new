@@ -76,37 +76,40 @@ export default function AiSection() {
 
           {/* Card 2: AI Visual Direction */}
           <div className="bg-gradient-to-b from-[#FCD6FE] via-[#FAEEFF] to-[#FFF8FE] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-purple-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1 min-h-[470px]">
-            <div className="flex flex-col space-y-4 w-full max-w-md my-auto pt-2 pb-6">
-              {/* Row 1 */}
-              <div className="bg-white p-4 sm:p-4.5 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100/80 shrink-0">
-                  <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={34} height={34} className="object-contain" />
+            {/* Centered & Expanded Rows Container */}
+            <div className="w-full flex justify-center items-center my-auto pt-4 pb-8">
+              <div className="flex flex-col space-y-4 w-full max-w-[420px]">
+                {/* Row 1 */}
+                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
+                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
+                    <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={40} height={40} className="object-contain" />
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="text-[#0a0c16] font-medium text-base sm:text-lg tracking-tight">Figma Make - Wireframe</div>
+                    <div className="w-48 sm:w-56 h-2 bg-gray-100 rounded-full" />
+                  </div>
                 </div>
-                <div className="flex-1 space-y-2">
-                  <div className="text-[#0a0c16] font-medium text-base sm:text-[17px] tracking-tight">Figma Make - Wireframe</div>
-                  <div className="w-48 h-2 bg-gray-100/90 rounded-full" />
-                </div>
-              </div>
 
-              {/* Row 2 */}
-              <div className="bg-white p-4 sm:p-4.5 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100/80 shrink-0">
-                  <Image src="/AIPoweredDesign/junery.png" alt="Claude" width={34} height={34} className="object-contain" />
+                {/* Row 2 */}
+                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
+                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
+                    <Image src="/AIPoweredDesign/junery.png" alt="Claude" width={40} height={40} className="object-contain" />
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="text-[#0a0c16] font-medium text-base sm:text-lg tracking-tight">Claude - Research</div>
+                    <div className="w-56 sm:w-64 h-2 bg-gray-100 rounded-full" />
+                  </div>
                 </div>
-                <div className="flex-1 space-y-2">
-                  <div className="text-[#0a0c16] font-medium text-base sm:text-[17px] tracking-tight">Claude - Research</div>
-                  <div className="w-56 h-2 bg-gray-100/90 rounded-full" />
-                </div>
-              </div>
 
-              {/* Row 3 */}
-              <div className="bg-white p-4 sm:p-4.5 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100/80 shrink-0">
-                  <Image src="/AIPoweredDesign/loveable 2.png" alt="Loveable" width={34} height={34} className="object-contain" />
-                </div>
-                <div className="flex-1 space-y-2">
-                  <div className="text-[#0a0c16] font-medium text-base sm:text-[17px] tracking-tight">Loveable - Ideation</div>
-                  <div className="w-52 h-2 bg-gray-100/90 rounded-full" />
+                {/* Row 3 */}
+                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
+                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
+                    <Image src="/AIPoweredDesign/loveable 2.png" alt="Loveable" width={40} height={40} className="object-contain" />
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="text-[#0a0c16] font-medium text-base sm:text-lg tracking-tight">Loveable - Ideation</div>
+                    <div className="w-52 sm:w-60 h-2 bg-gray-100 rounded-full" />
+                  </div>
                 </div>
               </div>
             </div>
