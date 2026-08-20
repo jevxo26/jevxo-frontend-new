@@ -1,91 +1,116 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus, HelpCircle } from "lucide-react";
+import Link from "next/link";
+import { Plus, Minus, ArrowUpRight } from "lucide-react";
 
 const faqs = [
   {
-    question: "How fast will I receive my first design draft?",
-    answer: "You will receive your first complete design draft within 48 hours after our kickoff call and requirements briefing."
+    question: "How long does a typical project take?",
+    answer: "Most projects are completed within 5–10 business days, depending on the scope and complexity. Larger or custom requests may take a bit longer. A clear timeline is always shared before we get started."
   },
   {
-    question: "What is included in the unlimited design requests?",
-    answer: "You can submit unlimited UI/UX design tasks, landing page revisions, mobile app screens, design system components, and marketing assets one at a time."
+    question: "What services do you offer?",
+    answer: "We offer end-to-end digital product design including UI/UX design, Web App development, Mobile App development, Branding & Design Systems, and custom AI integration."
   },
   {
-    question: "How does the subscription payment work?",
-    answer: "We offer flat monthly rates with zero hidden fees. You can pause or cancel your subscription at any time with no long-term contracts."
+    question: "Can you work with existing branding?",
+    answer: "Yes, absolutely! We can work seamlessly within your existing brand guidelines, color palettes, and typography while elevating the overall digital experience."
   },
   {
-    question: "What tech stack do you use for development?",
-    answer: "We specialize in modern frontend stacks including Next.js, React, Tailwind CSS, TypeScript, Flutter for mobile, and Node.js for backend APIs."
+    question: "What if I need changes after the project is delivered?",
+    answer: "We offer continuous post-delivery support and revision rounds to ensure everything functions perfectly and meets your expectations."
   },
   {
-    question: "What if I don't like the design results?",
-    answer: "We offer unlimited revisions until you are 100% satisfied with the final look and feel of your product."
+    question: "How does the monthly retainer work?",
+    answer: "Our monthly retainer gives you dedicated design & development bandwidth with predictable costs, priority turnarounds, and zero long-term commitments."
   }
 ];
 
 export default function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // Initially null so all FAQs are closed by default (opens only on click)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="w-full py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
-      <div className="max-w-7xl w-full px-6 flex flex-col">
+    <section id="faq" className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 w-full">
-          <div className="flex flex-col items-start gap-4">
-            <div className="bg-[#E9F0FF] text-[#1B64FF] px-5 py-2 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Got Questions?</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Title & CTA Button */}
+          <div className="lg:col-span-5 flex flex-col items-start space-y-6">
+            {/* Pill Badge */}
+            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+              Ask Anything
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-[#111] tracking-tight leading-tight">
-              Frequently Asked <br />
-              <span className="font-serif italic font-medium">Questions</span>
+
+            {/* Headline Title */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#0f172a] tracking-tight leading-[1.12]">
+              <span className="font-medium block text-[#0f172a]">Frequently</span>
+              <span className="block mt-1 text-[#0f172a]">
+                <span className="font-serif italic font-medium text-[#0f172a]">Asked Question</span>
+              </span>
             </h2>
-          </div>
 
-          <div className="lg:w-[45%] pb-1">
-            <p className="text-gray-500 text-base md:text-lg leading-relaxed font-normal">
-              Everything you need to know about our process, design deliverables, turnarounds, and subscription model.
+            {/* Subtitle */}
+            <p className="text-[#64748b] text-base md:text-lg font-normal">
+              Before You Ask — Here's the Answer
             </p>
-          </div>
-        </div>
 
-        {/* FAQ Accordion List */}
-        <div className="max-w-4xl mx-auto w-full flex flex-col space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div 
-                key={index}
-                className="bg-white rounded-3xl border border-gray-200/80 shadow-[0_4px_25px_rgb(0,0,0,0.02)] overflow-hidden transition-all duration-300"
+            {/* Request Free Audit CTA Button */}
+            <div className="pt-2">
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#1658fe] to-[#004cf6] hover:from-[#1148d4] hover:to-[#003ec8] text-white rounded-full pl-6 pr-2 py-2 transition-all duration-300 shadow-[0_8px_25px_rgba(22,88,254,0.35)] hover:shadow-[0_12px_30px_rgba(22,88,254,0.5)] hover:scale-[1.02] group/btn"
               >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full p-6 md:p-8 text-left flex items-center justify-between gap-6 focus:outline-none"
-                >
-                  <span className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
-                    {faq.question}
-                  </span>
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${isOpen ? 'bg-[#0052ff] text-white' : 'bg-gray-100 text-gray-700'}`}>
-                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                  </div>
-                </button>
+                <span className="text-sm font-medium tracking-tight">Request Free Audit</span>
+                <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300 shadow-sm">
+                  <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
+                </div>
+              </Link>
+            </div>
+          </div>
 
-                {isOpen && (
-                  <div className="px-6 md:px-8 pb-6 md:pb-8 text-gray-600 text-base md:text-lg leading-relaxed border-t border-gray-100 pt-4">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {/* Right Column: FAQ Accordion List */}
+          <div className="lg:col-span-7 flex flex-col space-y-4 w-full">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div 
+                  key={index}
+                  className="bg-white rounded-[16px] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] overflow-hidden transition-all duration-300"
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full p-6 text-left flex items-center justify-between gap-6 focus:outline-none cursor-pointer group"
+                  >
+                    <span className="text-lg sm:text-xl font-medium text-[#0f172a] tracking-tight leading-snug">
+                      {faq.question}
+                    </span>
+                    <div className="text-gray-600 group-hover:text-black transition-colors shrink-0">
+                      {isOpen ? (
+                        <Minus className="w-5 h-5 stroke-[2]" />
+                      ) : (
+                        <Plus className="w-5 h-5 stroke-[2]" />
+                      )}
+                    </div>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-6 pb-6 text-[#64748b] text-sm sm:text-base leading-relaxed border-t border-gray-100/80 pt-4">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>

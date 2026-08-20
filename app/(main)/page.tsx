@@ -36,8 +36,9 @@ export default function Home() {
       <BlogSection />
       <MeetSpecialistSection />
       <ReadyToBuildSection />
+      <FaqSection />
       <TestimonialsSection />
-      {/* <FaqSection /> */}
+      
       
       
       <ContactSection />
