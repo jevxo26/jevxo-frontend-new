@@ -8,36 +8,42 @@ const steps = [
     title: "Understand",
     description: "Business goals and strategies, persona and pinpoints, competitors analysis.",
     icon: "/DesignProcess/Understand.png",
+    bg: "bg-[#f0f3ff]",
   },
   {
     step: "Step 02",
     title: "Define",
     description: "UX Strategy, information architecture, userflows, moodboard, visual direction.",
     icon: "/DesignProcess/Define.png",
+    bg: "bg-[#fff0f4]",
   },
   {
     step: "Step 03",
     title: "Ideate",
     description: "Brainstorming, problem solution propose, sketching, wireframing.",
     icon: "/DesignProcess/Ideate.png",
+    bg: "bg-[#eef8f4]",
   },
   {
     step: "Step 04",
     title: "Design",
     description: "Brand Style guide, UI design, design system, user interface design.",
     icon: "/DesignProcess/Design.png",
+    bg: "bg-[#f1edfb]",
   },
   {
     step: "Step 05",
     title: "Testing",
     description: "Interactive Prototyping, usability testing, feedback collection, and implementation.",
     icon: "/DesignProcess/Testing.png",
+    bg: "bg-[#fefce8]",
   },
   {
     step: "Step 06",
     title: "Approval",
     description: "Submission for approval, Asset preparation, and final exports.",
     icon: "/DesignProcess/Approval.png",
+    bg: "bg-[#f0fdf4]",
   }
 ];
 
@@ -75,11 +81,11 @@ export default function ProcessSection() {
           {steps.map((item, index) => (
             <div 
               key={index}
-              className="w-[240px] sm:w-[270px] md:w-[290px] shrink-0 bg-gradient-to-b from-white to-[#fcfcfd] rounded-[32px] p-6 sm:p-7 flex flex-col justify-between h-[380px] sm:h-[400px] border border-gray-200/90 shadow-[0_4px_25px_rgba(0,0,0,0.05)] transition-all duration-500 ease-out -mr-8 sm:-mr-12 last:mr-0 relative z-10 hover:z-30 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-[0_25px_50px_rgba(0,0,0,0.14)] hover:border-gray-300 group"
+              className={`w-[240px] sm:w-[270px] md:w-[290px] shrink-0 ${item.bg} rounded-[36px] p-6 sm:p-7 flex flex-col justify-between h-[380px] sm:h-[400px] border border-white/60 shadow-[0_4px_25px_rgba(0,0,0,0.04)] transition-all duration-500 ease-out -mr-8 sm:-mr-12 last:mr-0 relative z-10 hover:z-30 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-[0_25px_50px_rgba(0,0,0,0.12)] group`}
             >
               <div>
                 {/* Image Icon */}
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 border border-gray-100/80 group-hover:bg-gray-100 transition-colors duration-300 relative overflow-hidden p-2">
+                <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-xs border border-gray-100/80 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden p-2.5">
                   <Image
                     src={item.icon}
                     alt={`${item.title} icon`}
