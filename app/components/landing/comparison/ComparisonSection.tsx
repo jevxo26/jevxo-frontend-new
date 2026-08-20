@@ -6,12 +6,12 @@ const comparisonData = [
     feature: "Project Management",
     jevxo: { text: "Senior Specialist only", check: true },
     others: { text: "Junior Designers, Lose Quality", check: false },
-    freelancer: { text: "Skill Varies Widely Always", check: false, isWarning: true }
+    freelancer: { text: "Skill Varies Widely Always", check: false }
   },
   {
     feature: "Strategic Thinking",
     jevxo: { text: "Problem-solving approach", check: true },
-    others: { text: "Focuses Mainly On User Research And Planning", check: true, isNeutral: true },
+    others: { text: "Focuses Mainly On User Research And Planning", check: false },
     freelancer: { text: "Client Handles Strategy Independently", check: false }
   },
   {
@@ -24,7 +24,7 @@ const comparisonData = [
     feature: "Cost efficiency",
     jevxo: { text: "Fixed monthly rate with unlimited requests", check: true },
     others: { text: "Hidden Costs And Scope Creep Are Common", check: false },
-    freelancer: { text: "Hourly Billing Becomes Expensive Over Time", check: true, isNeutral: true }
+    freelancer: { text: "Hourly Billing Becomes Expensive Over Time", check: true }
   },
   {
     feature: "Flexibility",
@@ -41,111 +41,123 @@ const comparisonData = [
   {
     feature: "Develop & Launch",
     jevxo: { text: "Fast-moving startup partner", check: true },
-    others: { text: "Best For Enterprise Companies With Large Budgets", check: true, isNeutral: true },
-    freelancer: { text: "Suitable Mainly For One-Off Small Projects", check: true, isNeutral: true }
+    others: { text: "Best For Enterprise Companies With Large Budgets", check: true },
+    freelancer: { text: "Suitable Mainly For One-Off Small Projects", check: true }
   }
 ];
 
 export default function ComparisonSection() {
   return (
-    <section className="w-full py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
-      <div className="max-w-7xl w-full px-6 flex flex-col">
+    <section className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
-        {/* Top Tag & Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 w-full">
+        {/* Top Header Row */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12 md:mb-16 w-full">
+          {/* Left Title & Badge */}
           <div className="flex flex-col items-start gap-4">
-            <div className="bg-[#E9F0FF] text-[#1B64FF] px-5 py-2 rounded-full text-xs font-semibold tracking-wide">
+            {/* Pill Badge matching AI Powered Design style */}
+            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
               Why Choose Us
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-[#111] tracking-tight leading-[1.15]">
-              Jevxo Team Alternative? <br />
-              Think <span className="font-serif italic font-medium">One More Time!</span>
+            
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="font-bold block text-[#0f172a]">Jevxo Team Alternative?</span>
+              <span className="block mt-1 text-[#0f172a]">
+                <span className="font-bold text-[#0f172a]">Think </span> 
+                <span className="font-serif italic font-medium text-[#0f172a]">One More Time!</span>
+              </span>
             </h2>
           </div>
 
-          {/* Request Free Audit Button */}
-          <div className="pb-2">
+          {/* Right Request Free Audit CTA Button */}
+          <div className="lg:pb-2">
             <Link
               href="#contact"
-              className="inline-flex items-center gap-3 bg-[#0052ff] hover:bg-blue-600 text-white px-7 py-3.5 rounded-full font-medium text-base shadow-xl shadow-blue-500/25 transition-all group"
+              className="inline-flex items-center gap-3 bg-[#0052ff] hover:bg-blue-600 text-white px-7 py-3.5 rounded-full font-medium text-base shadow-xl shadow-blue-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] group"
             >
               <span>Request Free Audit</span>
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                <ArrowUpRight className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
+                <ArrowUpRight className="w-4.5 h-4.5 text-white" />
               </div>
             </Link>
           </div>
         </div>
 
-        {/* Comparison Table Container */}
-        <div className="w-full bg-white rounded-[32px] shadow-[0_4px_30px_rgb(0,0,0,0.03)] border border-gray-200/80 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[800px]">
-              {/* Table Header */}
-              <thead>
-                <tr className="border-b border-gray-200/80 text-gray-900">
-                  <th className="py-6 px-8 text-lg font-bold w-[25%]">Features</th>
-                  <th className="py-6 px-8 text-lg font-bold w-[25%] text-center md:text-left">Jevxo Team</th>
-                  <th className="py-6 px-8 text-lg font-bold w-[25%] text-center md:text-left">Others Agency</th>
-                  <th className="py-6 px-8 text-lg font-bold w-[25%] text-center md:text-left">Freelancer</th>
-                </tr>
-              </thead>
-
-              {/* Table Body */}
-              <tbody className="divide-y divide-gray-100 text-[14.5px]">
-                {comparisonData.map((row, index) => (
-                  <tr key={index} className="hover:bg-gray-50/50 transition-colors">
-                    {/* Feature Name */}
-                    <td className="py-5 px-8 font-bold text-gray-900 text-base">
-                      {row.feature}
-                    </td>
-
-                    {/* Jevxo Team Column */}
-                    <td className="py-5 px-8 text-gray-800">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center shrink-0">
-                          <Check className="w-3.5 h-3.5 stroke-[3]" />
-                        </div>
-                        <span className="font-semibold text-gray-900">{row.jevxo.text}</span>
-                      </div>
-                    </td>
-
-                    {/* Others Agency Column */}
-                    <td className="py-5 px-8 text-gray-600">
-                      <div className="flex items-center gap-3">
-                        {row.others.check ? (
-                          <div className="w-6 h-6 rounded-full bg-blue-400 text-white flex items-center justify-center shrink-0">
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                        ) : (
-                          <div className="w-6 h-6 rounded-full bg-red-200 text-red-600 flex items-center justify-center shrink-0">
-                            <X className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                        )}
-                        <span>{row.others.text}</span>
-                      </div>
-                    </td>
-
-                    {/* Freelancer Column */}
-                    <td className="py-5 px-8 text-gray-600">
-                      <div className="flex items-center gap-3">
-                        {row.freelancer.check ? (
-                          <div className="w-6 h-6 rounded-full bg-blue-400 text-white flex items-center justify-center shrink-0">
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                        ) : (
-                          <div className={`w-6 h-6 rounded-full ${row.freelancer.isWarning ? 'bg-red-300 text-red-700' : 'bg-red-200 text-red-600'} flex items-center justify-center shrink-0`}>
-                            <X className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                        )}
-                        <span>{row.freelancer.text}</span>
-                      </div>
-                    </td>
+        {/* Live Animated Gradient Border Table Outer Container */}
+        <div className="relative p-[2px] rounded-[32px] overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-rose-500 via-amber-400 via-emerald-400 to-blue-500 bg-[length:300%_300%] animate-[gradient_8s_ease_infinite] shadow-[0_10px_40px_rgba(0,0,0,0.04)]">
+          
+          {/* Inner Table Card */}
+          <div className="w-full bg-white rounded-[30px] overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-[760px]">
+                {/* Table Header Row */}
+                <thead>
+                  <tr className="border-b border-gray-200/70 text-[#0f172a]">
+                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-[#0f172a] border-r border-gray-100/60">Features</th>
+                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Jevxo Team</th>
+                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Others Agency</th>
+                    <th className="py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a]">Freelancer</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+
+                {/* Table Body Rows */}
+                <tbody className="divide-y divide-gray-100/80 text-[14.5px]">
+                  {comparisonData.map((row, index) => (
+                    <tr key={index} className="hover:bg-gray-50/60 transition-colors duration-200">
+                      {/* Feature Name */}
+                      <td className="py-5 px-8 font-bold text-[#0f172a] text-base border-r border-gray-100/60">
+                        {row.feature}
+                      </td>
+
+                      {/* Jevxo Team Column */}
+                      <td className="py-5 px-8 text-[#0f172a] border-r border-gray-100/60">
+                        <div className="flex items-center gap-3 justify-start sm:justify-start">
+                          <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
+                            <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                          </div>
+                          <span className="font-medium text-[#1e293b] text-sm sm:text-[15px]">{row.jevxo.text}</span>
+                        </div>
+                      </td>
+
+                      {/* Others Agency Column */}
+                      <td className="py-5 px-8 text-[#334155] border-r border-gray-100/60">
+                        <div className="flex items-center gap-3">
+                          {row.others.check ? (
+                            <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
+                              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                            </div>
+                          ) : (
+                            <div className="w-6 h-6 rounded-full bg-[#ffd4d8] text-[#f43f5e] flex items-center justify-center shrink-0">
+                              <X className="w-3.5 h-3.5 stroke-[2.5]" />
+                            </div>
+                          )}
+                          <span className="text-[#334155] text-sm sm:text-[15px] font-normal">{row.others.text}</span>
+                        </div>
+                      </td>
+
+                      {/* Freelancer Column */}
+                      <td className="py-5 px-8 text-[#334155]">
+                        <div className="flex items-center gap-3">
+                          {row.freelancer.check ? (
+                            <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
+                              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                            </div>
+                          ) : (
+                            <div className="w-6 h-6 rounded-full bg-[#ffd4d8] text-[#f43f5e] flex items-center justify-center shrink-0">
+                              <X className="w-3.5 h-3.5 stroke-[2.5]" />
+                            </div>
+                          )}
+                          <span className="text-[#334155] text-sm sm:text-[15px] font-normal">{row.freelancer.text}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
+
         </div>
 
       </div>
