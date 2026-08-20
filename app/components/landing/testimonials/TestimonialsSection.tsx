@@ -18,7 +18,7 @@ const row1: Testimonial[] = [
     id: "r1-1",
     name: "Bonnie M. Pattison",
     role: "Founder, ModernSaaS",
-    quote: "Thanks to the personalized attention and guidance provided by Jevxo. I highly recommend them to any team wanting fast turnaround...",
+    quote: "Thanks to the personalized attention and guidance provided by Jevxo, our SaaS platform conversion rates skyrocketed within weeks. I highly recommend them to any growth team looking for exceptional quality, fast turnaround, and world-class digital product design execution.",
     image: "/images/team_1.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
@@ -26,7 +26,7 @@ const row1: Testimonial[] = [
     id: "r1-2",
     name: "Alexander Wright",
     role: "CEO, TechSphere",
-    quote: "Working with Jevxo was a breeze. They delivered a world-class UI/UX design in under 48 hours for our startup launch.",
+    quote: "Working with Jevxo was a breeze. They delivered a complete, world-class UI/UX design system in under 48 hours for our startup launch. Their attention to detail, motion design, and developer-ready handoffs made our launch seamless and effortless.",
     image: "/images/team_2.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
   },
@@ -34,7 +34,7 @@ const row1: Testimonial[] = [
     id: "r1-3",
     name: "Sophia Martinez",
     role: "Head of Marketing",
-    quote: "The conversion rate on our new landing page went up by 180%. Exceptional quality and incredible design talent.",
+    quote: "The conversion rate on our new landing page went up by 180% right after launch. Exceptional quality, incredible design talent, and proactive communication. Jevxo truly elevated our brand presence far beyond our expectations.",
     image: "/images/team_3.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
   },
@@ -42,7 +42,7 @@ const row1: Testimonial[] = [
     id: "r1-4",
     name: "Daniel Vance",
     role: "Product Lead, Elevate",
-    quote: "Jevxo's team is fast, reliable, and super intuitive. They transformed our product brand into an enterprise asset.",
+    quote: "Jevxo's team is fast, reliable, and super intuitive. They transformed our raw product ideas into an enterprise-grade web application asset with fluid animations that our active users absolutely love daily.",
     image: "/images/team_4.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoylikes.mp4",
   },
@@ -53,7 +53,7 @@ const row2: Testimonial[] = [
     id: "r2-1",
     name: "Elena Rostova",
     role: "VP of Product, FinTech",
-    quote: "Outstanding attention to detail and clean design system handoff. Best agency experience we've had in 5 years.",
+    quote: "Outstanding attention to detail and clean design system handoff. Best agency partner experience we've had in 5 years. They solved our complex fintech dashboard UX challenges with elegance, precision, and speed.",
     image: "/images/team_4.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
   },
@@ -61,7 +61,7 @@ const row2: Testimonial[] = [
     id: "r2-2",
     name: "Marcus Sterling",
     role: "Co-Founder, AppWorks",
-    quote: "They took our complex SaaS requirements and turned them into an ultra-smooth, easy to use dashboard UI.",
+    quote: "They took our heavy SaaS requirements and turned them into an ultra-smooth, easy to use dashboard UI. Our user onboarding drop-off decreased by 45% almost immediately after deploying the new interface.",
     image: "/images/team_1.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
   },
@@ -69,7 +69,7 @@ const row2: Testimonial[] = [
     id: "r2-3",
     name: "Sarah Jenkins",
     role: "Design Director, Apex",
-    quote: "I highly recommend Jevxo to anyone looking for high impact digital design with world-class execution speed.",
+    quote: "I highly recommend Jevxo to anyone looking for high impact digital design with world-class execution speed. Their design team seamlessly integrated with our engineering workflow, saving us months of dev time.",
     image: "/images/team_2.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheLakeside.mp4",
   },
@@ -77,7 +77,7 @@ const row2: Testimonial[] = [
     id: "r2-4",
     name: "Liam O'Connor",
     role: "CTO, CloudScale",
-    quote: "The Next.js implementation was fast and pixel-perfect. We went from design kickoff to launch seamlessly.",
+    quote: "The Next.js implementation was fast, secure, and pixel-perfect. We went from initial design kickoff to production deployment without a single hitch. Their code quality and component modularity are top tier.",
     image: "/images/team_3.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
   },
@@ -88,7 +88,7 @@ const row3: Testimonial[] = [
     id: "r3-1",
     name: "Nadia Al-Mansoor",
     role: "Founder, GrowthKit",
-    quote: "Thanks to the Jevxo team, our product retention increased dramatically. They truly understand modern UX.",
+    quote: "Thanks to the Jevxo team, our product retention increased dramatically. They truly understand modern UX psychology, clean aesthetics, and conversion architecture. We will definitely collaborate on future builds.",
     image: "/images/team_3.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
   },
@@ -96,7 +96,7 @@ const row3: Testimonial[] = [
     id: "r3-2",
     name: "David Miller",
     role: "CMO, BrightMedia",
-    quote: "First class service from day one. Super responsive team and top tier design execution on all deliverables.",
+    quote: "First class service from day one. Super responsive team, clear weekly syncs, and top tier design execution on all deliverables. They exceeded all our benchmarks and delivered ahead of deadline.",
     image: "/images/team_1.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
   },
@@ -104,7 +104,7 @@ const row3: Testimonial[] = [
     id: "r3-3",
     name: "Aria Takahashi",
     role: "Lead Designer, AI Labs",
-    quote: "Sleek aesthetics, high performance animations, and seamless user flows. We couldn't be happier!",
+    quote: "Sleek aesthetics, high performance micro-animations, and seamless user flows. We couldn't be happier with the results! Jevxo brought our artificial intelligence platform vision to life beautifully.",
     image: "/images/team_2.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
@@ -112,7 +112,7 @@ const row3: Testimonial[] = [
     id: "r3-4",
     name: "Julian Thorne",
     role: "Head of Operations",
-    quote: "Fast turnarounds without sacrificing quality. Jevxo is our go-to partner for all digital product builds.",
+    quote: "Fast turnarounds without sacrificing quality. Jevxo is our go-to digital product design agency for all web and mobile application releases. Their design system approach saves us time on every update.",
     image: "/images/team_4.png",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
   },
@@ -132,10 +132,10 @@ export default function TestimonialsSection() {
     return (
       <div
         key={cardKey}
-        className="w-[480px] md:w-[540px] shrink-0 bg-white rounded-[26px] p-5 sm:p-6 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-6 transition-all duration-300 group"
+        className="w-[500px] md:w-[560px] shrink-0 bg-white rounded-[26px] p-5 sm:p-6 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-6 transition-all duration-300 group"
       >
-        {/* Left Side: Video / Image Thumbnail (Height enlarged) */}
-        <div className="w-[190px] sm:w-[215px] md:w-[225px] h-[195px] sm:h-[215px] md:h-[235px] rounded-[20px] relative overflow-hidden bg-gray-900 shrink-0">
+        {/* Left Side: Video / Image Thumbnail */}
+        <div className="w-[190px] sm:w-[215px] md:w-[225px] h-[210px] sm:h-[230px] md:h-[245px] rounded-[20px] relative overflow-hidden bg-gray-900 shrink-0">
           {isPlaying ? (
             <video
               src={item.video}
@@ -169,7 +169,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Right Side: Rating, Quote, Client Info */}
-        <div className="flex flex-col justify-between h-full py-1 pr-2 w-full">
+        <div className="flex flex-col justify-between h-full py-1 pr-1 w-full">
           <div>
             {/* 5 Yellow Stars */}
             <div className="flex items-center gap-1 mb-2 text-amber-400">
@@ -178,8 +178,8 @@ export default function TestimonialsSection() {
               ))}
             </div>
 
-            {/* Testimonial Quote */}
-            <p className="text-gray-500 text-xs sm:text-sm font-normal leading-relaxed mb-3 line-clamp-3">
+            {/* Testimonial Quote - Displays 6 lines cleanly */}
+            <p className="text-[#475569] text-xs sm:text-[13px] leading-relaxed mb-3 line-clamp-6 font-normal">
               {item.quote}
             </p>
           </div>
