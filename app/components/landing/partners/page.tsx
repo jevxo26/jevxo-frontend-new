@@ -157,7 +157,7 @@ export default function Partners() {
 
       tl.fromTo(
         ".partner-title",
-        { opacity: 0, y: 24, filter: "blur(4px)" },
+        { opacity: 0, y: 24, filter: "blur(1px)" },
         {
           opacity: 1,
           y: 0,

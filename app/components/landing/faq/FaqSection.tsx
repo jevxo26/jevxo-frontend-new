@@ -57,9 +57,9 @@ export default function FaqSection() {
               </span>
             </h2>
 
-            {/* Subtitle */}
-            <p className="text-[#64748b] text-base md:text-lg font-normal">
-              Before You Ask — Here's the Answer
+            {/* Expanded Detailed Description */}
+            <p className="text-[#475569] text-base sm:text-lg md:text-[19px] leading-relaxed font-normal max-w-md pt-1">
+              Have questions before getting started? Explore our most common inquiries regarding project timelines, monthly retainers, custom design systems, and post-launch support.
             </p>
 
             {/* Request Free Audit CTA Button */}
