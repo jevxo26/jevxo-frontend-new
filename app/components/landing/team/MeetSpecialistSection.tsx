@@ -166,8 +166,8 @@ export default function MeetSpecialistSection() {
           </div>
         </div>
 
-        {/* GSAP Horizontal Scroll Track */}
-        <div className="w-full overflow-visible">
+        {/* GSAP Horizontal Scroll Track clipped within max-w-9/12 bounds */}
+        <div className="w-full overflow-hidden">
           <div 
             ref={trackRef} 
             className="flex gap-6 sm:gap-8 w-max will-change-transform pb-4"
