@@ -21,16 +21,16 @@ export default function Hero() {
 
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 w-full max-w-7xl mx-auto">
         {/* Startup Badge */}
-        <div className="inline-flex items-center gap-3 bg-white border border-gray-200/70 px-5 py-2.5 rounded-full shadow-md shadow-gray-200/60 mb-10 group hover:scale-[1.02] transition-transform cursor-pointer">
+        <div className="inline-flex items-center gap-3 bg-white border border-[#2563eb] px-4 py-1.5 sm:py-2 rounded-full shadow-xs mb-8 group hover:scale-[1.02] transition-transform cursor-pointer">
           <Image
             src="/hero1.png"
             alt="Startup logos"
-            width={124}
-            height={24}
-            className="h-8 w-auto object-contain"
+            width={110}
+            height={22}
+            className="h-5 sm:h-6 w-auto object-contain"
           />
-          <span className="text-sm font-semibold text-gray-800 tracking-tight">
-            50+ startup & founders
+          <span className="text-xs sm:text-sm font-normal text-gray-900 tracking-tight">
+            50+ startup &amp; founders
           </span>
         </div>
 
