@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutUs() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
@@ -16,6 +21,54 @@ export default function AboutUs() {
     "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. At Jevxo, we blend creativity with cutting-edge technology to craft bespoke digital experiences that truly resonate with users, elevate brand equity, and drive sustainable business growth across global markets. We partner with ambitious brands to transform complex ideas into seamless software products.";
 
   const words = fullText.split(" ");
+
+  // GSAP Bi-directional Scroll Animation for Cards and Stats
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Mission & Vision Cards Bi-directional GSAP Timeline
+      gsap.fromTo(
+        ".about-card",
+        { opacity: 0, y: 30, scale: 0.96, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.85,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".about-cards-grid",
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Stats Items Bi-directional GSAP Timeline
+      gsap.fromTo(
+        ".about-stat",
+        { opacity: 0, y: 25, filter: "blur(4px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 88%",
+            end: "bottom 12%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   // Scroll reveal progress calculation
   useEffect(() => {
@@ -131,9 +184,9 @@ export default function AboutUs() {
         </p>
 
         {/* Mission & Vision Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mb-12 sm:mb-16">
+        <div className="about-cards-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mb-12 sm:mb-16">
           {/* Our Mission Card with Animated Gradient Border */}
-          <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
+          <div className="about-card relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
             <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#6366f1,#ef4444,#3b82f6)] animate-border-spin" />
             <div className="relative bg-[#f8f9fa] rounded-[22px] p-7 sm:p-9 h-full flex flex-col justify-start z-10">
               <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
@@ -146,7 +199,7 @@ export default function AboutUs() {
           </div>
 
           {/* Our Vision Card with Animated Gradient Border */}
-          <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
+          <div className="about-card relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
             <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#6366f1,#ef4444,#3b82f6)] animate-border-spin" />
             <div className="relative bg-[#f8f9fa] rounded-[22px] p-7 sm:p-9 h-full flex flex-col justify-start z-10">
               <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
@@ -165,7 +218,7 @@ export default function AboutUs() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 items-center justify-between w-full pt-4"
         >
           {/* Stat 1 */}
-          <div className="flex flex-col items-center text-center relative py-2 px-4">
+          <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
             <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countDeliveries}+
             </span>
@@ -176,7 +229,7 @@ export default function AboutUs() {
           </div>
 
           {/* Stat 2 */}
-          <div className="flex flex-col items-center text-center relative py-2 px-4">
+          <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
             <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countExperts}+
             </span>
@@ -187,7 +240,7 @@ export default function AboutUs() {
           </div>
 
           {/* Stat 3 */}
-          <div className="flex flex-col items-center text-center relative py-2 px-4">
+          <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
             <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countClients}%
             </span>
@@ -198,7 +251,7 @@ export default function AboutUs() {
           </div>
 
           {/* Stat 4 */}
-          <div className="flex flex-col items-center text-center py-2 px-4">
+          <div className="about-stat flex flex-col items-center text-center py-2 px-4">
             <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countPartners}+
             </span>
