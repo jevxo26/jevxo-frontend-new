@@ -1,153 +1,153 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function BlogSection() {
   return (
-    <section id="blog" className="w-full py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
-      <div className="max-w-7xl w-full px-6 flex flex-col">
+    <section id="blog" className="relative z-10 w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+      <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
-        {/* Title Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 w-full">
-          <div className="lg:w-1/2">
-            <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-[#111] tracking-tight leading-[1.15]">
-              Where Creativity Meets <br />
-              <span className="font-serif italic font-medium">Intelligent Design.</span>
+        {/* Title & Header Row */}
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-12 md:mb-16 w-full">
+          {/* Left Title Area */}
+          <div className="flex flex-col items-start gap-4 lg:w-1/2">
+            {/* Pill Badge */}
+            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+              Blog &amp; Insight
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="font-bold block text-[#0f172a]">Where Creativity Meets</span>
+              <span className="block mt-1 text-[#0f172a]">
+                <span className="font-serif italic font-medium text-[#0f172a]">Intelligent Design.</span>
+              </span>
             </h2>
           </div>
 
-          <div className="lg:w-[45%] pb-1">
-            <p className="text-gray-500 text-base md:text-lg leading-relaxed font-normal">
+          {/* Right Description */}
+          <div className="lg:w-[42%] pt-1 lg:pt-8">
+            <p className="text-[#475569] text-base md:text-lg leading-relaxed font-normal">
               Thoughtful perspectives on design, UX, branding, and digital products—written to help founders, teams, and businesses make better decisions.
             </p>
           </div>
         </div>
 
-        {/* Blog Grid (Left Big Card + Right 2 Cards Stack) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Blog Grid (Left Main Card + Right 2 Cards Stack) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Left Column: Main Big Featured Post */}
-          <div className="lg:col-span-6 bg-white rounded-[36px] p-6 md:p-8 border border-gray-200/80 shadow-[0_4px_30px_rgb(0,0,0,0.02)] flex flex-col justify-between group hover:shadow-[0_12px_35px_rgb(0,0,0,0.06)] transition-all duration-300">
-            
-            {/* Featured Image */}
-            <div className="w-full h-[340px] md:h-[380px] rounded-[24px] bg-[#EAEAEA] relative overflow-hidden mb-8 flex items-center justify-center">
-              {/* Simulated Tote Bag Graphic matching screenshot */}
-              <div className="w-full h-full bg-[#e3e3e3] flex flex-col items-center justify-center p-8 text-center relative">
-                <div className="w-[70%] h-[80%] bg-[#F5F2EB] rounded-2xl shadow-xl border border-gray-300 flex flex-col items-center justify-center p-6 relative">
-                  <div className="w-full h-4 bg-gray-300/40 rounded mb-auto"></div>
-                  <div className="text-3xl md:text-4xl font-extrabold text-[#0052ff] tracking-tight leading-none my-auto">
-                    Doing <br /> Things
-                  </div>
-                  <div className="flex items-center justify-between w-full text-[9px] text-gray-500 font-mono mt-auto pt-4 border-t border-gray-300/60">
-                    <span>OutdoorVoices</span>
-                    <span>📍 USA</span>
-                  </div>
-                </div>
-              </div>
+          {/* Left Column: Featured Main Blog Post Card */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
+            {/* Main Featured Banner Image */}
+            <div className="w-full h-[280px] sm:h-[340px] md:h-[360px] rounded-[20px] relative overflow-hidden mb-6 bg-gray-100">
+              <Image
+                src="/BlogInsight/first.png"
+                alt="The Future of Branding Why Design Quality Matters More Than Ever."
+                fill
+                className="object-cover object-center transition-transform duration-500 hover:scale-105"
+              />
             </div>
 
-            {/* Content info */}
-            <div className="flex flex-col space-y-4">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight leading-snug">
-                The Future of Branding Why Design Quality Matters More Than Ever.
-              </h3>
-              
-              <div className="text-gray-400 text-sm font-medium">
-                July 31, 2025
+            {/* Content Details */}
+            <div className="flex flex-col justify-between flex-1">
+              <div className="mb-6">
+                <span className="text-[#94a3b8] text-sm font-normal block mb-2">
+                  July 31, 2025
+                </span>
+                <h3 className="text-xl sm:text-2xl md:text-[26px] font-medium text-[#0a0c16] tracking-tight leading-snug">
+                  The Future of Branding Why Design Quality Matters More Than Ever.
+                </h3>
               </div>
 
-              <div className="pt-2">
+              <div>
                 <Link
                   href="#"
-                  className="inline-flex items-center gap-3 bg-[#23262d] hover:bg-black text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all group/btn"
+                  className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 hover:scale-[1.03] group/btn"
                 >
-                  <span className="text-sm font-medium">Continue Reading</span>
-                  <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center group-hover/btn:translate-x-0.5 transition-transform">
-                    <ArrowRight className="w-4 h-4 text-[#23262d]" />
+                  <span className="text-xs sm:text-sm font-medium">Open Blog</span>
+                  <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                    <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
                   </div>
                 </Link>
               </div>
             </div>
-
           </div>
 
           {/* Right Column: 2 Stacked Cards */}
-          <div className="lg:col-span-6 flex flex-col space-y-8">
+          <div className="lg:col-span-6 flex flex-col space-y-6 justify-between">
             
             {/* Right Card 1 */}
-            <div className="bg-white rounded-[36px] p-6 md:p-8 border border-gray-200/80 shadow-[0_4px_30px_rgb(0,0,0,0.02)] flex flex-col sm:flex-row items-center gap-6 group hover:shadow-[0_12px_35px_rgb(0,0,0,0.06)] transition-all duration-300">
-              
+            <div className="bg-white rounded-[24px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
               {/* Image thumbnail */}
-              <div className="w-full sm:w-[220px] h-[190px] rounded-[20px] bg-[#A7F3D0] relative overflow-hidden shrink-0">
+              <div className="w-full sm:w-[220px] md:w-[240px] h-[190px] rounded-[20px] relative overflow-hidden shrink-0 bg-gray-100">
                 <Image
-                  src="/images/team_2.png"
+                  src="/BlogInsight/second.png"
                   alt="Why Great UI/UX Is A Competitive Advantage"
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-center transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-between h-full space-y-4">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight leading-snug">
-                  Why Great UI/UX Is A Competitive Advantage
-                </h3>
-
-                <div className="text-gray-400 text-sm font-medium">
-                  July 31, 2025
+              <div className="flex flex-col justify-between h-full w-full py-1">
+                <div>
+                  <span className="text-[#94a3b8] text-sm font-normal block mb-2">
+                    July 31, 2025
+                  </span>
+                  <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
+                    Why Great UI/UX Is A Competitive Advantage
+                  </h3>
                 </div>
 
                 <div>
                   <Link
                     href="#"
-                    className="inline-flex items-center gap-3 bg-[#23262d] hover:bg-black text-white rounded-full pl-4 pr-1 py-1 transition-all group/btn"
+                    className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 hover:scale-[1.03] group/btn"
                   >
-                    <span className="text-xs font-medium">Continue Reading</span>
-                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center group-hover/btn:translate-x-0.5 transition-transform">
-                      <ArrowRight className="w-3.5 h-3.5 text-[#23262d]" />
+                    <span className="text-xs sm:text-sm font-medium">Open Blog</span>
+                    <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                      <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
                     </div>
                   </Link>
                 </div>
               </div>
-
             </div>
 
             {/* Right Card 2 */}
-            <div className="bg-white rounded-[36px] p-6 md:p-8 border border-gray-200/80 shadow-[0_4px_30px_rgb(0,0,0,0.02)] flex flex-col sm:flex-row items-center gap-6 group hover:shadow-[0_12px_35px_rgb(0,0,0,0.06)] transition-all duration-300">
-              
+            <div className="bg-white rounded-[24px] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full">
               {/* Image thumbnail */}
-              <div className="w-full sm:w-[220px] h-[190px] rounded-[20px] bg-[#141824] relative overflow-hidden shrink-0">
+              <div className="w-full sm:w-[220px] md:w-[240px] h-[190px] rounded-[20px] relative overflow-hidden shrink-0 bg-gray-100">
                 <Image
-                  src="/images/case_study_3.png"
+                  src="/BlogInsight/thired.png"
                   alt="Building Scalable Products Through Smart Design Systems"
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-center transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-between h-full space-y-4">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight leading-snug">
-                  Building Scalable Products Through Smart Design Systems
-                </h3>
-
-                <div className="text-gray-400 text-sm font-medium">
-                  July 31, 2025
+              <div className="flex flex-col justify-between h-full w-full py-1">
+                <div>
+                  <span className="text-[#94a3b8] text-sm font-normal block mb-2">
+                    July 31, 2025
+                  </span>
+                  <h3 className="text-lg sm:text-xl md:text-[22px] font-medium text-[#0a0c16] tracking-tight leading-snug mb-4">
+                    Building Scalable Products Through Smart Design Systems
+                  </h3>
                 </div>
 
                 <div>
                   <Link
                     href="#"
-                    className="inline-flex items-center gap-3 bg-[#23262d] hover:bg-black text-white rounded-full pl-4 pr-1 py-1 transition-all group/btn"
+                    className="inline-flex items-center gap-3 bg-black hover:bg-gray-800 text-white rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 hover:scale-[1.03] group/btn"
                   >
-                    <span className="text-xs font-medium">Continue Reading</span>
-                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center group-hover/btn:translate-x-0.5 transition-transform">
-                      <ArrowRight className="w-3.5 h-3.5 text-[#23262d]" />
+                    <span className="text-xs sm:text-sm font-medium">Open Blog</span>
+                    <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover/btn:rotate-45 transition-transform duration-300">
+                      <ArrowUpRight className="w-4 h-4 text-black stroke-[2.2]" />
                     </div>
                   </Link>
                 </div>
               </div>
-
             </div>
 
           </div>

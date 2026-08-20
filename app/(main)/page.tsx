@@ -33,10 +33,11 @@ export default function Home() {
       <AiSection />
       <ComparisonSection />
       <PricingSection />
+      <BlogSection />
       <MeetSpecialistSection />
       <TestimonialsSection />
       {/* <FaqSection /> */}
-      <BlogSection />
+      
       <ReadyToBuildSection />
       <ContactSection />
     </div>
