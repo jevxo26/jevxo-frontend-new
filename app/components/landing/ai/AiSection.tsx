@@ -33,32 +33,32 @@ export default function AiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 w-full">
           
           {/* Card 1: UX Copy That Converts */}
-          <div className="bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[470px]">
+          <div className="bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[470px]">
             {/* Top 8 Dark AI Tool Icons Grid - Extra Large Tiles */}
             <div className="w-full flex justify-center pt-2 pb-6 my-auto">
               <div className="grid grid-cols-4 gap-4 sm:gap-5 max-w-[420px]">
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/chgpt.png" alt="ChatGPT" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/junery.png" alt="Midjourney" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/figma 2.png" alt="Miro" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/cloud.png" alt="Claude" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/loveable 2.png" alt="Framer" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/cloud2.png" alt="Bolt" width={52} height={52} className="object-contain" />
                 </div>
-                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[26px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
+                <div className="w-[82px] h-[82px] sm:w-[92px] sm:h-[92px] rounded-[22px] bg-[#080d1a] flex items-center justify-center p-3.5 shadow-[0_10px_25px_rgba(0,0,0,0.22)] border border-gray-800/80 hover:scale-105 transition-transform duration-300">
                   <Image src="/AIPoweredDesign/yellow.png" alt="Firefly" width={52} height={52} className="object-contain" />
                 </div>
               </div>
@@ -75,12 +75,12 @@ export default function AiSection() {
           </div>
 
           {/* Card 2: AI Visual Direction */}
-          <div className="bg-gradient-to-b from-[#FCD6FE] via-[#FAEEFF] to-[#FFF8FE] rounded-[36px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-purple-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1 min-h-[470px]">
+          <div className="bg-gradient-to-b from-[#FCD6FE] via-[#FAEEFF] to-[#FFF8FE] rounded-[24px] p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-purple-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(236,72,153,0.08)] hover:-translate-y-1 min-h-[470px]">
             {/* Centered & Expanded Rows Container */}
             <div className="w-full flex justify-center items-center my-auto pt-4 pb-8">
               <div className="flex flex-col space-y-4 w-full max-w-[420px]">
                 {/* Row 1 */}
-                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md jtransition-shadow">
+                <div className="bg-white p-4 sm:p-5 rounded-[20px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
                   <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
                     <Image src="/AIPoweredDesign/figma.png" alt="Figma" width={40} height={40} className="object-contain" />
                   </div>
@@ -91,7 +91,7 @@ export default function AiSection() {
                 </div>
 
                 {/* Row 2 */}
-                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="bg-white p-4 sm:p-5 rounded-[20px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
                   <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
                     <Image src="/AIPoweredDesign/junery.png" alt="Claude" width={40} height={40} className="object-contain" />
                   </div>
@@ -102,7 +102,7 @@ export default function AiSection() {
                 </div>
 
                 {/* Row 3 */}
-                <div className="bg-white p-4 sm:p-5 rounded-[24px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="bg-white p-4 sm:p-5 rounded-[20px] border border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center gap-4 hover:shadow-md transition-shadow">
                   <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center p-2.5 border border-gray-100 shrink-0">
                     <Image src="/AIPoweredDesign/loveable 2.png" alt="Loveable" width={40} height={40} className="object-contain" />
                   </div>
@@ -130,12 +130,12 @@ export default function AiSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           
           {/* Bottom Card 1: Smarter UX Insights */}
-          <div className="bg-gradient-to-b from-[#DCDCFE] via-[#ECECFF] to-[#F8F8FF] rounded-[36px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
+          <div className="bg-gradient-to-b from-[#DCDCFE] via-[#ECECFF] to-white rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
             {/* Centered White Row Badges */}
             <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <div className="flex flex-col space-y-3.5 w-full">
                 {/* Row 1 */}
-                <div className="bg-white p-3.5 sm:p-4 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
+                <div className="bg-white p-3.5 sm:p-4 rounded-[20px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-[#f0f4ff] to-[#e6edff] flex items-center justify-center p-2 border border-blue-100/60 shrink-0">
                     <Image src="/AIPoweredDesign/data.png" alt="Data Insights" width={32} height={32} className="object-contain" />
                   </div>
@@ -146,7 +146,7 @@ export default function AiSection() {
                 </div>
 
                 {/* Row 2 */}
-                <div className="bg-white p-3.5 sm:p-4 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
+                <div className="bg-white p-3.5 sm:p-4 rounded-[20px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-[#fdf0f5] to-[#fce4ee] flex items-center justify-center p-2 border border-pink-100/60 shrink-0">
                     <Image src="/AIPoweredDesign/sketh.png" alt="Sketch & Wireframe" width={32} height={32} className="object-contain" />
                   </div>
@@ -157,7 +157,7 @@ export default function AiSection() {
                 </div>
 
                 {/* Row 3 */}
-                <div className="bg-white p-3.5 sm:p-4 rounded-[22px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
+                <div className="bg-white p-3.5 sm:p-4 rounded-[20px] border border-gray-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center gap-3.5 hover:shadow-md transition-shadow">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-[#eefbf6] to-[#dcf6ec] flex items-center justify-center p-2 border border-emerald-100/60 shrink-0">
                     <Image src="/AIPoweredDesign/cloud2.png" alt="Journey Analysis" width={32} height={32} className="object-contain" />
                   </div>
@@ -180,7 +180,7 @@ export default function AiSection() {
           </div>
 
           {/* Bottom Card 2: Faster Wireframing */}
-          <div className="bg-gradient-to-b from-[#FFEBD9] via-[#FFF3E8] to-[#FFF9F2] rounded-[36px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-200/50 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
+          <div className="bg-gradient-to-b from-[#FFEBD9] via-[#FFF3E8] to-[#FFF9F2] rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-200/50 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
             {/* Centered Large Mockup Image */}
             <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <Image 
@@ -203,15 +203,15 @@ export default function AiSection() {
           </div>
 
           {/* Bottom Card 3: AI-Assisted Launches */}
-          <div className="bg-gradient-to-b from-[#FFD5DC] via-[#FFEBEF] to-[#FFF5F7] rounded-[36px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
+          <div className="bg-gradient-to-b from-[#FFD5DC] via-[#FFEBEF] to-[#FFF5F7] rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-[470px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
             {/* Centered White Overlapping Circles Graphic */}
             <div className="w-full flex justify-center items-center my-auto pt-2 pb-4">
               <Image 
                 src="/AIPoweredDesign/Group 1707480850.png" 
                 alt="AI-Assisted Launches Graphic" 
-                width={400} 
+                width={380} 
                 height={160} 
-                className="object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+                className="object-contain "
               />
             </div>
 
