@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -36,7 +35,7 @@ export default function Hero() {
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl  md:text-[74px] font-medium text-[#0a0c1f] tracking-tight leading-[1.1] max-w-7xl">
+        <h1 className="text-4xl md:text-[74px] font-medium text-[#0a0c1f] tracking-tight leading-[1.1] max-w-7xl">
           We Design &amp; Dev Agency <br className="hidden sm:inline" />
           For B2B{" "}
           <span className="italic font-serif font-medium">
@@ -51,32 +50,20 @@ export default function Hero() {
           products.
         </p>
 
-        {/* Action Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-5 w-full sm:w-auto">
-          {/* Consultation Button */}
+        {/* Action Button */}
+        <div className="mt-10 flex justify-center w-full sm:w-auto">
           <Link
             href="#book"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-[#0052ff] hover:bg-[#0044d6] text-white px-7 py-3.5 rounded-full font-semibold text-sm sm:text-base shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-          >
-            <Calendar className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-            <span>Book Free Consultation</span>
-          </Link>
-
-          {/* Whatsapp Button */}
-          <Link
-            href="https://wa.me/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#15171a] text-white px-7 py-3.5 rounded-full font-semibold text-sm sm:text-base shadow-lg shadow-black/25 hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-white/10"
+            className="w-full sm:w-auto flex items-center justify-center gap-3.5 bg-gradient-to-b from-[#2a2c30] to-[#121316] hover:from-[#32353a] hover:to-[#1a1b1f] text-white px-8 py-4 rounded-full font-medium text-lg sm:text-xl shadow-[0_10px_25px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-white/10"
           >
             <Image
-              src="/whatsapp.png"
-              alt="WhatsApp"
-              width={14}
-              height={14}
-              className="w-15 h-10 object-contain"
+              src="/meet.png"
+              alt="Google Meet"
+              width={26}
+              height={26}
+              className="w-6 h-6 object-contain"
             />
-            <span>Chat on Whatsapp</span>
+            <span className="tracking-tight font-normal">Book Free Consultation</span>
           </Link>
         </div>
       </main>

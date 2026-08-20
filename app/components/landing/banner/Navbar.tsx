@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,24 +37,14 @@ export default function Navbar() {
       <div className="max-w-10/12 mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 group-hover:shadow-blue-500/40 transition-all duration-300 bg-gradient-to-br from-[#2b7bff] via-[#0066FF] to-[#0047b3] overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/30" />
-            <svg
-              className="relative w-5 h-5 text-white fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M19 3H12V13.5C12 16.538 9.538 19 6.5 19C5.67 19 4.88 18.82 4.17 18.49L3 21.08C4.08 21.67 5.29 22 6.5 22C11.19 22 15 18.19 15 13.5V6H19V3Z" />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-xl tracking-tight text-[#0a0c16] leading-none">
-              JEVXO
-            </span>
-            <span className="text-[8.5px] tracking-[0.28em] text-gray-400 font-bold uppercase mt-1.5">
-              Design · Develop · Transform
-            </span>
-          </div>
+          <Image
+            src="/logo1.jpeg"
+            alt="JEVXO Logo"
+            width={140}
+            height={40}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Center Nav Links - Desktop */}
@@ -73,13 +64,19 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Link
             href="#contact"
-            className="hidden sm:flex items-center gap-3 bg-gradient-to-r from-[#1e2025] to-[#0a0c16] hover:from-black hover:to-black text-white pl-6 pr-2 py-2 rounded-full font-semibold text-sm shadow-xl shadow-black/20 hover:shadow-black/30 hover:-translate-y-0.5 transition-all duration-300 group border border-white/10"
+            className="hidden sm:flex items-center gap-3 bg-black hover:bg-neutral-900 text-white pl-6 pr-1.5 py-1.5 rounded-full font-medium text-base shadow-lg transition-all duration-300 group"
           >
-            <span className="text-[14px] font-medium tracking-tight">
+            <span className="text-[15px] font-normal">
               Contact Us
             </span>
-            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md group-hover:scale-105 group-hover:rotate-45 transition-all duration-300">
-              <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
+            <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden">
+              <Image
+                src="/whatsapp.png"
+                alt="WhatsApp"
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
+              />
             </div>
           </Link>
 

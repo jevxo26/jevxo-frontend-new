@@ -29,7 +29,6 @@ export default function HeroBottom() {
 
   // Triplicating arrays to ensure a smooth, unbroken infinite marquee animation
   const row1List = [...row1, ...row1, ...row1];
-  const row2List = [...row2, ...row2, ...row2];
   const row3List = [...row3, ...row3, ...row3];
 
   return (
@@ -61,31 +60,11 @@ export default function HeroBottom() {
             {row1List.map((src, index) => (
               <div
                 key={`row1-${index}`}
-                className="relative flex-shrink-0 w-[260px] sm:w-[360px] md:w-[440px] h-[160px] sm:h-[220px] md:h-[270px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
+                className="relative flex-shrink-0 w-[320px] sm:w-[440px] md:w-[540px] h-[220px] sm:h-[300px] md:h-[360px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={src}
                   alt={`Portfolio showcase ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 480px, 580px"
-                  className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: Left to Right */}
-        <div className="overflow-hidden w-full flex">
-          <div className="flex items-center gap-3 sm:gap-4 md:gap-5 animate-marquee-reverse">
-            {row2List.map((src, index) => (
-              <div
-                key={`row2-${index}`}
-                className="relative flex-shrink-0 w-[260px] sm:w-[360px] md:w-[440px] h-[160px] sm:h-[220px] md:h-[270px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
-              >
-                <Image
-                  src={src}
-                  alt={`Portfolio showcase ${index + 6}`}
                   fill
                   sizes="(max-width: 768px) 480px, 580px"
                   className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
@@ -101,7 +80,7 @@ export default function HeroBottom() {
             {row3List.map((src, index) => (
               <div
                 key={`row3-${index}`}
-                className="relative flex-shrink-0 w-[260px] sm:w-[360px] md:w-[440px] h-[160px] sm:h-[220px] md:h-[270px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
+                className="relative flex-shrink-0 w-[320px] sm:w-[440px] md:w-[540px] h-[220px] sm:h-[300px] md:h-[360px] rounded-none overflow-hidden border border-gray-200/90 shadow-md bg-white group hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={src}

@@ -80,158 +80,179 @@ const services = [
 export default function OurService() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -360, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 360, behavior: "smooth" });
-    }
-  };
-
   return (
-    <section id="service" className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section id="service" className="w-full py-16 md:py-24 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="max-w-10/12 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 md:mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-14">
+          {/* Left Title Area */}
           <div className="flex flex-col items-start gap-3.5 lg:w-1/2">
-            <div className="bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide border border-blue-100 inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#1B64FF] animate-pulse" />
-              Our Services
+            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+              Our Service
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] text-[#0F172A] tracking-tight leading-[1.2]">
-              <span className="font-bold block">High-Impact Value.</span>
-              <span className="block mt-1">
-                <span className="font-serif italic font-medium text-blue-600">World-Class</span> <span className="font-bold">Quality.</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-black tracking-tight leading-[1.15]">
+              <span className="font-bold block ">High-Impact Value.</span>
+              <span className="block mt-1 ">
+                <span className="font-serif italic font-medium text-[#000000]">World-Class</span> <span className="font-bold text-[#000000]">Quality.</span>
               </span>
             </h2>
           </div>
           
-          <div className="lg:w-[45%] flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-normal leading-relaxed">
-              We engineer digital products that elevate your brand. From web platforms to seamless UI/UX design, our solutions drive measurable impact.
+          {/* Right Description Text */}
+          <div className="lg:w-[46%] pt-1 lg:pt-6">
+            <p className="text-sm sm:text-base md:text-lg text-[#000000] font-normal leading-relaxed">
+              We're here to create digital experiences that your customers will love. from websites and apps to seamless interfaces, our creations drive stronger engagement and foster lasting loyalty.
             </p>
-
-            {/* Slider Controls */}
-            <div className="flex items-center gap-2.5 shrink-0">
-              <button
-                onClick={scrollLeft}
-                className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-slate-700 hover:bg-[#0F172A] hover:text-white hover:border-[#0F172A] transition-all shadow-sm active:scale-95"
-                aria-label="Previous slide"
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={scrollRight}
-                className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-slate-700 hover:bg-[#0F172A] hover:text-white hover:border-[#0F172A] transition-all shadow-sm active:scale-95"
-                aria-label="Next slide"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* Horizontal Slider Cards Track */}
+        {/* Service Cards Grid */}
         <div 
           ref={scrollContainerRef}
-          className="flex items-center gap-5 sm:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-3 -mx-4 px-4 sm:-mx-6 sm:px-6 cursor-grab active:cursor-grabbing"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full"
         >
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className={`min-w-[290px] sm:min-w-[320px] md:min-w-[340px] snap-start rounded-[28px] sm:rounded-[32px] pt-7 px-6 pb-4 ${service.bgGradient} flex flex-col items-center text-center h-[440px] sm:h-[460px] relative overflow-hidden group shadow-[0_4px_20px_rgb(0,0,0,0.03)] transition-all duration-300 hover:shadow-[0_12px_35px_rgb(0,0,0,0.08)] shrink-0 hover:-translate-y-1`}
+          {/* Card 1: UI/UX Design */}
+          <div className="rounded-[36px] bg-[#f0f3ff] pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
+              UI/UX Design
+            </h3>
+            <p className="text-[#6b7280] text-sm leading-relaxed mb-6 font-normal max-w-[260px] min-h-[40px]">
+              We design intuitive interfaces that make websites and apps easy to use daily.
+            </p>
+            
+            {/* Pill Action Button */}
+            <Link 
+              href="#contact"
+              className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-6 group"
             >
-              {/* Category Tag */}
-              <span className={`text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full border mb-3 ${service.tagColor}`}>
-                {service.tag}
-              </span>
-
-              {/* Title & Description */}
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight mb-2 leading-snug">
-                {service.title}
-              </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-5 font-normal max-w-[270px]">
-                {service.description}
-              </p>
-              
-              {/* View Service Action Button */}
-              <div className="flex items-center justify-center z-10 mb-5">
-                <Link 
-                  href="#contact"
-                  className="inline-flex items-center bg-[#0F172A] hover:bg-blue-600 text-white rounded-full p-1 pl-4 shadow-md transition-all duration-300 group/btn"
-                >
-                  <span className="text-xs sm:text-sm font-medium tracking-tight mr-2">Explore Service</span>
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-blue-600 transition-all">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover/btn:text-blue-600" />
-                  </div>
-                </Link>
+              <span className="mr-3 text-xs tracking-tight">View Service</span>
+              <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
               </div>
+            </Link>
 
-              {/* MacBook Laptop UI Mockup Container */}
-              <div className="mt-auto w-[110%] h-[200px] sm:h-[210px] relative transition-transform duration-500 ease-out group-hover:scale-[1.03] flex flex-col items-center">
-                
-                {/* Laptop Display Bezel */}
-                <div className={`w-[92%] h-[160px] sm:h-[170px] ${service.screenBg} rounded-t-[16px] border-[5px] border-[#1E293B] border-b-0 shadow-2xl flex flex-col overflow-hidden relative`}>
-                  {/* Laptop Top Camera Bar */}
-                  <div className="w-full h-3.5 bg-black/70 flex items-center justify-between px-3">
-                    <div className="flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-red-500/80"></div>
-                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80"></div>
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500/80"></div>
-                    </div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-gray-500/60"></div>
-                  </div>
-
-                  {/* Screen Content Render */}
-                  <div className="flex-1 p-3 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                    {service.isBrandLogo ? (
-                      <div className="flex flex-col items-center justify-center space-y-2">
-                        <div className="flex items-center gap-2 text-emerald-400 font-black text-2xl tracking-tighter">
-                          <div className="w-7 h-7 bg-emerald-400 text-black flex items-center justify-center rounded-lg font-bold text-base shadow-md">↗</div>
-                          <span>startio</span>
-                        </div>
-                        <div className="text-[10px] text-emerald-300/80 font-mono tracking-widest uppercase">Design System v2.0</div>
-                      </div>
-                    ) : service.isCodeScreen ? (
-                      <div className="w-full text-left font-mono text-[9.5px] sm:text-[10.5px] space-y-1 text-gray-300 opacity-95 pl-1">
-                        <div className="text-blue-400">import <span className="text-white">NextApp</span> from <span className="text-emerald-400">'next'</span></div>
-                        <div className="text-purple-400">export default function <span className="text-yellow-300">App</span>() &#123;</div>
-                        <div className="pl-3 text-emerald-400">// High availability & 99.9% uptime</div>
-                        <div className="pl-3 text-pink-400">return &lt;<span className="text-blue-300">Platform</span> live=&#123;true&#125;&gt;</div>
-                        <div className="pl-6 text-gray-300">&lt;<span className="text-yellow-300">Dashboard</span> /&gt;</div>
-                        <div className="text-purple-400">&#125;</div>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center justify-center space-y-2 w-full px-2">
-                        <div className={`text-xs sm:text-sm font-bold ${service.isLightScreen ? 'text-slate-800' : 'text-white'} tracking-tight`}>
-                          {service.screenHeading}
-                        </div>
-                        <div className="flex items-center gap-2 w-full justify-center">
-                          <div className={`w-16 h-4 rounded-md bg-gradient-to-r ${service.screenAccent} opacity-90 shadow-sm`}></div>
-                          <div className="w-8 h-4 rounded-md bg-gray-500/30"></div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Laptop Base Stand */}
-                <div className="w-[100%] h-3 bg-gradient-to-b from-[#334155] to-[#1E293B] rounded-b-md shadow-lg relative border-t border-gray-600/50 flex justify-center">
-                  <div className="w-14 h-1 bg-gray-400/30 rounded-b-sm"></div>
-                </div>
-                {/* Ambient Soft Shadow */}
-                <div className="w-[85%] h-3 bg-black/30 blur-md rounded-full mt-0.5"></div>
-
+            {/* Laptop Mockup */}
+            <div className="mt-auto w-full relative flex flex-col items-center">
+              <div className="w-[94%] h-[200px] relative rounded-t-xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/Jevxo/01.png"
+                  alt="UI/UX Design Mockup"
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
-
+              <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
+              <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
             </div>
-          ))}
+          </div>
+
+          {/* Card 2: SaaS Product Design */}
+          <div className="rounded-[36px] bg-[#fff0f4] pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
+              SaaS Product Design
+            </h3>
+            <p className="text-[#6b7280] text-sm leading-relaxed mb-6 font-normal max-w-[260px] min-h-[40px]">
+              We design intuitive SaaS product that make websites and apps easy to use daily.
+            </p>
+            
+            {/* Pill Action Button */}
+            <Link 
+              href="#contact"
+              className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-6 group"
+            >
+              <span className="mr-3 text-xs tracking-tight">View Service</span>
+              <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
+              </div>
+            </Link>
+
+            {/* Laptop Mockup */}
+            <div className="mt-auto w-full relative flex flex-col items-center">
+              <div className="w-[94%] h-[200px] relative rounded-t-xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/Jevxo/02.png"
+                  alt="SaaS Product Design Mockup"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
+              <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
+            </div>
+          </div>
+
+          {/* Card 3: Logo & Branding Design */}
+          <div className="rounded-[36px] bg-[#eef8f4] pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
+              Logo &amp; Branding Design
+            </h3>
+            <p className="text-[#6b7280] text-sm leading-relaxed mb-6 font-normal max-w-[260px] min-h-[40px]">
+              We create memorable brand visuals that express your values with clear impact.
+            </p>
+            
+            {/* Pill Action Button */}
+            <Link 
+              href="#contact"
+              className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-6 group"
+            >
+              <span className="mr-3 text-xs tracking-tight">View Service</span>
+              <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
+              </div>
+            </Link>
+
+            {/* Laptop Mockup */}
+            <div className="mt-auto w-full relative flex flex-col items-center">
+              <div className="w-[94%] h-[200px] relative rounded-t-xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/Jevxo/03.png"
+                  alt="Branding Design Mockup"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
+              <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
+            </div>
+          </div>
+
+          {/* Card 4: Full Stack Development */}
+          <div className="rounded-[36px] bg-[#f1edfb] pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
+              Full Stack Development
+            </h3>
+            <p className="text-[#6b7280] text-sm leading-relaxed mb-6 font-normal max-w-[260px] min-h-[40px]">
+              We build fast, secure websites that support business goals and future growth.
+            </p>
+            
+            {/* Pill Action Button */}
+            <Link 
+              href="#contact"
+              className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-6 group"
+            >
+              <span className="mr-3 text-xs tracking-tight">View Service</span>
+              <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
+              </div>
+            </Link>
+
+            {/* Laptop Mockup */}
+            <div className="mt-auto w-full relative flex flex-col items-center">
+              <div className="w-[94%] h-[200px] relative rounded-t-xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/Jevxo/04.png"
+                  alt="Full Stack Development Mockup"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
+              <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

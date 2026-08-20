@@ -131,72 +131,78 @@ export default function AboutUs() {
         </p>
 
         {/* Mission & Vision Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full mb-12 sm:mb-16">
-          {/* Our Mission */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-blue-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] flex flex-col justify-start">
-            <h3 className="text-xl sm:text-2xl font-semibold text-[#0A102E] mb-3">
-              Our Mission
-            </h3>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              We blend strategy, creativity, production, media and AI technology to transform ambition into execution. From breaking silos to building scalable systems, we design growth that is both meaningful and measurable.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mb-12 sm:mb-16">
+          {/* Our Mission Card with Animated Gradient Border */}
+          <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
+            <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#6366f1,#ef4444,#3b82f6)] animate-border-spin" />
+            <div className="relative bg-[#f8f9fa] rounded-[22px] p-7 sm:p-9 h-full flex flex-col justify-start z-10">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
+                Our Mission
+              </h3>
+              <p className="text-[#64748b] text-base sm:text-lg leading-relaxed font-normal">
+                We blend strategy, creativity, production, media and AI technology to transform ambition into execution. From breaking silos to building scalable systems, we design growth that is both meaningful and measurable.
+              </p>
+            </div>
           </div>
 
-          {/* Our Vision */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-blue-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] flex flex-col justify-start">
-            <h3 className="text-xl sm:text-2xl font-semibold text-[#0A102E] mb-3">
-              Our Vision
-            </h3>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              We believe the future belongs to brands that move first, think differently, and build beyond conventions. Our vision: to shape that future by transforming how brands compete, connect, and endure, across every sectors.
-            </p>
+          {/* Our Vision Card with Animated Gradient Border */}
+          <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
+            <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#6366f1,#ef4444,#3b82f6)] animate-border-spin" />
+            <div className="relative bg-[#f8f9fa] rounded-[22px] p-7 sm:p-9 h-full flex flex-col justify-start z-10">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
+                Our Vision
+              </h3>
+              <p className="text-[#64748b] text-base sm:text-lg leading-relaxed font-normal">
+                We believe the future belongs to brands that move first, think differently, and build beyond conventions. Our vision: to shape that future by transforming how brands compete, connect, and endure, across every sectors.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Stats Row */}
         <div
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-center justify-between w-full pt-2"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 items-center justify-between w-full pt-4"
         >
           {/* Stat 1 */}
-          <div className="flex flex-col items-start md:items-center text-left md:text-center relative">
-            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+          <div className="flex flex-col items-center text-center relative py-2 px-4">
+            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countDeliveries}+
             </span>
-            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               Project Deliveries
             </span>
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200" />
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
           </div>
 
           {/* Stat 2 */}
-          <div className="flex flex-col items-start md:items-center text-left md:text-center relative">
-            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+          <div className="flex flex-col items-center text-center relative py-2 px-4">
+            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countExperts}+
             </span>
-            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               In-House Experts
             </span>
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200" />
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
           </div>
 
           {/* Stat 3 */}
-          <div className="flex flex-col items-start md:items-center text-left md:text-center relative">
-            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+          <div className="flex flex-col items-center text-center relative py-2 px-4">
+            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countClients}%
             </span>
-            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               Satisfied Clients
             </span>
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200" />
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
           </div>
 
           {/* Stat 4 */}
-          <div className="flex flex-col items-start md:items-center text-left md:text-center">
-            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light text-[#1E1E1E] tracking-tight leading-none">
+          <div className="flex flex-col items-center text-center py-2 px-4">
+            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countPartners}+
             </span>
-            <span className="text-gray-600 mt-2 font-medium text-xs sm:text-sm">
+            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               Business Partner
             </span>
           </div>
