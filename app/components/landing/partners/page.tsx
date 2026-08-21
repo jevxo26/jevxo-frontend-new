@@ -8,25 +8,43 @@ import { partnerApi, Partner } from "../../../../api/partnerApi";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const DEFAULT_PARTNERS: Partner[] = [
+  { id: "1", name: "Figma", logo: "/Jevxo/01.png", order: 1, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "2", name: "Next.js", logo: "/Jevxo/02.png", order: 2, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "3", name: "Vercel", logo: "/Jevxo/03.png", order: 3, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "4", name: "Stripe", logo: "/Jevxo/04.png", order: 4, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "5", name: "Supabase", logo: "/Jevxo/05.png", order: 5, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "6", name: "Tailwind CSS", logo: "/Jevxo/06.png", order: 6, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "7", name: "AWS", logo: "/Jevxo/07.png", order: 7, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "8", name: "OpenAI", logo: "/Jevxo/08.png", order: 8, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "9", name: "Framer", logo: "/Jevxo/09.png", order: 9, isActive: true, createdAt: "", updatedAt: "" },
+  { id: "10", name: "React", logo: "/Jevxo/10.png", order: 10, isActive: true, createdAt: "", updatedAt: "" },
+];
+
 export default function Partners() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [partners, setPartners] = useState<Partner[]>([]);
+  const [partners, setPartners] = useState<Partner[]>(DEFAULT_PARTNERS);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPartners = async () => {
       try {
         const data = await partnerApi.getAllPartners();
-        // Assume API returns an array, or data.data
+        let fetched: Partner[] = [];
         if (Array.isArray(data)) {
-          setPartners(data);
+          fetched = data;
         } else if (data && data.data && Array.isArray(data.data)) {
-          setPartners(data.data);
+          fetched = data.data;
+        }
+
+        if (fetched && fetched.length > 0) {
+          setPartners(fetched);
         } else {
-          setPartners(data); // fallback
+          setPartners(DEFAULT_PARTNERS);
         }
       } catch (error) {
-        console.error("Failed to fetch partners", error);
+        console.error("Failed to fetch partners, using fallback data:", error);
+        setPartners(DEFAULT_PARTNERS);
       } finally {
         setIsLoading(false);
       }
@@ -39,7 +57,6 @@ export default function Partners() {
     if (isLoading || partners.length === 0) return;
 
     const ctx = gsap.context(() => {
-      // Ultra-smooth professional GSAP timeline for title & cards with bi-directional scroll support (top-to-bottom and bottom-to-top)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -85,7 +102,7 @@ export default function Partners() {
 
   return (
     <section ref={sectionRef} className="py-12 md:py-16 bg-[#F8F9FA] flex flex-col items-center overflow-hidden">
-      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6">
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6">
         <h2 className="partner-title text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-center mb-8 md:mb-10 text-[#0f172a] tracking-tight leading-[1.15]">
           <span className="block text-[#0f172a]">Top Partners That</span>
           <span className="block mt-1 text-[#0f172a]">
@@ -95,7 +112,7 @@ export default function Partners() {
         
         {/* 5 columns per row layout across 2 rows */}
         <div className="partner-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 md:gap-4 lg:gap-5">
-          {!isLoading && partners.map((partner) => (
+          {partners.map((partner) => (
             <div 
               key={partner.id}
               className="partner-card bg-white rounded-xl sm:rounded-2xl h-20 sm:h-24 flex items-center justify-center p-3 sm:p-4 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_6px_25px_rgb(0,0,0,0.06)] transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-1"
@@ -114,4 +131,3 @@ export default function Partners() {
     </section>
   );
 }
-

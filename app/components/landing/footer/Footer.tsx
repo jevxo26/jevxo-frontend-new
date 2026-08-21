@@ -7,7 +7,7 @@ import { Phone, Mail, Clock } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="w-full bg-[#030712] text-white pt-16 md:pt-20 pb-8 relative overflow-hidden z-10 border-t border-gray-900">
-      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12">

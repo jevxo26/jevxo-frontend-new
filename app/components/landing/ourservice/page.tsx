@@ -135,7 +135,7 @@ export default function OurService() {
       id="service" 
       className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
-      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col justify-center">
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col justify-center">
         
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12">
@@ -162,7 +162,7 @@ export default function OurService() {
         </div>
 
         {/* Dynamic Horizontal Pinned Track clipped within max-w-9/12 bounds */}
-        <div className="w-full overflow-hidden">
+        <div className="w-full ">
           <div 
             ref={trackRef}
             className="flex flex-nowrap lg:flex-nowrap gap-6 w-max lg:w-max min-w-full"

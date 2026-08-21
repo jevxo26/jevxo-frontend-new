@@ -4,9 +4,78 @@ import { useEffect, useState } from "react";
 import { Star, Play, Pause, User as UserIcon } from "lucide-react";
 import { reviewApi, Review } from "../../../../api/reviewApi";
 
+const DEFAULT_REVIEWS: Review[] = [
+  {
+    id: "rev-1",
+    reviewText: "Jevxo delivered our entire SaaS MVP in less than 4 weeks. Their code quality and design aesthetic wowed our investors from day one!",
+    rating: 5,
+    thumbUrl: "/Jevxo/04.png",
+    videoUrl: "",
+    clientId: "c1",
+    createdAt: "",
+    updatedAt: "",
+    client: { id: "c1", name: "David Miller", email: "david@example.com", role: "Founder & CEO, TechVentures" },
+  },
+  {
+    id: "rev-2",
+    reviewText: "The team at Jevxo is fast, highly responsive, and exceptionally talented in Next.js and UI/UX design. Highly recommended!",
+    rating: 5,
+    thumbUrl: "/Jevxo/05.png",
+    videoUrl: "",
+    clientId: "c2",
+    createdAt: "",
+    updatedAt: "",
+    client: { id: "c2", name: "Sarah Jenkins", email: "sarah@example.com", role: "VP of Product, FinScale" },
+  },
+  {
+    id: "rev-3",
+    reviewText: "Working with Jevxo felt like having a senior engineering squad in-house. They transformed our legacy app into a modern product.",
+    rating: 5,
+    thumbUrl: "/Jevxo/06.png",
+    videoUrl: "",
+    clientId: "c3",
+    createdAt: "",
+    updatedAt: "",
+    client: { id: "c3", name: "Marcus Vance", email: "marcus@example.com", role: "CTO, CloudMatrix" },
+  },
+  {
+    id: "rev-4",
+    reviewText: "Outstanding design system and pixel-perfect implementation. Our conversion rates increased by 40% after the redesign!",
+    rating: 5,
+    thumbUrl: "/Jevxo/07.png",
+    videoUrl: "",
+    clientId: "c4",
+    createdAt: "",
+    updatedAt: "",
+    client: { id: "c4", name: "Elena Rostova", email: "elena@example.com", role: "Head of Growth, LuxLife" },
+  },
+  {
+    id: "rev-5",
+    reviewText: "Their attention to detail and performance optimization is unmatched. Our page load speeds dropped under 1 second.",
+    rating: 5,
+    thumbUrl: "/Jevxo/08.png",
+    videoUrl: "",
+    clientId: "c5",
+    createdAt: "",
+    updatedAt: "",
+    client: { id: "c5", name: "Alex Chen", email: "alex@example.com", role: "Co-Founder, CommercePulse" },
+  },
+  {
+    id: "rev-6",
+    reviewText: "Jevxo is our go-to partner for all full-stack web and mobile development. Professional, reliable, and super fast.",
+    rating: 5,
+    thumbUrl: "/Jevxo/09.png",
+    videoUrl: "",
+    clientId: "c6",
+    createdAt: "",
+    updatedAt: "",
+    client: { id: "c6", name: "Robert Taylor", email: "robert@example.com", role: "Product Manager, Enterprise AI" },
+  },
+];
+
 export default function TestimonialsSection() {
   const [playingId, setPlayingId] = useState<string | null>(null);
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviews, setReviews] = useState<Review[]>(DEFAULT_REVIEWS);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -14,9 +83,14 @@ export default function TestimonialsSection() {
       try {
         const data = await reviewApi.getAllReviews();
         const reviewList = Array.isArray(data) ? data : data?.data || [];
-        setReviews(reviewList);
+        if (reviewList && reviewList.length > 0) {
+          setReviews(reviewList);
+        } else {
+          setReviews(DEFAULT_REVIEWS);
+        }
       } catch (error) {
-        console.error("Failed to fetch reviews:", error);
+        console.error("Failed to fetch reviews, using fallback data:", error);
+        setReviews(DEFAULT_REVIEWS);
       } finally {
         setIsLoading(false);
       }
@@ -36,16 +110,15 @@ export default function TestimonialsSection() {
     // Extract video ID from YouTube URL if it's a YouTube link, or use standard video URL
     const getEmbedUrl = (url: string) => {
       if (!url) return "";
-      // Handle standard youtube links
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
       const match = url.match(regExp);
       if (match && match[2].length === 11) {
         return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0`;
       }
-      return url; // fallback to the raw URL for raw .mp4 links
+      return url;
     };
 
-    const rating = Math.min(Math.max(item.rating || 5, 1), 5); // Ensure 1-5
+    const rating = Math.min(Math.max(item.rating || 5, 1), 5);
 
     return (
       <div
@@ -126,23 +199,19 @@ export default function TestimonialsSection() {
   };
 
   // Divide reviews into 3 rows for the marquee
-  // If there are very few reviews, we duplicate them so the marquee still looks full.
   const getRowData = (rowNumber: number) => {
     if (reviews.length === 0) return [];
     
-    // Split into chunks roughly equal
     const perRow = Math.ceil(reviews.length / 3);
     const startIdx = (rowNumber - 1) * perRow;
     const endIdx = startIdx + perRow;
     
     let rowReviews = reviews.slice(startIdx, endIdx);
     
-    // Fallback: If one row is empty (because we have less than 3 reviews total), just use all of them
     if (rowReviews.length === 0) {
       rowReviews = [...reviews];
     }
     
-    // Duplicate enough times to make the marquee loop smoothly
     const duplicated = [...rowReviews, ...rowReviews, ...rowReviews];
     return duplicated;
   };
@@ -174,8 +243,8 @@ export default function TestimonialsSection() {
         </p>
       </div>
 
-      {/* 3 Infinite Marquee Rows (Top: Left, Mid: Right, Bottom: Left) */}
-      {!isLoading && reviews.length > 0 && (
+      {/* 3 Infinite Marquee Rows */}
+      {reviews.length > 0 && (
         <div className="w-full space-y-6 relative z-10 overflow-hidden py-2">
           {/* Row 1: Marquee Left */}
           <div className="flex animate-marquee gap-6">
@@ -191,12 +260,6 @@ export default function TestimonialsSection() {
           <div className="flex animate-marquee gap-6">
             {row3.map((item, idx) => renderCard(item, `r3-${idx}`))}
           </div>
-        </div>
-      )}
-
-      {!isLoading && reviews.length === 0 && (
-        <div className="text-center text-gray-500 pb-12">
-          No reviews yet. Check back later!
         </div>
       )}
     </section>

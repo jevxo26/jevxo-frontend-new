@@ -108,7 +108,7 @@ export default function ComparisonSection() {
 
   return (
     <section ref={sectionRef} id="why-choose-us" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
-      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Top Header Row */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12 md:mb-16 w-full">

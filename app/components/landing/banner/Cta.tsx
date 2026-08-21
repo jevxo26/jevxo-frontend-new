@@ -3,7 +3,7 @@ import { Calendar, MessageCircle } from "lucide-react";
 
 export default function Cta() {
   return (
-    <section className="relative z-10 w-full max-w-[95%] sm:max-w-8/12 mx-auto px-4 pb-24">
+    <section className="relative z-10 w-full max-w-[95%] lg:max-w-6xl mx-auto px-4 pb-24">
       {/* CTA Card Banner */}
       <div className="relative overflow-hidden rounded-[36px] bg-gradient-to-b from-[#090e1a] via-[#0b132b] to-[#070b16] border border-slate-800 text-white p-8 sm:p-14 text-center flex flex-col items-center shadow-2xl">
         {/* Subtle Glow inside CTA */}

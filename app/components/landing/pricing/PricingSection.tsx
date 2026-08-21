@@ -19,10 +19,111 @@ interface PricingPlan {
   category: { id: string; name: string };
 }
 
+const DEFAULT_CATEGORIES: PackageCategory[] = [
+  { id: "cat-1", name: "Monthly Retainer", description: "Ongoing design & development team" },
+  { id: "cat-2", name: "Project Build", description: "Fixed scope product development" },
+];
+
+const DEFAULT_PACKAGES: PricingPlan[] = [
+  {
+    id: "pkg-1",
+    name: "Starter Plan",
+    description: "Ideal for early-stage startups needing rapid MVP design & core development.",
+    price: "$1,499",
+    period: "/ month",
+    isPopular: false,
+    badgeText: null,
+    features: [
+      "1 Dedicated Full-Stack Engineer",
+      "UI/UX Design & Prototyping",
+      "Weekly Progress Demo Calls",
+      "48-Hour Task Delivery Turnaround",
+      "Slack & Notion Direct Access",
+      "Source Code Ownership",
+    ],
+    buttonText: "Select This Plan",
+    category: { id: "cat-1", name: "Monthly Retainer" },
+  },
+  {
+    id: "pkg-2",
+    name: "Growth Pro Plan",
+    description: "Full-stack engineering squad for scaling products & accelerating roadmaps.",
+    price: "$2,999",
+    period: "/ month",
+    isPopular: true,
+    badgeText: "Most Popular",
+    features: [
+      "2 Senior Engineers + 1 Lead UI/UX Designer",
+      "Unlimited Design & Code Requests",
+      "Daily Async Updates & Standups",
+      "24-48 Hour Sprint Delivery",
+      "Dedicated Project Manager",
+      "Architectural Code Reviews & QA",
+    ],
+    buttonText: "Select This Plan",
+    category: { id: "cat-1", name: "Monthly Retainer" },
+  },
+  {
+    id: "pkg-3",
+    name: "Enterprise Dedicated",
+    description: "Complete offshore software studio for high-growth tech companies.",
+    price: "$4,999",
+    period: "/ month",
+    isPopular: false,
+    badgeText: "Enterprise Tier",
+    features: [
+      "Custom Squad (Frontend, Backend, DevOps, QA)",
+      "Dedicated Solution Architect",
+      "SOC-2 Compliant Security & Architecture",
+      "24/7 Priority SLA & Emergency Hotlines",
+      "Custom CI/CD & Cloud Infrastructure",
+      "Executive Weekly Strategy Sessions",
+    ],
+    buttonText: "Select This Plan",
+    category: { id: "cat-1", name: "Monthly Retainer" },
+  },
+  {
+    id: "pkg-4",
+    name: "MVP Project Build",
+    description: "End-to-end MVP design and full-stack development in 4 weeks.",
+    price: "$3,500",
+    period: "/ project",
+    isPopular: false,
+    badgeText: null,
+    features: [
+      "Full Product Scope & Wireframing",
+      "Custom Figma UI/UX Design System",
+      "Next.js & Node.js Production Build",
+      "Database & Auth Integration",
+      "Post-Launch 30-Day Support",
+    ],
+    buttonText: "Select This Plan",
+    category: { id: "cat-2", name: "Project Build" },
+  },
+  {
+    id: "pkg-5",
+    name: "Scaleup Project Build",
+    description: "Complete web or mobile app transformation with enterprise grade scalability.",
+    price: "$7,500",
+    period: "/ project",
+    isPopular: true,
+    badgeText: "Most Popular",
+    features: [
+      "Full Enterprise Architecture",
+      "Web & Cross-Platform Mobile Apps",
+      "AI & Payment API Integrations",
+      "Automated Testing & DevOps Pipeline",
+      "Post-Launch 60-Day Dedicated Support",
+    ],
+    buttonText: "Select This Plan",
+    category: { id: "cat-2", name: "Project Build" },
+  },
+];
+
 export default function PricingSection() {
-  const [categories, setCategories] = useState<PackageCategory[]>([]);
-  const [packages, setPackages] = useState<PricingPlan[]>([]);
-  const [activeTabId, setActiveTabId] = useState<string>("");
+  const [categories, setCategories] = useState<PackageCategory[]>(DEFAULT_CATEGORIES);
+  const [packages, setPackages] = useState<PricingPlan[]>(DEFAULT_PACKAGES);
+  const [activeTabId, setActiveTabId] = useState<string>("cat-1");
   const [isLoading, setIsLoading] = useState(true);
 
   // Booking Modal State
@@ -48,29 +149,36 @@ export default function PricingSection() {
         const cats = Array.isArray(catsRes) ? catsRes : catsRes?.data || [];
         const pkgs = Array.isArray(pkgsRes) ? pkgsRes : pkgsRes?.data || [];
         
-        setCategories(cats);
-        
-        // Format packages to match component structure
-        const formattedPackages = pkgs.map((pkg: any) => ({
-          id: pkg.id,
-          name: pkg.name,
-          description: pkg.description,
-          price: `$${pkg.price}`,
-          period: pkg.duration ? `/ ${pkg.duration}` : "",
-          isPopular: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro"),
-          badgeText: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro") ? "Most Popular" : null,
-          features: Array.isArray(pkg.features) ? pkg.features : (pkg.features ? JSON.parse(pkg.features) : []),
-          buttonText: "Select This Plan",
-          category: pkg.category
-        }));
-        
-        setPackages(formattedPackages);
-
-        if (cats.length > 0) {
+        if (cats && cats.length > 0) {
+          setCategories(cats);
           setActiveTabId(cats[0].id);
+        } else {
+          setCategories(DEFAULT_CATEGORIES);
+          setActiveTabId(DEFAULT_CATEGORIES[0].id);
+        }
+        
+        if (pkgs && pkgs.length > 0) {
+          const formattedPackages = pkgs.map((pkg: any) => ({
+            id: pkg.id,
+            name: pkg.name,
+            description: pkg.description,
+            price: `$${pkg.price}`,
+            period: pkg.duration ? `/ ${pkg.duration}` : "",
+            isPopular: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro"),
+            badgeText: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro") ? "Most Popular" : null,
+            features: Array.isArray(pkg.features) ? pkg.features : (pkg.features ? JSON.parse(pkg.features) : []),
+            buttonText: "Select This Plan",
+            category: pkg.category
+          }));
+          setPackages(formattedPackages);
+        } else {
+          setPackages(DEFAULT_PACKAGES);
         }
       } catch (error) {
-        console.error("Failed to fetch pricing data:", error);
+        console.error("Failed to fetch pricing data, using fallback data:", error);
+        setCategories(DEFAULT_CATEGORIES);
+        setPackages(DEFAULT_PACKAGES);
+        setActiveTabId(DEFAULT_CATEGORIES[0].id);
       } finally {
         setIsLoading(false);
       }
@@ -133,7 +241,7 @@ export default function PricingSection() {
         style={{ animation: "glowPulseB 10s ease-in-out infinite" }}
       />
 
-      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-center relative z-10">
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-center relative z-10">
         {/* Top Pill Badge */}
         <div className="bg-[#111827] border border-blue-500/30 text-blue-400 px-4 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-2 mb-6 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
@@ -150,7 +258,7 @@ export default function PricingSection() {
         </h2>
 
         {/* Category Tabs Toggle Bar */}
-        {!isLoading && categories.length > 0 && (
+        {categories.length > 0 && (
           <div className="bg-[#0b101d]/90 border border-gray-800 p-1.5 rounded-full flex items-center gap-1 mb-16 shadow-xl backdrop-blur-md">
             {categories.map((tab) => (
               <button
@@ -168,9 +276,9 @@ export default function PricingSection() {
           </div>
         )}
 
-        {/* 3 Pricing Cards Grid */}
+        {/* Pricing Cards Grid */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {!isLoading && activePlans.map((plan, idx) => {
+          {activePlans.map((plan, idx) => {
             const isHighlighted = plan.isPopular;
             const buttonStyle = isHighlighted
               ? "bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] hover:from-[#2563eb] hover:to-[#3b82f6] text-white shadow-lg shadow-blue-500/30"

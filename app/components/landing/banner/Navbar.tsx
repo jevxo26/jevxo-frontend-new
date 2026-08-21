@@ -69,7 +69,7 @@ export default function Navbar() {
           : "bg-transparent py-5 md:py-6"
       }`}
     >
-      <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-3 sm:px-6 flex items-center justify-between">
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-3 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
@@ -97,7 +97,9 @@ export default function Navbar() {
         {/* Contact Us Premium Capsule Button & Mobile Toggle */}
         <div className="flex items-center gap-3">
           <Link
-            href="#contact"
+            href="https://wa.me/8801613410880?text=Hello%20Jevxo%20Team!%20I%20would%20like%20to%20discuss%20a%20project."
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-3 bg-[#0a0c1f] hover:bg-black text-white pl-5 pr-1.5 py-1.5 rounded-full font-medium text-base shadow-md hover:shadow-xl transition-all duration-300 group"
           >
             <span className="text-[14px] font-medium tracking-tight">
@@ -217,7 +219,9 @@ export default function Navbar() {
               {/* Software Studio WhatsApp Contact CTA */}
               <div className="pt-2 border-t border-gray-100 flex flex-col gap-2.5">
                 <Link
-                  href="#contact"
+                  href="https://wa.me/8801613410880?text=Hello%20Jevxo%20Team!%20I%20would%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full flex items-center justify-between bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] active:scale-[0.99] text-white p-2.5 pl-4 rounded-2xl shadow-xl transition-all duration-200 border border-gray-800 group"
                 >
