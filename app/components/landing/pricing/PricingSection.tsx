@@ -192,7 +192,7 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative z-10 w-full py-20 md:py-28 bg-[#060913] text-white flex justify-center overflow-hidden border-t border-gray-900"
+      className="relative z-10 w-full py-8 md:py-12 bg-[#F2F2F2] text-gray-900 flex justify-center overflow-hidden border-t border-gray-200"
     >
       {/* Keyframes for ambient background animation */}
       <style>{`

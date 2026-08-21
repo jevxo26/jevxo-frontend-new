@@ -36,7 +36,7 @@ export default function AboutUs() {
 
   const words = fullText.split(" ");
 
-  // GSAP Bi-directional Scroll Animation for Cards and Stats
+  // GSAP Bi-directional Scroll Animation for Cards, Dividers and Stats
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Mission & Vision Cards Bi-directional GSAP Timeline (Ultra-fast 0.2s blur clear)
@@ -71,6 +71,27 @@ export default function AboutUs() {
           duration: 0.4,
           stagger: 0.05,
           ease: "power2.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 95%",
+            end: "bottom 5%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      // Divider lines — grow in on the same trigger/timing as the stats,
+      // so the whole row (numbers + lines) reveals together
+      gsap.fromTo(
+        ".about-divider",
+        { scaleY: 0, opacity: 0 },
+        {
+          scaleY: 1,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "power2.out",
+          transformOrigin: "center",
           scrollTrigger: {
             trigger: statsRef.current,
             start: "top 95%",
@@ -166,7 +187,20 @@ export default function AboutUs() {
   }, [targetStats]);
 
   return (
-    <section ref={sectionRef} className="w-full py-12 md:py-16 lg:py-20 bg-[#F8F9FA] flex justify-center border-t border-gray-100">
+    <section ref={sectionRef} className="w-full py-12 md:py-16 lg:py-20 bg-[#F2F2F2] flex justify-center border-t border-gray-100">
+      {/* Self-contained gradient border animation — doesn't depend on whatever
+          "animate-border-spin" is defined as globally, so it renders the same
+          smooth blue -> indigo -> pink loop everywhere, every time */}
+      <style>{`
+        .jevxo-gradient-border {
+          background: conic-gradient(from 0deg, #3b82f6, #6366f1, #ec4899, #3b82f6);
+          animation: jevxo-border-spin 6s linear infinite;
+        }
+        @keyframes jevxo-border-spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-start">
         {/* About Us Pill */}
         <div className="bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 border border-blue-100 mb-6 sm:mb-8">
@@ -174,10 +208,10 @@ export default function AboutUs() {
           About Us
         </div>
 
-        {/* Scroll Reveal Main Paragraph */}
+        {/* Scroll Reveal Main Paragraph — premium blur + lift reveal per word */}
         <p
           ref={textRef}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.45] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
+          className="text-xl  sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.45] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
         >
           {words.map((word, i) => {
             const targetProgress = (i + 1) / words.length;
@@ -185,10 +219,14 @@ export default function AboutUs() {
             return (
               <span
                 key={i}
-                className={`inline-block mr-[0.25em] transition-colors duration-300 ${
+                style={{
+                  transitionDelay: `${Math.min(i * 6, 200)}ms`,
+                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                }}
+                className={`inline-block mr-[0.25em] transition-all duration-500 ${
                   isRevealed
-                    ? "text-[#1E1E1E] font-normal opacity-100"
-                    : "text-gray-400 font-normal opacity-40"
+                    ? "text-[#1E1E1E] font-normal opacity-100 blur-none translate-y-0"
+                    : "text-gray-400 font-normal opacity-40 blur-[3px] translate-y-1"
                 }`}
               >
                 {word}
@@ -200,9 +238,9 @@ export default function AboutUs() {
         {/* Mission & Vision Cards */}
         <div className="about-cards-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mb-12 sm:mb-16">
           {/* Our Mission Card with Animated Gradient Border */}
-          <div className="about-card relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
-            <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#6366f1,#ef4444,#3b82f6)] animate-border-spin" />
-            <div className="relative bg-[#f8f9fa] rounded-[22px] p-7 sm:p-9 h-full flex flex-col justify-start z-10">
+          <div className="about-card relative rounded-xl p-[2px] overflow-hidden shadow-sm">
+            <div className="absolute inset-[-200%] jevxo-gradient-border" />
+            <div className="relative bg-[#f8f9fa] rounded-xl p-7 sm:p-9 h-full flex flex-col justify-start z-10">
               <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
                 Our Mission
               </h3>
@@ -213,9 +251,9 @@ export default function AboutUs() {
           </div>
 
           {/* Our Vision Card with Animated Gradient Border */}
-          <div className="about-card relative rounded-3xl p-[2px] overflow-hidden shadow-sm">
-            <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#6366f1,#ef4444,#3b82f6)] animate-border-spin" />
-            <div className="relative bg-[#f8f9fa] rounded-[22px] p-7 sm:p-9 h-full flex flex-col justify-start z-10">
+          <div className="about-card relative rounded-xl p-[2px] overflow-hidden ">
+            <div className="absolute inset-[-200%] jevxo-gradient-border" />
+            <div className="relative bg-[#f8f9fa] rounded-xl p-7 sm:p-9 h-full flex flex-col justify-start z-10">
               <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
                 Our Vision
               </h3>
@@ -233,40 +271,40 @@ export default function AboutUs() {
         >
           {/* Stat 1 */}
           <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
-            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countDeliveries}+
             </span>
             <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               Project Deliveries
             </span>
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
+            <div className="about-divider hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
           </div>
 
           {/* Stat 2 */}
           <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
-            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countExperts}+
             </span>
             <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               In-House Experts
             </span>
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
+            <div className="about-divider hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
           </div>
 
           {/* Stat 3 */}
           <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
-            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countClients}%
             </span>
             <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
               Satisfied Clients
             </span>
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
+            <div className="about-divider hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
           </div>
 
           {/* Stat 4 */}
           <div className="about-stat flex flex-col items-center text-center py-2 px-4">
-            <span className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
               {countPartners}+
             </span>
             <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">

@@ -101,22 +101,23 @@ export default function CaseStudies() {
     if (isLoading || caseStudies.length === 0) return;
 
     const ctx = gsap.context(() => {
+      // Ultra-smooth Staggered Fade Up 1 by 1 animation (card 1, 2, 3, 4 with 1s gap)
       gsap.fromTo(
         ".case-study-card",
-        { opacity: 0, y: 25, scale: 0.98, filter: "blur(2px)" },
+        { opacity: 0, y: 40, scale: 0.97, filter: "blur(6px)" },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 0.4,
-          stagger: 0.05,
-          ease: "power2.out",
+          duration: 1.1,
+          stagger: 1.0, // 1-second interval sequence
+          ease: "power3.out", // Extra silky smooth deceleration
           scrollTrigger: {
             trigger: ".case-studies-grid",
-            start: "top 88%",
-            end: "bottom 12%",
-            toggleActions: "play reverse play reverse",
+            start: "top 82%",
+            toggleActions: "play none none none",
+            once: true,
           },
         }
       );
@@ -147,7 +148,7 @@ export default function CaseStudies() {
   };
 
   return (
-    <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-200/80">
+    <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-200/80">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Section */}
@@ -158,7 +159,7 @@ export default function CaseStudies() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
               Case Studies
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
               <span className="block text-[#0f172a]">Where Vision Meets</span>
               <span className="block mt-1 text-[#0f172a]">
                 <span className="font-serif italic font-normal text-[#0f172a]">Flawless</span> <span className="font-medium text-[#0f172a]">Execution.</span>
@@ -168,7 +169,7 @@ export default function CaseStudies() {
           
           {/* Right Description Text */}
           <div className="md:w-[42%] pt-1 md:pt-6">
-            <p className="text-sm sm:text-base md:text-lg text-[#000000] font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm md:text-base text-[#64748b] font-normal leading-relaxed">
               Explore how we've empowered innovative startups and established brands to achieve remarkable digital transformation and market success.
             </p>
           </div>

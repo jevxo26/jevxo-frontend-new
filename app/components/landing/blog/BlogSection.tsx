@@ -95,7 +95,7 @@ export default function BlogSection() {
   const mainBlogImageSrc = mainBlog ? getValidImageSrc(mainBlog.coverImage) : null;
 
   return (
-    <section ref={sectionRef} id="blog" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section ref={sectionRef} id="blog" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Title & Header Row */}
@@ -108,17 +108,17 @@ export default function BlogSection() {
               Blog &amp; Insights
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">Insights, Trends, and</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="block text-[#0f172a]">Latest Insights &</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Design</span> <span className="font-medium text-[#0f172a]">Perspectives.</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Industry</span> <span className="font-medium text-[#0f172a]">Articles.</span>
               </span>
             </h2>
           </div>
 
-          {/* Right Description */}
-          <div className="lg:w-[42%] pt-1 lg:pt-8">
-            <p className="text-[#475569] text-base md:text-lg leading-relaxed font-normal">
+          {/* Right Description Text */}
+          <div className="md:w-[42%] pt-1 md:pt-6">
+            <p className="text-xs sm:text-sm md:text-base text-[#64748b] font-normal leading-relaxed">
               Thoughtful perspectives on design, UX, branding, and digital products—written to help founders, teams, and businesses make better decisions.
             </p>
           </div>

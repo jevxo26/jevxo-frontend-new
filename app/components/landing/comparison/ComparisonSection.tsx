@@ -107,7 +107,7 @@ export default function ComparisonSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="why-choose-us" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section ref={sectionRef} id="why-choose-us" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Top Header Row */}
@@ -120,10 +120,10 @@ export default function ComparisonSection() {
               Why Choose Us
             </div>
             
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">Why Choose Us —</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
+              <span className="block text-[#0f172a]">Why Leading Brands</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Jevxo Team</span> <span className="font-medium text-[#0f172a]">Alternative?</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Choose Us Over</span> <span className="font-medium text-[#0f172a]">Others.</span>
               </span>
             </h2>
           </div>

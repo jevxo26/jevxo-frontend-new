@@ -223,11 +223,11 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="w-full py-12 md:py-16 bg-[#F8F9FA] text-gray-900 relative overflow-hidden flex flex-col items-center justify-center border-t border-gray-100"
+      className="w-full py-6 md:py-8 bg-[#F2F2F2] text-gray-900 relative overflow-hidden flex flex-col items-center justify-center border-t border-gray-100"
     >
       {/* Side Fade Gradient Overlays */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-[#F8F9FA] to-transparent z-20" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-44 bg-gradient-to-l from-[#F8F9FA] to-transparent z-20" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-[#F2F2F2] to-transparent z-20" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-44 bg-gradient-to-l from-[#F2F2F2] to-transparent z-20" />
 
       {/* Header Container */}
       <div className="max-w-3xl w-full px-6 flex flex-col items-center text-center mb-10 md:mb-12 relative z-10">

@@ -188,7 +188,7 @@ const METRICS = [
 
 export default function ReadyToBuildSection() {
   return (
-    <section className="relative w-full bg-[#F8F9FA] text-[#0f172a] py-10 md:py-14 border-t border-gray-100 overflow-hidden">
+    <section className="relative w-full bg-[#F2F2F2] text-[#0f172a] py-6 md:py-8 border-t border-gray-100 overflow-hidden">
       {/* Keyframe styles: line flow, glow pulse, ambient float, shimmer */}
       <style>{`
         @keyframes strokeDashFlow {

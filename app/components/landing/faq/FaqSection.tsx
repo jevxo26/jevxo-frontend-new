@@ -36,7 +36,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section id="faq" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="w-full max-w-[95%] sm:max-w-8/12 mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -50,15 +50,14 @@ export default function FaqSection() {
             </div>
 
             {/* Headline Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.12]">
-              <span className="block text-[#0f172a]">Frequently</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.12]">
+              <span className="block text-[#0f172a]">Frequently Asked</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Asked Question</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Questions &</span> <span className="font-medium text-[#0f172a]">Answers.</span>
               </span>
             </h2>
 
-            {/* Expanded Detailed Description */}
-            <p className="text-[#475569] text-base sm:text-lg md:text-[19px] leading-relaxed font-normal max-w-md pt-1">
+            <p className="text-xs sm:text-sm md:text-base text-[#64748b] leading-relaxed font-normal max-w-md pt-1">
               Have questions before getting started? Explore our most common inquiries regarding project timelines, monthly retainers, custom design systems, and post-launch support.
             </p>
 

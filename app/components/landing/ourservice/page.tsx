@@ -12,56 +12,56 @@ const services = [
     tag: "UI/UX DESIGN",
     title: "UI/UX Design",
     description: "We design intuitive interfaces that make websites and apps seamless and delightful to use daily.",
-    bg: "bg-[#f0f3ff]",
+    bg: "bg-gradient-to-br from-white to-[#f0f3ff]",
     img: "/Jevxo/01.png",
   },
   {
     tag: "SAAS PRODUCT",
     title: "SaaS Product Design",
     description: "Architecting scalable web applications & SaaS dashboards built for high retention & growth.",
-    bg: "bg-[#fff0f4]",
+    bg: "bg-gradient-to-br from-white to-[#fff0f4]",
     img: "/Jevxo/02.png",
   },
   {
     tag: "BRANDING",
     title: "Logo & Branding Design",
     description: "Creating distinctive visual identities and brand assets that command attention and trust.",
-    bg: "bg-[#eef8f4]",
+    bg: "bg-gradient-to-br from-white to-[#eef8f4]",
     img: "/Jevxo/03.png",
   },
   {
     tag: "ENGINEERING",
     title: "Full Stack Development",
     description: "Building fast, secure, scalable modern web platforms engineered for heavy traffic & performance.",
-    bg: "bg-[#f1edfb]",
+    bg: "bg-gradient-to-br from-white to-[#f1edfb]",
     img: "/Jevxo/04.png",
   },
   {
     tag: "MOBILE APPS",
     title: "Mobile App Development",
     description: "Developing cross-platform native iOS & Android applications with fluid animations & offline support.",
-    bg: "bg-[#fefce8]",
+    bg: "bg-gradient-to-br from-white to-[#fefce8]",
     img: "/Jevxo/05.png",
   },
   {
     tag: "AI & AUTOMATION",
     title: "AI & Automation Tools",
     description: "Integrating intelligent workflow automations and custom generative AI models into products.",
-    bg: "bg-[#f0fdf4]",
+    bg: "bg-gradient-to-br from-white to-[#f0fdf4]",
     img: "/Jevxo/06.png",
   },
   {
     tag: "CLOUD INFRASTRUCTURE",
     title: "Cloud & DevOps Architecture",
     description: "Deploying high-availability infrastructure with 99.9% uptime and enterprise security compliance.",
-    bg: "bg-[#fdf2f8]",
+    bg: "bg-gradient-to-br from-white to-[#fdf2f8]",
     img: "/Jevxo/07.png",
   },
   {
     tag: "GROWTH & MARKETING",
     title: "Digital Marketing & SEO",
     description: "Data-driven organic growth strategies to maximize conversions, revenue, and customer loyalty.",
-    bg: "bg-[#eff6ff]",
+    bg: "bg-gradient-to-br from-white to-[#eff6ff]",
     img: "/Jevxo/08.png",
   },
 ];
@@ -133,7 +133,7 @@ export default function OurService() {
     <section 
       ref={sectionRef} 
       id="service" 
-      className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
+      className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col justify-center">
         
@@ -155,7 +155,7 @@ export default function OurService() {
           
           {/* Right Description Text */}
           <div className="lg:w-[46%] pt-1 lg:pt-6">
-            <p className="text-sm sm:text-base md:text-lg text-[#000000] font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-[#64748b] font-normal leading-relaxed">
               We're here to create digital experiences that your customers will love. from websites and apps to seamless interfaces, our creations drive stronger engagement and foster lasting loyalty.
             </p>
           </div>

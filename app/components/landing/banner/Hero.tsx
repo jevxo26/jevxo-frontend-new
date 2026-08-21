@@ -42,7 +42,7 @@ export default function Hero() {
     <div className="w-full flex flex-col">
       {/* Hero + Marquee wrapped together so the background gradient and grid pattern
           are ONE continuous layer — no seam at the old section boundary. */}
-      <div className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ffffff_0%,#dbe3fa_16%,#5A87F2_38%,#5A87F2_66%,#f6f8fc_94%)]">
+      <div className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ffffff_0%,#dbe3fa_16%,#5A87F2_38%,#5A87F2_66%,#F2F2F2_94%)]">
         {/* Single Grid Background Pattern spanning the whole hero + marquee area */}
         <div
           className="absolute inset-0 opacity-60 pointer-events-none z-0 bg-[length:75px_75px] sm:bg-[length:120px_120px]"
@@ -168,7 +168,7 @@ export default function Hero() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-[#5A87F2] to-transparent z-20" />
 
         {/* Bottom Fade Gradient Overlay */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 sm:h-80 md:h-[420px] bg-gradient-to-b from-transparent via-[#f6f8fc]/60 via-35% via-[#f6f8fc]/95 via-65% to-[#f6f8fc] z-20" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 sm:h-80 md:h-[420px] bg-gradient-to-b from-transparent via-[#F2F2F2]/60 via-35% via-[#F2F2F2]/95 via-65% to-[#F2F2F2] z-20" />
 
         <div className="relative z-10 flex flex-col gap-3 sm:gap-4 md:gap-5 w-full">
           {/* Row 1: Right to Left (animate-marquee) */}

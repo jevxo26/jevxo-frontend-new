@@ -18,10 +18,9 @@ import TestimonialsSection from "../components/landing/testimonials/Testimonials
 export default function Home() {
   return (
     // owiejaf9wejf9u jw3eu8heu8r
-    <div className="relative min-h-screen w-full bg-[#f6f8fc] text-[#0a0c16] flex flex-col justify-between overflow-hidden">
-      {/* Background Grid & Soft Radial Glow */}
-      <div className="absolute inset-0 hero-grid pointer-events-none z-0" />
-      <div className="absolute inset-0 hero-radial-glow pointer-events-none z-0" />
+    <div className="relative min-h-screen w-full bg-[#F2F2F2] text-[#0a0c16] flex flex-col justify-between overflow-hidden">
+      
+      
       <Hero />
       <Partners />
       <AboutUs />
