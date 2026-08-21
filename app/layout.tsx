@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Bai_Jamjuree } from "next/font/google";
+import { Geist, Geist_Mono, Bai_Jamjuree, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +16,13 @@ const baiJamjuree = Bai_Jamjuree({
   weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-bai-jamjuree",
+});
+
+const dmSerif = DM_Serif_Display({
+  weight: ["400"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-dm-serif",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jevxo.com";
@@ -60,10 +67,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo1.jpeg", type: "image/jpeg" },
+      { url: "/fab.jpeg", type: "image/jpeg" },
     ],
-    shortcut: "/logo1.jpeg",
-    apple: "/logo1.jpeg",
+    shortcut: "/fab.jpeg",
+    apple: "/fab.jpeg",
   },
   openGraph: {
     type: "website",
@@ -79,7 +86,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "JEVXO Software Studio",
-      },
+      }, 
     ],
   },
   twitter: {
@@ -132,7 +139,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${baiJamjuree.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${baiJamjuree.variable} ${dmSerif.variable} h-full antialiased`}
     >
       <head>
         <script

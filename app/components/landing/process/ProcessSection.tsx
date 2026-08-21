@@ -1,55 +1,129 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const steps = [
   {
     step: "Step 01",
-    title: "Discovery & Strategy",
-    description: "Aligning business objectives, user research, wireframing, and tech stack blueprinting.",
+    title: "Understand",
+    description: "Business goals and strategy, user persona and pinpoints, competitors analysis.",
     icon: "/DesignProcess/Understand.png",
-    bg: "bg-[#f0f3ff]",
+    img: "/Jevxo/01.png",
+    bg: "bg-[#eef2ff]",
   },
   {
     step: "Step 02",
-    title: "UX/UI Design System",
-    description: "Crafting intuitive user interfaces, scalable design tokens, interactive prototypes, and modern branding.",
+    title: "Define",
+    description: "UX Strategy, information architecture, userflows, moodboard, visual direction.",
     icon: "/DesignProcess/Define.png",
-    bg: "bg-[#fff0f4]",
+    img: "/Jevxo/02.png",
+    bg: "bg-[#fff1f2]",
   },
   {
     step: "Step 03",
-    title: "Architecture & Sprint",
-    description: "Setting up secure database schemas, cloud microservices, API integrations, and agile development sprints.",
+    title: "Ideate",
+    description: "Brainstorming, problem solution propose, sketches, wireframing.",
     icon: "/DesignProcess/Ideate.png",
-    bg: "bg-[#eef8f4]",
+    img: "/Jevxo/03.png",
+    bg: "bg-[#ecfdf5]",
   },
   {
     step: "Step 04",
-    title: "Full-Stack Development",
-    description: "Engineering fast, SEO-optimized web and mobile applications backed by robust infrastructure.",
+    title: "Design",
+    description: "Brand Style guide, Final design, design system, interface design.",
     icon: "/DesignProcess/Design.png",
-    bg: "bg-[#f1edfb]",
+    img: "/Jevxo/04.png",
+    bg: "bg-[#f5f3ff]",
   },
   {
     step: "Step 05",
-    title: "QA & Security Audit",
-    description: "Comprehensive automated unit testing, end-to-end security audits, and cross-browser optimization.",
+    title: "Testing",
+    description: "Interactive Prototyping, testing, feedback collection and implementation.",
     icon: "/DesignProcess/Testing.png",
+    img: "/Jevxo/05.png",
     bg: "bg-[#fefce8]",
   },
   {
     step: "Step 06",
-    title: "Deployment & Scaling",
-    description: "Seamless CI/CD production releases, 24/7 cloud server monitoring, and continuous product iteration.",
+    title: "Approval",
+    description: "Submission, Asset preparation, exports.",
     icon: "/DesignProcess/Approval.png",
+    img: "/Jevxo/06.png",
     bg: "bg-[#f0fdf4]",
-  }
+  },
 ];
 
 export default function ProcessSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      if (!sectionRef.current || !trackRef.current) return;
+
+      const getScrollAmount = () => {
+        const trackWidth = trackRef.current?.scrollWidth || 0;
+        const containerWidth = trackRef.current?.parentElement?.offsetWidth || window.innerWidth;
+        return trackWidth - containerWidth + 80;
+      };
+
+      // Entrance reveal for Process Cards from right to left
+      gsap.fromTo(
+        ".process-card",
+        { opacity: 0, x: 45, scale: 0.96, filter: "blur(2px)" },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.45,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: trackRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
+
+      // Horizontal Scroll Pinning Animation (Same as OurService)
+      gsap.to(trackRef.current, {
+        x: () => -getScrollAmount(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+          start: "top top",
+          end: () => `+=${getScrollAmount()}`,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        },
+      });
+    }, sectionRef);
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
+  }, []);
+
   return (
-    <section id="process" className="relative z-10 w-full py-12 md:py-16 bg-[#F8F9FA] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section ref={sectionRef} id="process" className="relative z-10 w-full py-12 md:py-16 bg-[#f6f8fc] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Area */}
@@ -61,9 +135,9 @@ export default function ProcessSection() {
               Design Process
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">Step-By-Step Way</span>
+              <span className="block text-[#0f172a]">A Faster Way To Design</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">To Build Product</span> <span className="font-medium text-[#0f172a]">Design.</span>
+                <span className="font-medium text-[#0f172a]">And Build</span> <span className="font-serif italic font-normal text-[#0f172a]">SaaS Products.</span>
               </span>
             </h2>
           </div>
@@ -76,17 +150,20 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* Overlapping Horizontal Cards Row matching exact reference screenshot */}
-        <div className="flex items-center justify-between overflow-visible pb-10 pt-4 relative w-full">
-          {steps.map((item, index) => (
-            <div 
-              key={index}
-              className={`w-[190px] sm:w-[220px] md:w-[235px] lg:w-[250px] shrink-0 ${item.bg} rounded-[32px] p-5 flex flex-col justify-between h-[310px] sm:h-[330px] border border-white/60 shadow-[0_4px_25px_rgba(0,0,0,0.04)] transition-all duration-500 ease-out -mr-10 sm:-mr-12 md:-mr-14 last:mr-0 relative z-10 hover:z-30 hover:scale-[1.06] hover:-translate-y-3 hover:shadow-[0_25px_50px_rgba(0,0,0,0.12)] group`}
-            >
-              <div>
-                {/* Header Row: Image Icon & Step Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-2xs border border-gray-100/80 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden p-2">
+        {/* Dynamic Horizontal Pinned Track matching OurService style */}
+        <div className="w-full overflow-hidden">
+          <div 
+            ref={trackRef}
+            className="flex flex-nowrap gap-6 w-max min-w-full"
+          >
+            {steps.map((item, index) => (
+              <div 
+                key={index}
+                className={`process-card w-[300px] sm:w-[340px] lg:w-[360px] shrink-0 rounded-[36px] ${item.bg} pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+              >
+                {/* Header Row: Icon & Step Badge */}
+                <div className="flex items-center justify-between w-full mb-3 px-2">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-2xs border border-gray-200/80 p-2">
                     <Image
                       src={item.icon}
                       alt={`${item.title} icon`}
@@ -95,23 +172,45 @@ export default function ProcessSection() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="bg-white/80 text-gray-600 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wide border border-gray-100">
+                  <span className="bg-white/90 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-gray-200/80">
                     {item.step}
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-lg sm:text-xl font-semibold text-[#0a0c16] tracking-tight mb-2 leading-snug">
+                <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
                   {item.title}
                 </h3>
-              </div>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-5 font-normal max-w-[270px] min-h-[44px]">
+                  {item.description}
+                </p>
+                
+                {/* Pill Action Button */}
+                <Link 
+                  href="#contact"
+                  className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-5 group"
+                >
+                  <span className="mr-3 text-xs tracking-tight">Explore Step</span>
+                  <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
+                  </div>
+                </Link>
 
-              {/* Description */}
-              <p className="text-[#64748b] text-xs leading-relaxed font-normal">
-                {item.description}
-              </p>
-            </div>
-          ))}
+                {/* Laptop Showcase Image Mockup */}
+                <div className="mt-auto w-full relative flex flex-col items-center">
+                  <div className="w-[94%] h-[190px] relative rounded-t-xl overflow-hidden shadow-2xl">
+                    <Image
+                      src={item.img}
+                      alt={`${item.title} Mockup`}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
+                  <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
