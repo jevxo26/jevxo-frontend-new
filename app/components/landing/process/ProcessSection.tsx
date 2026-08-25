@@ -56,6 +56,14 @@ const steps = [
     img: "/Jevxo/06.png",
     bg: "bg-[#f0fdf4]",
   },
+  {
+    step: "Step 07",
+    title: "Final Delivery",
+    description: "Dev handoff, documentation, organize Figma file.",
+    icon: "/DesignProcess/Final Delivery.png",
+    img: "/Jevxo/07.png",
+    bg: "bg-[#eef9ff]",
+  },
 ];
 
 export default function ProcessSection() {
@@ -68,48 +76,42 @@ export default function ProcessSection() {
     const ctx = gsap.context(() => {
       if (!sectionRef.current || !trackRef.current) return;
 
-      const getScrollAmount = () => {
-        const trackWidth = trackRef.current?.scrollWidth || 0;
-        const containerWidth = trackRef.current?.parentElement?.offsetWidth || window.innerWidth;
-        return trackWidth - containerWidth + 80;
-      };
+      const cards = gsap.utils.toArray<HTMLElement>(".process-card");
+      if (cards.length === 0) return;
 
-      // Entrance reveal for Process Cards from right to left
-      gsap.fromTo(
-        ".process-card",
-        { opacity: 0, x: 45, scale: 0.96, filter: "blur(2px)" },
-        {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 0.45,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: trackRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        }
-      );
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 24; // gap-6 in Tailwind = 24px
+      // Exposed width of each card when stacked under the next card
+      const visibleWidth = Math.max(85, Math.round(cardWidth * 0.33));
+      const stepDistance = cardWidth + gap - visibleWidth;
 
-      // Horizontal Scroll Pinning Animation (Same as OurService)
-      gsap.to(trackRef.current, {
-        x: () => -getScrollAmount(),
-        ease: "none",
+      // Smooth Timeline for card sliding & stacking on scroll
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
           pinSpacing: true,
-          scrub: 1,
+          scrub: 1.2, // Smooth momentum scrub
           start: "top top",
-          end: () => `+=${getScrollAmount()}`,
+          end: () => `+=${(cards.length - 1) * 420}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
         },
       });
+
+      // Slide each card smoothly over the previous card one by one
+      for (let i = 1; i < cards.length; i++) {
+        const targetX = -i * stepDistance;
+        tl.to(
+          cards[i],
+          {
+            x: targetX,
+            ease: "power1.inOut",
+            duration: 1,
+          },
+          (i - 1) * 0.9
+        );
+      }
     }, sectionRef);
 
     const timer = setTimeout(() => {
@@ -123,35 +125,88 @@ export default function ProcessSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="process" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
-      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
+    <section
+      ref={sectionRef}
+      id="process"
+      className="relative z-10 w-full py-12 md:py-16 flex justify-center overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(circle at 16% 18%, #1d4ed8 0%, #17226b 30%, #0b1436 60%, #030814 100%)",
+      }}
+    >
+      {/* Local keyframes for the ambient animated background + stacked-card hover priority */}
+      <style>{`
+        @keyframes floatBlobOne {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          50% { transform: translate(50px, 35px) scale(1.18); }
+        }
+        @keyframes floatBlobTwo {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          50% { transform: translate(-45px, -35px) scale(1.12); }
+        }
+        @keyframes floatBlobThree {
+          0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.22; }
+          50% { transform: translate(20px, -25px) scale(1.08); opacity: 0.32; }
+        }
+        @keyframes gridDrift {
+          0% { background-position: 0px 0px, 0px 0px; }
+          100% { background-position: 60px 60px, 60px 60px; }
+        }
+        .process-card:hover {
+          z-index: 50 !important;
+        }
+      `}</style>
+
+      {/* Ambient animated glow blobs */}
+      <div
+        className="absolute -top-32 -left-16 w-[440px] h-[440px] rounded-full bg-[#2563eb] opacity-30 blur-[110px] pointer-events-none z-0"
+        style={{ animation: "floatBlobOne 14s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute top-1/4 -right-20 w-[380px] h-[380px] rounded-full bg-[#4f46e5] opacity-25 blur-[100px] pointer-events-none z-0"
+        style={{ animation: "floatBlobTwo 18s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute bottom-0 left-1/3 w-[320px] h-[320px] rounded-full bg-[#3b82f6] opacity-20 blur-[100px] pointer-events-none z-0"
+        style={{ animation: "floatBlobThree 16s ease-in-out infinite" }}
+      />
+
+      {/* Grid pattern overlay (slow drift) */}
+      <div
+        className="absolute inset-0 opacity-20 pointer-events-none z-0 bg-[length:60px_60px]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255, 255, 255, 0.25) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 1px, transparent 1px)",
+          animation: "gridDrift 20s linear infinite",
+        }}
+      />
+
+      <div className="relative z-10 w-full max-w-[95%] lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         
         {/* Header Area */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12 md:mb-16 w-full">
           {/* Left Title Area */}
-          <div className="flex flex-col items-start gap-3.5 lg:w-1/2">
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+          <div className="flex flex-col items-start gap-4 lg:w-1/2">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 rounded-full text-xs font-medium tracking-wide inline-flex items-center gap-2 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#3b82f6]" />
               Design Process
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">How We Turn Your</span>
-              <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Vision Into</span> <span className="font-medium text-[#0f172a]">Reality.</span>
-              </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-bold text-white tracking-tight leading-[1.12]">
+              A Faster Way To Design <br className="hidden sm:block" />
+              And Build <span className="font-serif italic font-normal text-white">SaaS Products.</span>
             </h2>
           </div>
           
           {/* Right Description Text */}
-          <div className="md:w-[42%] pt-1 md:pt-6">
-            <p className="text-xs sm:text-sm md:text-base text-[#64748b] font-normal leading-relaxed">
+          <div className="lg:w-[45%] pt-1">
+            <p className="text-sm sm:text-base text-gray-300 font-normal leading-relaxed">
               We simplify the product creation process for SaaS companies by combining strategy, design, and development into one efficient workflow focused on faster launches.
             </p>
           </div>
         </div>
 
-        {/* Dynamic Horizontal Pinned Track matching OurService style */}
-        <div className="w-full overflow-hidden">
+        {/* Dynamic Horizontal Pinned Track — smooth 1/3 card stacking on scroll */}
+        <div className="w-full py-4 ">
           <div 
             ref={trackRef}
             className="flex flex-nowrap gap-6 w-max min-w-full"
@@ -159,55 +214,36 @@ export default function ProcessSection() {
             {steps.map((item, index) => (
               <div 
                 key={index}
-                className={`process-card w-[300px] sm:w-[340px] lg:w-[360px] shrink-0 rounded-[36px] ${item.bg} pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                style={{ zIndex: index + 1 }}
+                className="process-card relative w-[270px] sm:w-[290px] lg:w-[310px] shrink-0 rounded-[28px] bg-white p-6 sm:p-7 flex flex-col items-start text-left h-[370px] sm:h-[390px] overflow-hidden will-change-transform shadow-[-12px_0_30px_rgba(0,0,0,0.15),0_20px_45px_rgba(0,0,0,0.25)] hover:-translate-y-2.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] transition-shadow duration-300"
               >
-                {/* Header Row: Icon & Step Badge */}
-                <div className="flex items-center justify-between w-full mb-3 px-2">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-2xs border border-gray-200/80 p-2">
+                {/* Icon Box */}
+                <div className="mb-6">
+                  <div className="w-14 h-14 flex items-center justify-center bg-gray-50/80 rounded-2xl border border-gray-100 p-2 shadow-2xs">
                     <Image
                       src={item.icon}
                       alt={`${item.title} icon`}
-                      width={22}
-                      height={22}
+                      width={44}
+                      height={44}
                       className="object-contain"
                     />
                   </div>
-                  <span className="bg-white/90 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-gray-200/80">
-                    {item.step}
-                  </span>
                 </div>
 
-                <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
+                {/* Step Badge */}
+                <span className="bg-[#f1f5f9] text-[#475569] px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide mb-3">
+                  {item.step}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight mb-2.5">
                   {item.title}
                 </h3>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-5 font-normal max-w-[270px] min-h-[44px]">
+
+                {/* Description */}
+                <p className="text-[#64748b] text-xs sm:text-sm leading-relaxed font-normal">
                   {item.description}
                 </p>
-                
-                {/* Pill Action Button */}
-                <Link 
-                  href="#contact"
-                  className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-5 group"
-                >
-                  <span className="mr-3 text-xs tracking-tight">Explore Step</span>
-                  <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
-                  </div>
-                </Link>
-
-                {/* Laptop Showcase Image Mockup */}
-                <div className="mt-auto w-full relative flex flex-col items-center">
-                  <div className="w-[94%] h-[190px] relative rounded-t-xl overflow-hidden shadow-2xl">
-                    <Image
-                      src={item.img}
-                      alt={`${item.title} Mockup`}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                  <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
-                  <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
-                </div>
               </div>
             ))}
           </div>

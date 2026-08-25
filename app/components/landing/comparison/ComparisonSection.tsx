@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Check, X } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Check, X, Sparkles } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,96 +11,73 @@ gsap.registerPlugin(ScrollTrigger);
 
 const comparisonData = [
   {
-    feature: "Project Management",
-    jevxo: { text: "Senior Specialist only", check: true },
-    others: { text: "Junior Designers, Lose Quality", check: false },
-    freelancer: { text: "Skill Varies Widely Always", check: false }
+    feature: "Design talent",
+    jevxo: { text: "Senior specialists only", check: true },
+    others: { text: "Junior designers, inconsistent quality.", check: false },
+    freelancer: { text: "Skill varies widely always", check: true }
   },
   {
-    feature: "Strategic Thinking",
-    jevxo: { text: "Problem-solving approach", check: true },
-    others: { text: "Focuses Mainly On User Research And Planning", check: false },
-    freelancer: { text: "Client Handles Strategy Independently", check: false }
+    feature: "Project management",
+    jevxo: { text: "Dedicated PM plus Slack", check: true },
+    others: { text: "Email only, slow responses", check: false },
+    freelancer: { text: "You manage everything yourself", check: false }
   },
   {
-    feature: "Premium UI Design",
-    jevxo: { text: "First draft within 48 hours", check: true },
-    others: { text: "Usually Requires 2–3 Weeks", check: false },
-    freelancer: { text: "Often Limited To One Task At A Time", check: false }
+    feature: "Speed & flexibility",
+    jevxo: { text: "48-hour first drafts guaranteed", check: true },
+    others: { text: "2-3 weeks minimum wait", check: false },
+    freelancer: { text: "One task only, limited", check: false }
   },
   {
     feature: "Cost efficiency",
-    jevxo: { text: "Fixed monthly rate with unlimited requests", check: true },
-    others: { text: "Hidden Costs And Scope Creep Are Common", check: false },
-    freelancer: { text: "Hourly Billing Becomes Expensive Over Time", check: true }
+    jevxo: { text: "Fixed rate, unlimited requests", check: true },
+    others: { text: "Hidden fees, scope creep", check: false },
+    freelancer: { text: "Hourly rates add up", check: true }
   },
   {
-    feature: "Flexibility",
-    jevxo: { text: "High flexibility with scalable support", check: true },
-    others: { text: "Moderate Flexibility", check: false },
-    freelancer: { text: "Depends On Workload And Availability", check: false }
+    feature: "Total cost",
+    jevxo: { text: "$-$$", check: true },
+    others: { text: "$$$+", check: false },
+    freelancer: { text: "$-$$$", check: false }
   },
   {
-    feature: "Communication",
+    feature: "Availability",
     jevxo: { text: "Always on, never ghosting", check: true },
-    others: { text: "Overbooked, Long Queue Times", check: false },
-    freelancer: { text: "Delays During Vacations Or Busy Periods", check: false }
+    others: { text: "Overbooked, long queue times", check: false },
+    freelancer: { text: "Vacations cause project delays", check: false }
   },
   {
-    feature: "Develop & Launch",
-    jevxo: { text: "Fast-moving startup partner", check: true },
-    others: { text: "Best For Enterprise Companies With Large Budgets", check: true },
-    freelancer: { text: "Suitable Mainly For One-Off Small Projects", check: true }
+    feature: "Ideal for",
+    jevxo: { text: "Fast-moving ambitious startups", check: true },
+    others: { text: "Enterprise with big budgets", check: true },
+    freelancer: { text: "One-off small projects only", check: true }
   }
 ];
 
 export default function ComparisonSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeMobileTab, setActiveMobileTab] = useState<"jevxo" | "others" | "freelancer">("jevxo");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Ultra-smooth GSAP Timeline for Header & Table Cells with bi-directional scroll support (top-to-bottom and bottom-to-top)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 88%",
-          end: "bottom 10%",
-          toggleActions: "play reverse play reverse",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
         },
       });
 
-      // Animate Header Cells first with ultra-fast 0.2s blur clear
       tl.fromTo(
-        ".comparison-header-cell",
-        { opacity: 0, y: 15, filter: "blur(2px)" },
+        ".comparison-animate",
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: 0.35,
-          stagger: 0.04,
+          duration: 0.5,
+          stagger: 0.05,
           ease: "power2.out",
         }
-      )
-      // Animate Individual Table Cells sequentially across rows & columns
-      .fromTo(
-        ".comparison-cell",
-        { opacity: 0, y: 12, filter: "blur(3px)", scale: 0.99 },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          scale: 1,
-          duration: 0.35,
-          stagger: {
-            amount: 0.4,
-            grid: [7, 4],
-            from: "start",
-            ease: "sine.out",
-          },
-          ease: "power2.out",
-        },
-        "-=0.2"
       );
     }, sectionRef);
 
@@ -107,115 +85,210 @@ export default function ComparisonSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="why-choose-us" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
-      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
+    <section 
+      ref={sectionRef} 
+      id="why-choose-us" 
+      className="relative z-10 w-full py-14 sm:py-20 bg-[#f8fafc] flex justify-center border-t border-gray-100 overflow-hidden"
+    >
+      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col">
         
-        {/* Top Header Row */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12 md:mb-16 w-full">
-          {/* Left Title & Badge */}
-          <div className="flex flex-col items-start gap-4">
-            {/* Pill Badge matching AI Powered Design style */}
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14 w-full">
+          <div className="flex flex-col items-start gap-3.5 max-w-2xl">
+            <div className="bg-blue-50 border border-blue-200/80 text-[#2563eb] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse" />
               Why Choose Us
             </div>
             
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">Why Leading Brands</span>
-              <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Choose Us Over</span> <span className="font-medium text-[#0f172a]">Others.</span>
-              </span>
+            <h2 className="text-2xl sm:text-4xl md:text-[40px] font-bold text-[#0f172a] tracking-tight leading-[1.2]">
+              Why Leading Brands <br className="hidden sm:block" />
+              <span className="font-serif italic font-normal text-[#1e293b]">Choose Us Over</span> <span className="font-bold text-[#2563eb]">Others.</span>
             </h2>
           </div>
 
-          {/* Right Request Free Audit CTA Button */}
-          <div className="lg:pb-2">
+          <div className="shrink-0">
             <Link
               href="#contact"
-              className="inline-flex items-center gap-3.5 bg-gradient-to-r from-[#1658fe] to-[#004cf6] hover:from-[#004cf6] hover:to-[#1658fe] text-white pl-6 pr-2 py-2 rounded-full font-normal text-[15px] sm:text-base border border-blue-400/30 shadow-[0_8px_25px_rgba(22,88,254,0.35)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] group"
+              className="inline-flex items-center gap-3 bg-[#1d4ed8] hover:bg-[#1e40af] text-white pl-6 pr-2.5 py-2.5 rounded-full font-medium text-sm sm:text-base shadow-lg shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] group"
             >
-              <span className="tracking-tight">Request Free Audit</span>
-              <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-md group-hover:rotate-45 transition-transform duration-300">
-                <ArrowUpRight className="w-5 h-5 text-black stroke-[2.2]" />
+              <span>Request Free Audit</span>
+              <div className="w-8 h-8 rounded-full bg-white text-[#1d4ed8] flex items-center justify-center shrink-0 group-hover:rotate-45 transition-transform duration-300">
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </div>
             </Link>
           </div>
         </div>
 
-        {/* Live Animated Gradient Border Table Outer Container */}
-        <div className="relative p-[2.5px] rounded-[10px] bg-gradient-to-r from-[#2563eb] via-[#ec4899] via-[#f43f5e] via-[#3b82f6] to-[#2563eb] bg-[length:200%_200%] animate-[gradient_6s_linear_infinite] shadow-[0_12px_45px_rgba(37,99,235,0.12)] transition-all duration-300">
-          
-          {/* Inner Table Card */}
-          <div className="w-full bg-white rounded-[14px] overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[760px]">
-                {/* Table Header Row */}
-                <thead>
-                  <tr className="border-b border-gray-200/70 text-[#0f172a]">
-                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-[#0f172a] border-r border-gray-100/60">Features</th>
-                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Jevxo Team</th>
-                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a] border-r border-gray-100/60">Others Agency</th>
-                    <th className="comparison-header-cell py-6 px-8 text-lg font-bold w-[25%] text-center text-[#0f172a]">Freelancer</th>
-                  </tr>
-                </thead>
+        {/* Mobile View Toggle Switch (visible on mobile screens < 640px) */}
+        <div className="sm:hidden mb-6 w-full flex bg-gray-200/70 p-1 rounded-xl gap-1">
+          <button
+            onClick={() => setActiveMobileTab("jevxo")}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
+              activeMobileTab === "jevxo"
+                ? "bg-[#1d4ed8] text-white shadow-sm"
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
+            Jevxo Team
+          </button>
+          <button
+            onClick={() => setActiveMobileTab("others")}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
+              activeMobileTab === "others"
+                ? "bg-[#1d4ed8] text-white shadow-sm"
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
+            Other Agencies
+          </button>
+          <button
+            onClick={() => setActiveMobileTab("freelancer")}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
+              activeMobileTab === "freelancer"
+                ? "bg-[#1d4ed8] text-white shadow-sm"
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
+            Freelancers
+          </button>
+        </div>
 
-                {/* Table Body Rows */}
-                <tbody className="divide-y divide-gray-100/80 text-[14.5px]">
-                  {comparisonData.map((row, index) => (
-                    <tr key={index} className="hover:bg-gray-50/60 transition-colors duration-200">
-                      {/* Feature Name */}
-                      <td className="comparison-cell py-5 px-8 font-bold text-[#0f172a] text-base border-r border-gray-100/60">
-                        {row.feature}
-                      </td>
+        {/* Mobile Stacked Card View (< 640px) */}
+        <div className="block sm:hidden space-y-3.5 mb-4">
+          {comparisonData.map((row, index) => {
+            const data = activeMobileTab === "jevxo" 
+              ? row.jevxo 
+              : activeMobileTab === "others" 
+              ? row.others 
+              : row.freelancer;
 
-                      {/* Jevxo Team Column */}
-                      <td className="comparison-cell py-5 px-8 text-[#0f172a] border-r border-gray-100/60">
-                        <div className="flex items-center gap-3 justify-start sm:justify-start">
-                          <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
-                            <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+            return (
+              <div 
+                key={index} 
+                className={`comparison-animate p-4 rounded-2xl border transition-all ${
+                  activeMobileTab === "jevxo" 
+                    ? "bg-white border-blue-200 shadow-md shadow-blue-500/5 ring-1 ring-blue-500/10" 
+                    : "bg-white border-gray-200/80 shadow-xs"
+                }`}
+              >
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  {row.feature}
+                </div>
+                <div className="flex items-start gap-3">
+                  {data.check ? (
+                    <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                  ) : (
+                    <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                  )}
+                  <span className={`text-sm leading-snug ${activeMobileTab === "jevxo" ? "font-semibold text-gray-900" : "font-medium text-gray-700"}`}>
+                    {data.text}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop & Tablet Table View (hidden on mobile < 640px, or scrollable on tablet) */}
+        <div className="hidden sm:block relative rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div className="overflow-x-auto scrollbar-thin">
+            <table className="w-full text-left border-collapse min-w-[700px]">
+              
+              {/* Table Header */}
+              <thead>
+                <tr className="border-b border-gray-100 text-[#0f172a] text-sm sm:text-base">
+                  <th className="py-5 px-6 sm:px-8 font-bold w-[28%] text-gray-900 border-r border-gray-100">
+                    Overview
+                  </th>
+                  
+                  {/* Jevxo Column Header - Highlighted */}
+                  <th className="py-5 px-6 sm:px-8 font-bold w-[26%] bg-[#f8fafc] border-r border-gray-100 relative">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-[#1d4ed8] text-white flex items-center justify-center text-xs font-bold shadow-xs">
+                        J
+                      </div>
+                      <span className="text-[#0f172a] font-bold text-base sm:text-lg">Jevxo Team</span>
+                    </div>
+                  </th>
+
+                  <th className="py-5 px-6 sm:px-8 font-semibold w-[23%] text-gray-700 text-center sm:text-left border-r border-gray-100">
+                    Other Agencies
+                  </th>
+
+                  <th className="py-5 px-6 sm:px-8 font-semibold w-[23%] text-gray-700 text-center sm:text-left">
+                    Freelancers
+                  </th>
+                </tr>
+              </thead>
+
+              {/* Table Body */}
+              <tbody className="divide-y divide-gray-100 text-xs sm:text-sm">
+                {comparisonData.map((row, index) => (
+                  <tr key={index} className="comparison-animate hover:bg-gray-50/50 transition-colors">
+                    
+                    {/* Feature Title */}
+                    <td className="py-4 sm:py-5 px-6 sm:px-8 font-semibold text-gray-900 border-r border-gray-100">
+                      {row.feature}
+                    </td>
+
+                    {/* Jevxo Column Data - Highlighted */}
+                    <td className="py-4 sm:py-5 px-6 sm:px-8 bg-[#f8fafc] border-r border-gray-100">
+                      <div className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                        <span className="font-semibold text-gray-900 leading-snug">
+                          {row.jevxo.text}
+                        </span>
+                      </div>
+                    </td>
+
+                    {/* Other Agencies Data */}
+                    <td className="py-4 sm:py-5 px-6 sm:px-8 border-r border-gray-100 text-gray-600">
+                      <div className="flex items-start gap-2.5">
+                        {row.others.check ? (
+                          <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-3.5 h-3.5 stroke-[3]" />
                           </div>
-                          <span className="font-medium text-[#1e293b] text-sm sm:text-[15px]">{row.jevxo.text}</span>
-                        </div>
-                      </td>
+                        ) : (
+                          <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0 mt-0.5">
+                            <X className="w-3.5 h-3.5 stroke-[3]" />
+                          </div>
+                        )}
+                        <span className="font-normal text-gray-600 leading-snug">
+                          {row.others.text}
+                        </span>
+                      </div>
+                    </td>
 
-                      {/* Others Agency Column */}
-                      <td className="comparison-cell py-5 px-8 text-[#334155] border-r border-gray-100/60">
-                        <div className="flex items-center gap-3">
-                          {row.others.check ? (
-                            <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
-                              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-                            </div>
-                          ) : (
-                            <div className="w-6 h-6 rounded-full bg-[#ffd4d8] text-[#f43f5e] flex items-center justify-center shrink-0">
-                              <X className="w-3.5 h-3.5 stroke-[2.5]" />
-                            </div>
-                          )}
-                          <span className="text-[#334155] text-sm sm:text-[15px] font-normal">{row.others.text}</span>
-                        </div>
-                      </td>
+                    {/* Freelancers Data */}
+                    <td className="py-4 sm:py-5 px-6 sm:px-8 text-gray-600">
+                      <div className="flex items-start gap-2.5">
+                        {row.freelancer.check ? (
+                          <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                          </div>
+                        ) : (
+                          <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0 mt-0.5">
+                            <X className="w-3.5 h-3.5 stroke-[3]" />
+                          </div>
+                        )}
+                        <span className="font-normal text-gray-600 leading-snug">
+                          {row.freelancer.text}
+                        </span>
+                      </div>
+                    </td>
 
-                      {/* Freelancer Column */}
-                      <td className="comparison-cell py-5 px-8 text-[#334155]">
-                        <div className="flex items-center gap-3">
-                          {row.freelancer.check ? (
-                            <div className="w-6 h-6 rounded-full bg-[#638fff] text-white flex items-center justify-center shrink-0 shadow-xs">
-                              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-                            </div>
-                          ) : (
-                            <div className="w-6 h-6 rounded-full bg-[#ffd4d8] text-[#f43f5e] flex items-center justify-center shrink-0">
-                              <X className="w-3.5 h-3.5 stroke-[2.5]" />
-                            </div>
-                          )}
-                          <span className="text-[#334155] text-sm sm:text-[15px] font-normal">{row.freelancer.text}</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </tr>
+                ))}
+              </tbody>
+
+            </table>
           </div>
-
         </div>
 
       </div>

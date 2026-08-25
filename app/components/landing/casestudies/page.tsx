@@ -101,21 +101,40 @@ export default function CaseStudies() {
     if (isLoading || caseStudies.length === 0) return;
 
     const ctx = gsap.context(() => {
-      // Ultra-smooth Staggered Fade Up 1 by 1 animation (card 1, 2, 3, 4 with 1s gap)
+      // Smooth entrance stagger reveal for cards
       gsap.fromTo(
         ".case-study-card",
-        { opacity: 0, y: 40, scale: 0.97, filter: "blur(6px)" },
+        { opacity: 0, y: 50, scale: 0.96, filter: "blur(4px)" },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 1.1,
-          stagger: 1.0, // 1-second interval sequence
-          ease: "power3.out", // Extra silky smooth deceleration
+          duration: 0.9,
+          stagger: 0.2, // Fast responsive sequence
+          ease: "power3.out",
           scrollTrigger: {
             trigger: ".case-studies-grid",
             start: "top 82%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
+
+      // Staggered text animation inside cards
+      gsap.fromTo(
+        ".case-study-card h3, .case-study-card p",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".case-studies-grid",
+            start: "top 80%",
             toggleActions: "play none none none",
             once: true,
           },
@@ -179,13 +198,14 @@ export default function CaseStudies() {
         <div className="case-studies-grid grid grid-cols-1 md:grid-cols-2 gap-8">
           {caseStudies.map((study) => {
             const photoSrc = getValidImageSrc(study.photoUrl);
+            const detailUrl = `/casestudies/${study.slug || study.id}`;
             return (
               <div 
                 key={study.id}
                 className="case-card case-study-card bg-white rounded-[24px] p-5 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 group"
               >
                 {/* Image Banner */}
-                <div className={`w-full h-[320px] sm:h-[380px] rounded-[20px] bg-[#0a0a0a] mb-7 overflow-hidden relative flex items-center justify-center shadow-md`}>
+                <Link href={detailUrl} className="w-full h-[320px] sm:h-[380px] rounded-[20px] bg-[#0a0a0a] mb-7 overflow-hidden relative flex items-center justify-center shadow-md block">
                   {photoSrc ? (
                     <img 
                       src={photoSrc} 
@@ -195,26 +215,30 @@ export default function CaseStudies() {
                   ) : (
                     <div className="text-white">No Image</div>
                   )}
-                </div>
+                </Link>
             
                 {/* Card Body */}
                 <div className="px-2 flex flex-col flex-1">
-                  <h3 className="text-[#0f172a] text-2xl sm:text-3xl font-semibold tracking-tight mb-3 leading-snug">
-                    {study.title}
-                  </h3>
-                  <p className="text-[#64748b] text-sm sm:text-base leading-relaxed mb-7 font-normal">
+                  <Link href={detailUrl}>
+                    <h3 className="text-[#0f172a] text-2xl sm:text-3xl font-semibold tracking-tight mb-3 leading-snug transition-colors duration-300 group-hover:text-[#3b82f6]">
+                      {study.title}
+                    </h3>
+                  </Link>
+                  <p className="text-[#64748b] text-sm sm:text-base leading-relaxed mb-7 font-normal transition-opacity duration-300 group-hover:opacity-90">
                     {study.shortDescription || study.fullDescription}
                   </p>
                   
                   {/* Action Capsule Button */}
                   <div className="mt-auto pb-1">
                     <Link 
-                      href={study.projectLink || `/casestudies/${study.slug || study.id}`}
-                      className="inline-flex items-center bg-black hover:bg-neutral-900 text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm group/btn"
+                      href={detailUrl}
+                      className="relative inline-flex items-center bg-[#0f172a] hover:bg-[#3b82f6] text-white rounded-full pl-6 pr-1.5 py-1.5 text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-blue-500/25 group/btn hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
                     >
-                      <span className="mr-3 text-xs tracking-tight">Open Project</span>
-                      <div className="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center font-bold">
-                        <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.5]" />
+                      <span className="mr-3 text-xs tracking-wide transition-transform duration-300 group-hover/btn:translate-x-0.5">
+                        Open Project
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-white/10 group-hover/btn:bg-white text-white group-hover/btn:text-[#3b82f6] flex items-center justify-center font-bold transition-all duration-300 group-hover/btn:scale-110 group-hover/btn:rotate-45 shadow-sm">
+                        <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                       </div>
                     </Link>
                   </div>
