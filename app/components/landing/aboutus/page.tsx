@@ -32,7 +32,7 @@ export default function AboutUs() {
   }, []);
 
   const fullText =
-    "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. At Jevxo, we blend creativity with cutting-edge technology to craft bespoke digital experiences that truly resonate with users, elevate brand equity, and drive sustainable business growth across global markets. We partner with ambitious brands to transform complex ideas into seamless software products.";
+    "As a leading UX/UI Design & software Development Agency, we prioritize user-centric design in every project. Our commitment to established design principles and best practices ensures that our solutions are not only intuitive and user-friendly design but also aesthetically pleasing and functionally exceptional. At Jevxo, we blend creativity with technology to craft digital experiences that truly resonate with users and drive business success.";
 
   const words = fullText.split(" ");
 
@@ -193,7 +193,7 @@ export default function AboutUs() {
           smooth blue -> indigo -> pink loop everywhere, every time */}
       <style>{`
         .jevxo-gradient-border {
-          background: conic-gradient(from 0deg, #3b82f6, #6366f1, #ec4899, #3b82f6);
+          background: conic-gradient(from 0deg, #2846F6, #EE4857, #FFFFFF, #003FEA);
           animation: jevxo-border-spin 6s linear infinite;
         }
         @keyframes jevxo-border-spin {
@@ -211,7 +211,8 @@ export default function AboutUs() {
         {/* Scroll Reveal Main Paragraph — premium blur + lift reveal per word */}
         <p
           ref={textRef}
-          className="text-xl  sm:text-2xl md:text-3xl lg:text-[28px] leading-[1.45] font-normal tracking-tight text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
+          className="text-2xl sm:text-3xl md:text-[32px] leading-[1.3] font-normal tracking-[-1px] text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
+          style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
         >
           {words.map((word, i) => {
             const targetProgress = (i + 1) / words.length;
@@ -223,11 +224,10 @@ export default function AboutUs() {
                   transitionDelay: `${Math.min(i * 6, 200)}ms`,
                   transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
-                className={`inline-block mr-[0.25em] transition-all duration-500 ${
-                  isRevealed
-                    ? "text-[#1E1E1E] font-normal opacity-100 blur-none translate-y-0"
-                    : "text-gray-400 font-normal opacity-40 blur-[3px] translate-y-1"
-                }`}
+                className={`inline-block mr-[0.25em] transition-all duration-500 ${isRevealed
+                  ? "text-[#1E1E1E] font-normal opacity-100 blur-none translate-y-0"
+                  : "text-gray-400 font-normal opacity-40 blur-[3px] translate-y-1"
+                  }`}
               >
                 {word}
               </span>
@@ -241,10 +241,10 @@ export default function AboutUs() {
           <div className="about-card relative rounded-xl p-[2px] overflow-hidden shadow-sm">
             <div className="absolute inset-[-200%] jevxo-gradient-border" />
             <div className="relative bg-[#f8f9fa] rounded-xl p-7 sm:p-9 h-full flex flex-col justify-start z-10">
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
+              <h3 className="text-[32px] font-medium font-helvetica text-black/70 leading-normal tracking-[-0.64px] mb-4">
                 Our Mission
               </h3>
-              <p className="text-[#64748b] text-base sm:text-lg leading-relaxed font-normal">
+              <p className="text-black/50 text-[20px] leading-[30px] font-normal" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
                 We blend strategy, creativity, production, media and AI technology to transform ambition into execution. From breaking silos to building scalable systems, we design growth that is both meaningful and measurable.
               </p>
             </div>
@@ -254,10 +254,10 @@ export default function AboutUs() {
           <div className="about-card relative rounded-xl p-[2px] overflow-hidden ">
             <div className="absolute inset-[-200%] jevxo-gradient-border" />
             <div className="relative bg-[#f8f9fa] rounded-xl p-7 sm:p-9 h-full flex flex-col justify-start z-10">
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#252830] mb-4 tracking-tight">
+              <h3 className="text-[32px] font-medium font-helvetica text-black/70 leading-normal tracking-[-0.64px] mb-4">
                 Our Vision
               </h3>
-              <p className="text-[#64748b] text-base sm:text-lg leading-relaxed font-normal">
+              <p className="text-black/50 text-[20px] leading-[30px] font-normal" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
                 We believe the future belongs to brands that move first, think differently, and build beyond conventions. Our vision: to shape that future by transforming how brands compete, connect, and endure, across every sectors.
               </p>
             </div>
@@ -271,10 +271,10 @@ export default function AboutUs() {
         >
           {/* Stat 1 */}
           <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
-            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl md:text-[80px] font-light font-helvetica text-[#1D1D1D] leading-[100px]">
               {countDeliveries}+
             </span>
-            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
+            <span className="mt-3 text-[#1D1D1D] font-helvetica text-[20px] font-normal leading-[38px]">
               Project Deliveries
             </span>
             <div className="about-divider hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
@@ -282,10 +282,10 @@ export default function AboutUs() {
 
           {/* Stat 2 */}
           <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
-            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl md:text-[80px] font-light font-helvetica text-[#1D1D1D] leading-[100px]">
               {countExperts}+
             </span>
-            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
+            <span className="mt-3 text-[#1D1D1D] font-helvetica text-[20px] font-normal leading-[38px]">
               In-House Experts
             </span>
             <div className="about-divider hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
@@ -293,10 +293,10 @@ export default function AboutUs() {
 
           {/* Stat 3 */}
           <div className="about-stat flex flex-col items-center text-center relative py-2 px-4">
-            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl md:text-[80px] font-light font-helvetica text-[#1D1D1D] leading-[100px]">
               {countClients}%
             </span>
-            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
+            <span className="mt-3 text-[#1D1D1D] font-helvetica text-[20px] font-normal leading-[38px]">
               Satisfied Clients
             </span>
             <div className="about-divider hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-16 sm:h-20 bg-[#3b82f6]/40" />
@@ -304,10 +304,10 @@ export default function AboutUs() {
 
           {/* Stat 4 */}
           <div className="about-stat flex flex-col items-center text-center py-2 px-4">
-            <span className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#1E1E1E] tracking-tight leading-none">
+            <span className="text-5xl md:text-[80px] font-light font-helvetica text-[#1D1D1D] leading-[100px]">
               {countPartners}+
             </span>
-            <span className="text-gray-600 mt-3 font-medium text-sm sm:text-base">
+            <span className="mt-3 text-[#1D1D1D] font-helvetica text-[20px] font-normal leading-[38px]">
               Business Partner
             </span>
           </div>

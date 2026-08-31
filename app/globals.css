@@ -12,6 +12,9 @@
   --font-display: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif: var(--font-dm-serif), DM Serif Display, Georgia, serif;
   --font-mono: var(--font-geist-mono);
+  --font-dm: var(--font-dm-serif), "DM Serif Display", Georgia, serif;
+  --font-helvetica: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-manrope: var(--font-manrope), "Manrope", sans-serif;
   --container-8xl: 90rem;
 }
 
@@ -68,13 +71,13 @@ body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 75s linear infinite;
+  animation: marquee 120s linear infinite;
 }
 
 .animate-marquee-reverse {
   display: flex;
   width: max-content;
-  animation: marquee-reverse 75s linear infinite;
+  animation: marquee-reverse 120s linear infinite;
 }
 
 .animate-marquee:hover,

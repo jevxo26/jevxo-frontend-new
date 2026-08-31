@@ -19,12 +19,18 @@ export default function Home() {
   return (
     // owiejaf9wejf9u jw3eu8heu8r
     <div className="relative min-h-screen w-full bg-[#F2F2F2] text-[#0a0c16] flex flex-col justify-between overflow-hidden">
-      
-      
+
+
       <Hero />
-      <Partners />
+
+      <div className="py-[140px]">
+        <Partners />
+      </div>
       <AboutUs />
-      <OurService />
+
+      <div className="py-[140px]">
+        <OurService />
+      </div>
       <CaseStudies />
       <ProcessSection />
       <AiSection />

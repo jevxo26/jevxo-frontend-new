@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Bai_Jamjuree, DM_Serif_Display } from "next/font/google";
+import { Geist, Geist_Mono, Bai_Jamjuree, DM_Serif_Display, Manrope } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,6 +23,12 @@ const dmSerif = DM_Serif_Display({
   style: ["normal", "italic"],
   subsets: ["latin"],
   variable: "--font-dm-serif",
+});
+
+const manrope = Manrope({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-manrope",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jevxo.com";
@@ -139,7 +145,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${baiJamjuree.variable} ${dmSerif.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${baiJamjuree.variable} ${dmSerif.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
         <script
