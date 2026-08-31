@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const GRID_COLS = 24;
 const GRID_ROWS = 16;
 const gridCells = Array.from({ length: GRID_COLS * GRID_ROWS });
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   }),
 };
 
