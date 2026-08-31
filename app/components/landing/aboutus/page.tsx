@@ -203,7 +203,10 @@ export default function AboutUs() {
 
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-start">
         {/* About Us Pill */}
-        <div className="bg-[#E9F0FF] text-[#1B64FF] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 border border-blue-100 mb-6 sm:mb-8">
+        <div 
+          className="text-[#252323] text-[14px] font-normal leading-normal inline-flex items-center h-[40px] pt-[9px] pb-[10px] pr-[25px] pl-[20px] gap-2 rounded-full border border-[rgba(0,63,234,0.30)] backdrop-blur-[2.5px] mb-6 sm:mb-8"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
           <span className="w-2 h-2 rounded-full bg-[#1B64FF] animate-pulse" />
           About Us
         </div>

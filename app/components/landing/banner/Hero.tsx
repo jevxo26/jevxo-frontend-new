@@ -53,7 +53,7 @@ export default function Hero() {
           </div>
 
           {/* Top White Area Shadow Boxes (Right) */}
-          <div className="absolute top-[75px] sm:top-[120px] left-[225px] sm:left-[720px] md:left-[840px] lg:left-[960px] xl:left-[1080px]">
+          <div className="absolute top-[75px] sm:top-[120px] left-[225px] sm:left-[480px] md:left-[600px] lg:left-[840px] xl:left-[1080px] 2xl:left-[1320px]">
             <div className="absolute top-[2px] left-[77px] sm:left-[122px] w-[73px] h-[73px] sm:w-[118px] sm:h-[118px] bg-[#DEDEDE4D]" />
             <div className="absolute top-[77px] sm:top-[122px] left-[2px] w-[73px] h-[73px] sm:w-[118px] sm:h-[118px] bg-[#DEDEDE4D]" />
           </div>
@@ -66,7 +66,7 @@ export default function Hero() {
           </div>
 
           {/* Right Side Shadow Boxes */}
-          <div className="absolute top-[300px] sm:top-[480px] left-[225px] sm:left-[720px] md:left-[840px] lg:left-[960px] xl:left-[1080px]">
+          <div className="absolute top-[300px] sm:top-[480px] left-[225px] sm:left-[480px] md:left-[600px] lg:left-[840px] xl:left-[1080px] 2xl:left-[1320px]">
             <div className="absolute top-[2px] left-[77px] sm:left-[122px] w-[73px] h-[73px] sm:w-[118px] sm:h-[118px] bg-[#DEDEDE4D]" />
             <div className="absolute top-[77px] sm:top-[122px] left-[2px] w-[73px] h-[73px] sm:w-[118px] sm:h-[118px] bg-[#DEDEDE4D]" />
           </div>

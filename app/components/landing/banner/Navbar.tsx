@@ -28,6 +28,49 @@ export default function Navbar() {
     }
   }, [mobileMenuOpen]);
 
+  const smoothScrollTo = (targetY: number, duration: number) => {
+    const startY = window.scrollY;
+    const difference = targetY - startY;
+    let startTime: number | null = null;
+
+    // Premium cubic easing function for an ultra-smooth glide
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, startY + difference * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.replace(/.*\#/, "");
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        // Add an 80px offset so the sticky navbar doesn't cover the section header
+        const headerOffset = 80;
+        const elementPosition = elem.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        
+        // 1200ms duration for a very smooth and elegant feel
+        smoothScrollTo(offsetPosition, 1200);
+      }
+      setMobileMenuOpen(false);
+    }
+  };
+
   const navLinks = [
     { 
       name: "Service", 
@@ -87,6 +130,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
+              onClick={(e) => handleSmoothScroll(e, link.href)}
               className="text-[#0a0c1f] hover:text-[#0052FF] transition-colors font-medium text-[15px] tracking-tight relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#0052FF] hover:after:w-full after:transition-all after:duration-300"
             >
               {link.name}
@@ -190,7 +234,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={(e) => handleSmoothScroll(e, link.href)}
                         className="group flex items-center justify-between p-3 sm:p-3.5 rounded-2xl bg-gray-50/70 hover:bg-blue-50/70 border border-gray-100 hover:border-blue-200 transition-all duration-200"
                       >
                         <div className="flex items-center gap-3">
