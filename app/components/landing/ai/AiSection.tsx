@@ -40,26 +40,33 @@ export default function AiSection() {
   return (
     <section ref={sectionRef} id="ai-section" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
-        
+
         {/* Header Area */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
+        <div
+          className="bg-transparent border mb-10 border-[#003FEA4D] text-[#252323] w-[160px] h-[40px] rounded-full text-[14px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 shadow-2xs"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+          AI Powered Design
+        </div>
+        <div className="flex flex-col pb-8 lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
           {/* Left Title Area */}
           <div className="flex flex-col items-start gap-3.5 lg:w-1/2">
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-              AI Powered Design
-            </div>
+
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">Supercharge Workflows With</span>
+              <span className="block text-[#0f172a]">Smarter Design,</span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">Next-Gen</span> <span className="font-medium text-[#0f172a]">AI Solutions.</span>
+                <span className="font-serif italic font-normal text-[#0f172a]">Supercharged by</span> <span className="font-medium text-[#0f172a]">AI.</span>
               </span>
             </h2>
           </div>
-          
+
           {/* Right Description Text */}
           <div className="md:w-[42%] pt-1 md:pt-6">
-            <p className="text-xs sm:text-sm md:text-base text-[#64748b] font-normal leading-relaxed">
+            <p
+              className="text-[#000000] text-[20px] font-normal leading-[24px] tracking-[0px]"
+              style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+            >
               From wireframes to launch, we blend AI tools with strategy to deliver faster, sharper, and data-led design results.
             </p>
           </div>
@@ -67,9 +74,9 @@ export default function AiSection() {
 
         {/* Top 2 Cards Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-15  mb-8 md:mb-10 w-full">
-          
+
           {/* Card 1: UX Copy That Converts */}
-          <div className="ai-card bg-gradient-to-b from-[#FFD8C2] via-[#FFEADB] to-[#FFF6F0] rounded-[22px] p-6 md:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[380px]">
+          <div className="ai-card bg-gradient-to-b from-[#FFD7C2] to-white rounded-[22px] p-6 md:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-orange-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(249,115,22,0.08)] hover:-translate-y-1 min-h-[380px]">
             {/* Top 8 Dark AI Tool Icons Grid - Balanced Tiles */}
             <div className="w-full flex justify-center pt-1 pb-4 my-auto">
               <div className="grid grid-cols-4 gap-2.5 sm:gap-3 max-w-[320px]">
@@ -100,11 +107,17 @@ export default function AiSection() {
               </div>
             </div>
 
-            <div className="pt-1">
-              <h3 className="text-xl sm:text-2xl font-medium text-[#0a0c16] tracking-tight mb-2 leading-tight">
+            <div className="pt-1 flex flex-col items-start text-left">
+              <h3
+                className="text-[#000000] pb-2 text-[28px] font-medium leading-[1] tracking-[0px] mb-2"
+                style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+              >
                 UX Copy That Converts
               </h3>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed max-w-md font-normal">
+              <p
+                className="text-[16px] font-normal leading-[1] tracking-[0px] max-w-md"
+                style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+              >
                 Generate strategic UX copy, CTAs, and messaging designed to improve clarity and engagement.
               </p>
             </div>
@@ -150,11 +163,17 @@ export default function AiSection() {
               </div>
             </div>
 
-            <div className="pt-1">
-              <h3 className="text-xl sm:text-2xl font-medium text-[#0a0c16] tracking-tight mb-2 leading-tight">
+            <div className="pt-1 flex flex-col items-start text-left">
+              <h3
+                className="text-[#000000] pb-2 text-[28px] font-medium leading-[1] tracking-[0px] mb-2"
+                style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+              >
                 AI Visual Direction
               </h3>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed max-w-md font-normal">
+              <p
+                className="text-[16px] font-normal leading-[1] tracking-[0px] max-w-md"
+                style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+              >
                 Create faster visual concepts, UI inspirations, &amp; brand-ready creative assets with AI workflows.
               </p>
             </div>
@@ -164,7 +183,7 @@ export default function AiSection() {
 
         {/* Bottom 3 Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-13 w-full">
-          
+
           {/* Bottom Card 1: Smarter UX Insights */}
           <div className="ai-card bg-gradient-to-b from-[#DCDCFE] via-[#ECECFF] to-white rounded-[22px] p-6 md:p-7 flex flex-col justify-between h-[380px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-indigo-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(99,102,241,0.08)] hover:-translate-y-1">
             {/* Centered White Row Badges */}
@@ -205,11 +224,17 @@ export default function AiSection() {
               </div>
             </div>
 
-            <div>
-              <h3 className="text-xl sm:text-2xl font-medium text-[#0a0c16] tracking-tight mb-2 leading-tight">
+            <div className="pt-1 flex flex-col items-start text-left">
+              <h3
+                className="text-[#000000] pb-2 text-[28px] font-medium leading-[1] tracking-[0px] mb-2"
+                style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+              >
                 Smarter UX Insights
               </h3>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
+              <p
+                className="text-[16px] font-normal leading-[1] tracking-[0px] max-w-md"
+                style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+              >
                 Use AI-powered analytics and heatmaps to understand user behavior before launch.
               </p>
             </div>
@@ -219,20 +244,26 @@ export default function AiSection() {
           <div className="ai-card bg-gradient-to-b from-[#FFEBD9] via-[#FFF3E8] to-[#FFF9F2] rounded-[22px] p-6 md:p-7 flex flex-col justify-between h-[380px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-amber-200/50 relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,158,11,0.08)] hover:-translate-y-1">
             {/* Centered Mockup Image */}
             <div className="w-full flex justify-center items-center my-auto pt-1 pb-3">
-              <Image 
-                src="/AIPoweredDesign/faster.png" 
-                alt="Faster Wireframing Mockups" 
-                width={280} 
-                height={180} 
+              <Image
+                src="/AIPoweredDesign/faster.png"
+                alt="Faster Wireframing Mockups"
+                width={280}
+                height={180}
                 className="object-contain"
               />
             </div>
 
-            <div>
-              <h3 className="text-xl sm:text-2xl font-medium text-[#0a0c16] tracking-tight mb-2 leading-tight">
+            <div className="pt-1 flex flex-col items-start text-left">
+              <h3
+                className="text-[#000000] pb-2 text-[28px] font-medium leading-[1] tracking-[0px] mb-2"
+                style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+              >
                 Faster Wireframing
               </h3>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
+              <p
+                className="text-[16px] font-normal leading-[1] tracking-[0px] max-w-md"
+                style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+              >
                 Rapidly transform ideas into wireframes and structured product flows with AI-assisted systems.
               </p>
             </div>
@@ -242,20 +273,26 @@ export default function AiSection() {
           <div className="ai-card bg-gradient-to-b from-[#FFD5DC] via-[#FFEBEF] to-[#FFF5F7] rounded-[22px] p-6 md:p-7 flex flex-col justify-between h-[380px] shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-rose-200/50 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(244,63,94,0.08)] hover:-translate-y-1">
             {/* Centered Graphic */}
             <div className="w-full flex justify-center items-center my-auto pt-1 pb-3">
-              <Image 
-                src="/AIPoweredDesign/Group 1707480850.png" 
-                alt="AI-Assisted Launches Graphic" 
-                width={300} 
-                height={130} 
+              <Image
+                src="/AIPoweredDesign/Group 1707480850.png"
+                alt="AI-Assisted Launches Graphic"
+                width={300}
+                height={130}
                 className="object-contain"
               />
             </div>
 
-            <div>
-              <h3 className="text-xl sm:text-2xl font-medium text-[#0a0c16] tracking-tight mb-2 leading-tight">
+            <div className="pt-1 flex flex-col items-start text-left">
+              <h3
+                className="text-[#000000] pb-2 text-[28px] font-medium leading-[1] tracking-[0px] mb-2"
+                style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+              >
                 AI-Assisted Launches
               </h3>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
+              <p
+                className="text-[16px] font-normal leading-[1] tracking-[0px] max-w-md"
+                style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+              >
                 Reduce repetitive tasks and launch digital products more efficiently with faster execution workflows.
               </p>
             </div>

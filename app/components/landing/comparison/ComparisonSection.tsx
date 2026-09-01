@@ -85,24 +85,27 @@ export default function ComparisonSection() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="why-choose-us" 
-      className="relative z-10 w-full py-14 sm:py-20 bg-[#f8fafc] flex justify-center border-t border-gray-100 overflow-hidden"
+    <section
+      ref={sectionRef}
+      id="why-choose-us"
+      className="relative z-10 w-full py-14 sm:py-20  flex justify-center border-t border-gray-100 overflow-hidden"
     >
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col">
-        
+
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14 w-full">
+        <div className="flex flex-col pb-10 lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14 w-full">
           <div className="flex flex-col items-start gap-3.5 max-w-2xl">
-            <div className="bg-blue-50 border border-blue-200/80 text-[#2563eb] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide inline-flex items-center gap-2 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse" />
+            <div
+              className="bg-transparent border mb-8 border-[#003FEA4D] text-[#252323] w-[160px] h-[40px] rounded-full text-[14px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 shadow-2xs"
+              style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
               Why Choose Us
             </div>
-            
+
             <h2 className="text-2xl sm:text-4xl md:text-[40px] font-bold text-[#0f172a] tracking-tight leading-[1.2]">
-              Why Leading Brands <br className="hidden sm:block" />
-              <span className="font-serif italic font-normal text-[#1e293b]">Choose Us Over</span> <span className="font-bold text-[#2563eb]">Others.</span>
+              Jevxo Team Alternative? <br className="hidden sm:block" />
+              <span className="font-serif italic font-normal text-[#1e293b]">Think</span> <span className="font-bold text-[#2563eb]">One More Time!</span>
             </h2>
           </div>
 
@@ -123,31 +126,28 @@ export default function ComparisonSection() {
         <div className="sm:hidden mb-6 w-full flex bg-gray-200/70 p-1 rounded-xl gap-1">
           <button
             onClick={() => setActiveMobileTab("jevxo")}
-            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
-              activeMobileTab === "jevxo"
-                ? "bg-[#1d4ed8] text-white shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${activeMobileTab === "jevxo"
+              ? "bg-[#1d4ed8] text-white shadow-sm"
+              : "text-gray-600 hover:text-gray-900"
+              }`}
           >
             Jevxo Team
           </button>
           <button
             onClick={() => setActiveMobileTab("others")}
-            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
-              activeMobileTab === "others"
-                ? "bg-[#1d4ed8] text-white shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${activeMobileTab === "others"
+              ? "bg-[#1d4ed8] text-white shadow-sm"
+              : "text-gray-600 hover:text-gray-900"
+              }`}
           >
             Other Agencies
           </button>
           <button
             onClick={() => setActiveMobileTab("freelancer")}
-            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${
-              activeMobileTab === "freelancer"
-                ? "bg-[#1d4ed8] text-white shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
+            className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-all ${activeMobileTab === "freelancer"
+              ? "bg-[#1d4ed8] text-white shadow-sm"
+              : "text-gray-600 hover:text-gray-900"
+              }`}
           >
             Freelancers
           </button>
@@ -156,20 +156,19 @@ export default function ComparisonSection() {
         {/* Mobile Stacked Card View (< 640px) */}
         <div className="block sm:hidden space-y-3.5 mb-4">
           {comparisonData.map((row, index) => {
-            const data = activeMobileTab === "jevxo" 
-              ? row.jevxo 
-              : activeMobileTab === "others" 
-              ? row.others 
-              : row.freelancer;
+            const data = activeMobileTab === "jevxo"
+              ? row.jevxo
+              : activeMobileTab === "others"
+                ? row.others
+                : row.freelancer;
 
             return (
-              <div 
-                key={index} 
-                className={`comparison-animate p-4 rounded-2xl border transition-all ${
-                  activeMobileTab === "jevxo" 
-                    ? "bg-white border-blue-200 shadow-md shadow-blue-500/5 ring-1 ring-blue-500/10" 
-                    : "bg-white border-gray-200/80 shadow-xs"
-                }`}
+              <div
+                key={index}
+                className={`comparison-animate p-4 rounded-2xl border transition-all ${activeMobileTab === "jevxo"
+                  ? "bg-white border-blue-200 shadow-md shadow-blue-500/5 ring-1 ring-blue-500/10"
+                  : "bg-white border-gray-200/80 shadow-xs"
+                  }`}
               >
                 <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                   {row.feature}
@@ -194,19 +193,24 @@ export default function ComparisonSection() {
         </div>
 
         {/* Desktop & Tablet Table View (hidden on mobile < 640px, or scrollable on tablet) */}
-        <div className="hidden sm:block relative rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden">
+        <div
+          className="hidden sm:block relative rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden border-[2px] border-transparent"
+          style={{
+            background: 'linear-gradient(white, white) padding-box, linear-gradient(100.6deg, #2846F6 0.63%, #F44851 31.57%, #FFFFFF 63.87%, #4B79F8 100%) border-box'
+          }}
+        >
           <div className="overflow-x-auto scrollbar-thin">
             <table className="w-full text-left border-collapse min-w-[700px]">
-              
+
               {/* Table Header */}
               <thead>
                 <tr className="border-b border-gray-100 text-[#0f172a] text-sm sm:text-base">
                   <th className="py-5 px-6 sm:px-8 font-bold w-[28%] text-gray-900 border-r border-gray-100">
                     Overview
                   </th>
-                  
+
                   {/* Jevxo Column Header - Highlighted */}
-                  <th className="py-5 px-6 sm:px-8 font-bold w-[26%] bg-[#f8fafc] border-r border-gray-100 relative">
+                  <th className="py-5 px-6 sm:px-8 font-bold w-[26%] bg-white border-r border-gray-100 relative">
                     <div className="flex items-center gap-2.5">
                       <div className="w-7 h-7 rounded-lg bg-[#1d4ed8] text-white flex items-center justify-center text-xs font-bold shadow-xs">
                         J
@@ -229,14 +233,14 @@ export default function ComparisonSection() {
               <tbody className="divide-y divide-gray-100 text-xs sm:text-sm">
                 {comparisonData.map((row, index) => (
                   <tr key={index} className="comparison-animate hover:bg-gray-50/50 transition-colors">
-                    
+
                     {/* Feature Title */}
                     <td className="py-4 sm:py-5 px-6 sm:px-8 font-semibold text-gray-900 border-r border-gray-100">
                       {row.feature}
                     </td>
 
                     {/* Jevxo Column Data - Highlighted */}
-                    <td className="py-4 sm:py-5 px-6 sm:px-8 bg-[#f8fafc] border-r border-gray-100">
+                    <td className="py-4 sm:py-5 px-6 sm:px-8 bg-white border-r border-gray-100">
                       <div className="flex items-start gap-2.5">
                         <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
                           <Check className="w-3.5 h-3.5 stroke-[3]" />

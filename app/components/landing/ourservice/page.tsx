@@ -12,42 +12,42 @@ const services = [
     tag: "UI/UX DESIGN",
     title: "UI/UX Design",
     description: "We design intuitive interfaces that make websites and apps seamless and delightful to use daily.",
-    bg: "bg-gradient-to-br from-white to-[#f0f3ff]",
+    bg: "bg-gradient-to-b from-white to-[#E9EFFF]",
     img: "/Jevxo/01.png",
   },
   {
     tag: "SAAS PRODUCT",
     title: "SaaS Product Design",
     description: "Architecting scalable web applications & SaaS dashboards built for high retention & growth.",
-    bg: "bg-gradient-to-br from-white to-[#fff0f4]",
+    bg: "bg-gradient-to-b from-white to-[#FFE3F1]",
     img: "/Jevxo/02.png",
   },
   {
     tag: "BRANDING",
     title: "Logo & Branding Design",
     description: "Creating distinctive visual identities and brand assets that command attention and trust.",
-    bg: "bg-gradient-to-br from-white to-[#eef8f4]",
+    bg: "bg-gradient-to-b from-white to-[#F9E3FF]",
     img: "/Jevxo/03.png",
   },
   {
     tag: "ENGINEERING",
     title: "Full Stack Development",
     description: "Building fast, secure, scalable modern web platforms engineered for heavy traffic & performance.",
-    bg: "bg-gradient-to-br from-white to-[#f1edfb]",
+    bg: "bg-gradient-to-b from-white to-[#FFEBE0]",
     img: "/Jevxo/04.png",
   },
   {
     tag: "MOBILE APPS",
     title: "Mobile App Development",
     description: "Developing cross-platform native iOS & Android applications with fluid animations & offline support.",
-    bg: "bg-gradient-to-br from-white to-[#fefce8]",
+    bg: "bg-gradient-to-b from-[#F4F4F4] to-[#EBE3FF]",
     img: "/Jevxo/05.png",
   },
   {
     tag: "AI & AUTOMATION",
     title: "AI & Automation Tools",
     description: "Integrating intelligent workflow automations and custom generative AI models into products.",
-    bg: "bg-gradient-to-br from-white to-[#f0fdf4]",
+    bg: "bg-gradient-to-b from-[#F4F4F4] to-[#F7E5EA]",
     img: "/Jevxo/06.png",
   },
   {
@@ -62,7 +62,7 @@ const services = [
     title: "Digital Marketing & SEO",
     description: "Data-driven organic growth strategies to maximize conversions, revenue, and customer loyalty.",
     bg: "bg-gradient-to-br from-white to-[#eff6ff]",
-    img: "/Jevxo/08.png",
+    img: "/Jevxo/01.png",
   },
 ];
 
@@ -130,79 +130,100 @@ export default function OurService() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="service" 
+    <section
+      ref={sectionRef}
+      id="service"
       className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col justify-center">
-        
+
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12">
+
+        <div
+          className="flex items-center mb-7 justify-center gap-1.5 bg-transparent border border-[#003FEA4D] text-[#252323] w-[126px] h-[40px] rounded-full text-[14px] leading-none font-normal tracking-normal shadow-2xs"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+          Our Service
+        </div>
+        <div className="flex flex-col lg:flex-row lg:items-start ite justify-between gap-8 mb-10 md:mb-12">
+
+
           {/* Left Title Area */}
-          <div className="flex flex-col items-start gap-3.5 lg:w-1/2">
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-              Our Service
-            </div>
+          <div className="flex flex-col pt-5 items-start gap-3.5 lg:w-1/2">
+
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
-              <span className="block text-[#0f172a]">High-Impact Value.</span>
+              <span
+                className="block text-[#0f172a] text-[40px] font-bold leading-[1.2] tracking-[-0.02em] text-center"
+                style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+              >
+                High-Impact Value.
+              </span>
               <span className="block mt-1 text-[#0f172a]">
-                <span className="font-serif italic font-normal text-[#0f172a]">World-Class</span> <span className="font-medium text-[#0f172a]">Quality.</span>
+                <span
+                  className="font-semibold italic text-[40px] leading-[1.2] tracking-[-0.02em] text-[#0f172a]"
+                  style={{ fontFamily: '"DM Serif Text", serif' }}
+                >
+                  World-Class
+                </span> <span className="font-medium text-[#0f172a]">Quality.</span>
               </span>
             </h2>
           </div>
-          
+
           {/* Right Description Text */}
           <div className="lg:w-[46%] pt-1 lg:pt-6">
-            <p className="text-sm sm:text-base md:text-lg text-[#64748b] font-normal leading-relaxed">
-              We're here to create digital experiences that your customers will love. from websites and apps to seamless interfaces, our creations drive stronger engagement and foster lasting loyalty.
+            <p
+              className="text-[#64748b] font-light text-[18px] leading-[1.5] tracking-normal"
+              style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+            >
+              We're here to create digital experiences that your customers will love from websites and apps to seamless interfaces, our creations drive stronger engagement and foster lasting loyalty.
             </p>
           </div>
         </div>
 
         {/* Dynamic Horizontal Pinned Track clipped within max-w-9/12 bounds */}
-        <div className="w-full ">
-          <div 
+        <div className="w-full pt-8 ">
+          <div
             ref={trackRef}
             className="flex flex-nowrap lg:flex-nowrap gap-6 w-max lg:w-max min-w-full"
           >
             {services.map((service, index) => (
-              <div 
+              <div
                 key={index}
-                className={`service-card w-[300px] sm:w-[340px] lg:w-[360px] shrink-0 rounded-[36px] ${service.bg} pt-8 px-6 pb-6 flex flex-col items-center text-center h-[510px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                className={`service-card w-[321px] shrink-0 rounded-[20px] ${service.bg} pt-8 px-6 pb-6 flex flex-col items-start text-left h-[432px] relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
               >
-                <h3 className="text-2xl font-medium text-[#111827] tracking-tight mb-2">
+                <h3 className="text-2xl font-medium text-[#000000] tracking-tight pb-4">
                   {service.title}
                 </h3>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-6 font-normal max-w-[260px] min-h-[40px]">
+                <p
+                  className="text-[#717171] text-[14px] leading-[1.2] mb-10 tracking-normal  font-normal max-w-[260px] min-h-[40px]"
+                  style={{ fontFamily: '"Manrope", sans-serif' }}
+                >
                   {service.description}
                 </p>
-                
+
                 {/* Pill Action Button */}
-                <Link 
+                <Link
                   href="#contact"
-                  className="inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-6 group"
+                  className="self-center inline-flex items-center bg-[#2d3139] hover:bg-[#1a1c21] text-white rounded-full pl-5 pr-1 py-1 text-sm font-normal transition-all shadow-sm mb-6 group"
                 >
                   <span className="mr-3 text-xs tracking-tight">View Service</span>
-                  <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white transition-colors">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-black" />
+                  <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center transition-colors">
+                    <ArrowUpRight className="w-3.5 h-3.5 text-black" />
                   </div>
                 </Link>
 
-                {/* Laptop Mockup */}
-                <div className="mt-auto w-full relative flex flex-col items-center">
-                  <div className="w-[94%] h-[200px] relative rounded-t-xl overflow-hidden shadow-2xl">
-                    <Image
-                      src={service.img}
-                      alt={`${service.title} Mockup`}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                  <div className="w-full h-3 bg-gradient-to-b from-[#334155] to-[#1e293b] rounded-b-md shadow-md" />
-                  <div className="w-[85%] h-3 bg-black/20 blur-md rounded-full mt-0.5" />
+                <div className="mt-auto w-full flex-1 relative min-h-[150px]">
+                  <Image
+                    src={service.img}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 321px"
+                    className="object-contain object-bottom"
+                    unoptimized={true}
+                  />
                 </div>
+
               </div>
             ))}
           </div>

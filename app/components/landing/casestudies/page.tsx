@@ -169,15 +169,20 @@ export default function CaseStudies() {
   return (
     <section ref={sectionRef} id="case-study" className="relative z-30 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-200/80">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
-        
+
         {/* Header Section */}
+
+        <div
+          className="bg-transparent border mb-10 border-[#003FEA4D] text-[#252323] w-[134px] h-[40px] rounded-full text-[14px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 shadow-2xs"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+          Case Studies
+        </div>
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
           {/* Left Title Area */}
           <div className="flex flex-col items-start gap-3.5">
-            <div className="bg-white border border-gray-300 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-medium tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-              Case Studies
-            </div>
+
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
               <span className="block text-[#0f172a]">Where Vision Meets</span>
               <span className="block mt-1 text-[#0f172a]">
@@ -185,30 +190,36 @@ export default function CaseStudies() {
               </span>
             </h2>
           </div>
-          
-          {/* Right Description Text */}
-          <div className="md:w-[42%] pt-1 md:pt-6">
-            <p className="text-xs sm:text-sm md:text-base text-[#64748b] font-normal leading-relaxed">
-              Explore how we've empowered innovative startups and established brands to achieve remarkable digital transformation and market success.
-            </p>
+
+          {/* Right Action Button */}
+          <div className="md:w-[42%] flex items-center md:justify-end pt-1 md:pt-6">
+            <Link
+              href="/casestudies"
+              className="relative inline-flex items-center justify-between bg-[#0a0a0a] text-white rounded-full w-[150px] h-[50px] pl-6 pr-1.5 py-1.5 text-base font-medium transition-all duration-300 hover:shadow-lg group/btn"
+            >
+              <span>View All</span>
+              <div className="w-[38px] h-[38px] rounded-full bg-white text-black flex items-center justify-center transition-all duration-300 group-hover/btn:rotate-45 shadow-sm">
+                <ArrowUpRight className="w-5 h-5 stroke-[2]" />
+              </div>
+            </Link>
           </div>
         </div>
 
         {/* Case Studies Grid */}
-        <div className="case-studies-grid grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="case-studies-grid py-8 grid grid-cols-1 md:grid-cols-2 gap-4">
           {caseStudies.map((study) => {
             const photoSrc = getValidImageSrc(study.photoUrl);
             const detailUrl = `/casestudies/${study.slug || study.id}`;
             return (
-              <div 
+              <div
                 key={study.id}
                 className="case-card case-study-card bg-white rounded-[24px] p-5 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 group"
               >
                 {/* Image Banner */}
                 <Link href={detailUrl} className="w-full h-[320px] sm:h-[380px] rounded-[20px] bg-[#0a0a0a] mb-7 overflow-hidden relative flex items-center justify-center shadow-md block">
                   {photoSrc ? (
-                    <img 
-                      src={photoSrc} 
+                    <img
+                      src={photoSrc}
                       alt={study.title}
                       className="w-full h-full object-cover object-center rounded-[20px] transition-transform duration-500 group-hover:scale-105"
                     />
@@ -216,21 +227,24 @@ export default function CaseStudies() {
                     <div className="text-white">No Image</div>
                   )}
                 </Link>
-            
+
                 {/* Card Body */}
                 <div className="px-2 flex flex-col flex-1">
                   <Link href={detailUrl}>
-                    <h3 className="text-[#0f172a] text-2xl sm:text-3xl font-semibold tracking-tight mb-3 leading-snug transition-colors duration-300 group-hover:text-[#3b82f6]">
+                    <h3
+                      className="text-[#090028] text-[28px] font-medium leading-[40px] tracking-normal mb-3 transition-colors duration-300 group-hover:text-[#3b82f6]"
+                      style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+                    >
                       {study.title}
                     </h3>
                   </Link>
                   <p className="text-[#64748b] text-sm sm:text-base leading-relaxed mb-7 font-normal transition-opacity duration-300 group-hover:opacity-90">
                     {study.shortDescription || study.fullDescription}
                   </p>
-                  
+
                   {/* Action Capsule Button */}
                   <div className="mt-auto pb-1">
-                    <Link 
+                    <Link
                       href={detailUrl}
                       className="relative inline-flex items-center bg-[#0f172a] hover:bg-[#3b82f6] text-white rounded-full pl-6 pr-1.5 py-1.5 text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-blue-500/25 group/btn hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
                     >

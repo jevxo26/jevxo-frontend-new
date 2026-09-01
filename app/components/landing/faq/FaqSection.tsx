@@ -44,8 +44,11 @@ export default function FaqSection() {
           {/* Left Column: Title & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start space-y-5">
             {/* Pill Badge */}
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+            <div
+              className="bg-transparent border border-[#003FEA4D] text-[#252323] w-[160px] h-[40px] rounded-full text-[13px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 whitespace-nowrap shadow-2xs"
+              style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
               Ask Anything
             </div>
 

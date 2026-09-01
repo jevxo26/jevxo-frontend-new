@@ -91,9 +91,9 @@ export default function ProcessSection() {
           trigger: sectionRef.current,
           pin: true,
           pinSpacing: true,
-          scrub: 1.2, // Smooth momentum scrub
+          scrub: 2.5, // Increased scrub for smoother, floatier momentum
           start: "top top",
-          end: () => `+=${(cards.length - 1) * 420}`,
+          end: () => `+=${(cards.length - 1) * 700}`, // Increased scroll distance to make the animation slower
           invalidateOnRefresh: true,
           anticipatePin: 1,
         },
@@ -106,10 +106,10 @@ export default function ProcessSection() {
           cards[i],
           {
             x: targetX,
-            ease: "power1.inOut",
-            duration: 1,
+            ease: "power2.inOut", 
+            duration: 1, 
           },
-          (i - 1) * 0.9
+          (i - 1) * 0.4 // Reduced this value so the next card starts moving much sooner, closing the visual gap
         );
       }
     }, sectionRef);
@@ -131,7 +131,7 @@ export default function ProcessSection() {
       className="relative z-10 w-full py-12 md:py-16 flex justify-center overflow-hidden"
       style={{
         background:
-          "radial-gradient(circle at 16% 18%, #1d4ed8 0%, #17226b 30%, #0b1436 60%, #030814 100%)",
+          "radial-gradient(76.69% 76.69% at 48.99% 95.89%, #000921 0%, #156FFF 54.67%, #000B27 99.85%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))",
       }}
     >
       {/* Local keyframes for the ambient animated background + stacked-card hover priority */}
@@ -182,7 +182,7 @@ export default function ProcessSection() {
       />
 
       <div className="relative z-10 w-full max-w-[95%] lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
-        
+
         {/* Header Area */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12 md:mb-16 w-full">
           {/* Left Title Area */}
@@ -196,9 +196,9 @@ export default function ProcessSection() {
               And Build <span className="font-serif italic font-normal text-white">SaaS Products.</span>
             </h2>
           </div>
-          
+
           {/* Right Description Text */}
-          <div className="lg:w-[45%] pt-1">
+          <div className="lg:w-[40%] pt-1">
             <p className="text-sm sm:text-base text-gray-300 font-normal leading-relaxed">
               We simplify the product creation process for SaaS companies by combining strategy, design, and development into one efficient workflow focused on faster launches.
             </p>
@@ -207,19 +207,19 @@ export default function ProcessSection() {
 
         {/* Dynamic Horizontal Pinned Track — smooth 1/3 card stacking on scroll */}
         <div className="w-full py-4 ">
-          <div 
+          <div
             ref={trackRef}
             className="flex flex-nowrap gap-6 w-max min-w-full"
           >
             {steps.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 style={{ zIndex: index + 1 }}
                 className="process-card relative w-[270px] sm:w-[290px] lg:w-[310px] shrink-0 rounded-[28px] bg-white p-6 sm:p-7 flex flex-col items-start text-left h-[370px] sm:h-[390px] overflow-hidden will-change-transform shadow-[-12px_0_30px_rgba(0,0,0,0.15),0_20px_45px_rgba(0,0,0,0.25)] hover:-translate-y-2.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] transition-shadow duration-300"
               >
                 {/* Icon Box */}
                 <div className="mb-6">
-                  <div className="w-14 h-14 flex items-center justify-center bg-gray-50/80 rounded-2xl border border-gray-100 p-2 shadow-2xs">
+                  <div className="w-14 h-14 flex items-center justify-center bg-transparent">
                     <Image
                       src={item.icon}
                       alt={`${item.title} icon`}
@@ -231,17 +231,26 @@ export default function ProcessSection() {
                 </div>
 
                 {/* Step Badge */}
-                <span className="bg-[#f1f5f9] text-[#475569] px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide mb-3">
+                <span 
+                  className="bg-[#E1E0E24D] text-[#475569] w-[77px] h-[28px] rounded-[25px] flex items-center justify-center text-[14px] font-normal leading-[1.4] tracking-[0px] mb-3"
+                  style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+                >
                   {item.step}
                 </span>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight mb-2.5">
+                <h3 
+                  className="text-[#0f172a] text-[36px] font-medium leading-[1.2] tracking-[-1px] mb-2.5"
+                  style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+                >
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#64748b] text-xs sm:text-sm leading-relaxed font-normal">
+                <p 
+                  className="text-[#64748b] text-[20px] font-normal leading-[1.4] tracking-[0px]"
+                  style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+                >
                   {item.description}
                 </p>
               </div>

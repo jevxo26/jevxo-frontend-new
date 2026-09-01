@@ -107,11 +107,13 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Right Column: Rainbow Animated Gradient Bordered Form Container */}
-        <div className="w-full lg:w-7/12 relative rounded-[28px] p-[2px] overflow-hidden shadow-2xl">
-          {/* Animated Rainbow Border */}
-          <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#3b82f6,#ec4899,#ef4444,#10b981,#3b82f6)] animate-border-spin" />
-
+        {/* Right Column: Gradient Bordered Form Container */}
+        <div 
+          className="w-full lg:w-7/12 relative rounded-[28px] p-[2px] overflow-hidden shadow-2xl"
+          style={{
+            background: 'linear-gradient(146.13deg, #1D46FF 0%, #FC484B 50%, #FFFFFF 75%, #2DFAD1 100%)'
+          }}
+        >
           {/* Inner Form Card */}
           <div className="relative bg-[#0d0e12] rounded-[26px] p-6 sm:p-9 md:p-10 z-10 w-full">
             {submitted ? (

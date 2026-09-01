@@ -22,7 +22,7 @@ const defaultBgClasses = [
 export default function MeetSpecialistSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  
+
   const [specialists, setSpecialists] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -89,23 +89,27 @@ export default function MeetSpecialistSection() {
   const displaySpecialists = specialists.length > 0 ? specialists : [];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="specialist" 
-      className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
+      id="specialist"
+      className="relative z-10 w-full p py-6 md:py-8  flex flex-col justify-center items-center border-t border-gray-100 overflow-hidden"
     >
-      <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col justify-center">
-        
+      <div className="w-full  max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col justify-center">
+
         {/* Header Row: Title & Customer Satisfactions */}
+        <div
+          className="bg-transparent mb- border border-[#003FEA4D] text-[#252323] w-[160px] h-[40px] rounded-full text-[14px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 shadow-2xs"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
+          <span className="w-1.5 h-1.5  rounded-full bg-[#3b82f6] animate-pulse" />
+          Our House Expertize
+        </div>
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 md:mb-12 w-full">
           {/* Left Title Area */}
           <div className="flex flex-col items-start gap-3.5">
             {/* Pill Badge */}
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-              Our House Expertize
-            </div>
-            
+
+
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
               Meet Our Specialist
             </h2>
@@ -144,22 +148,22 @@ export default function MeetSpecialistSection() {
         </div>
 
         {/* GSAP Horizontal Scroll Track clipped within max-w-9/12 bounds */}
-        <div className="w-full ">
-          <div 
-            ref={trackRef} 
+        <div className="w-full pt-10 ">
+          <div
+            ref={trackRef}
             className="flex gap-6 sm:gap-8 w-max will-change-transform pb-4"
           >
             {!isLoading && displaySpecialists.map((member, index) => {
               const bgClass = defaultBgClasses[index % defaultBgClasses.length];
               return (
-                <div 
+                <div
                   key={member.id || index}
                   className={`w-[290px] sm:w-[320px] lg:w-[340px] h-[440px] sm:h-[480px] rounded-[24px] ${bgClass} relative overflow-hidden flex flex-col justify-end group shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition-all duration-500 cursor-pointer`}
                 >
                   {/* Specialist Portrait Image */}
                   {member.picture ? (
-                    <Image 
-                      src={member.picture} 
+                    <Image
+                      src={member.picture}
                       alt={member.name}
                       fill
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -170,18 +174,15 @@ export default function MeetSpecialistSection() {
                     </div>
                   )}
 
-                  {/* White Shadow Overlay (Visible by Default, Clears on Hover) */}
-                  <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px] opacity-100 group-hover:opacity-0 group-hover:backdrop-blur-none transition-all duration-500 pointer-events-none z-10" />
-
-                  {/* Dark Gradient Overlay at Bottom for text readability */}
-                  <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#090d16] via-[#090d16]/80 to-transparent pointer-events-none z-20" />
+                  {/* Bottom Light White Gradient */}
+                  <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-white/95 via-white/60 to-transparent pointer-events-none z-20 transition-all duration-500 group-hover:opacity-100" />
 
                   {/* Text Info Overlay */}
-                  <div className="relative z-30 p-6 sm:p-7 text-white flex flex-col space-y-1.5">
-                    <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-white leading-snug">
+                  <div className="relative z-30 p-6 sm:p-7 text-gray-900 flex flex-col space-y-1.5">
+                    <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-gray-900 leading-snug">
                       {member.name}
                     </h3>
-                    <p className="text-gray-200 text-xs sm:text-sm font-normal opacity-90">
+                    <p className="text-gray-600 text-xs sm:text-sm font-normal">
                       {member.designation?.title || member.role || "Specialist"}
                     </p>
                   </div>

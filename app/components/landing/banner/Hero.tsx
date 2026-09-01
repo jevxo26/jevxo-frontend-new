@@ -42,7 +42,7 @@ export default function Hero() {
     <div className="w-full flex flex-col">
       {/* Hero + Marquee wrapped together so the background gradient and grid pattern
           are ONE continuous layer — no seam at the old section boundary. */}
-      <div className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#F3F3F3_0%,#dbe3fa_25%,#5A87F2_45%,#5A87F2_66%,#F3F3F3_94%)]">
+      <div className="relative w-full overflow-hidden bg-[#F3F3F3]">
 
         {/* Decorative Shadow Boxes (Grid Blocks) - Placed before grid lines so lines stay visible */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -74,7 +74,7 @@ export default function Hero() {
 
         {/* Single Grid Background Pattern spanning the whole hero + marquee area */}
         <div
-          className="absolute inset-0 opacity-60 pointer-events-none z-[1] bg-[length:75px_75px] sm:bg-[length:120px_120px]"
+          className="absolute inset-0 opacity-30 pointer-events-none z-[1] bg-[length:75px_75px] sm:bg-[length:120px_120px]"
           style={{
             backgroundImage:
               "linear-gradient(to right, #B3B3B34D 2px, transparent 2px), linear-gradient(to bottom, #B3B3B34D 2px, transparent 2px)",
@@ -109,18 +109,23 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               custom={0}
-              className="inline-flex items-center gap-3 bg-white border border-[#2563eb] px-4 py-1.5 sm:py-2 rounded-full shadow-xs mb-8 group hover:scale-[1.02] transition-transform cursor-pointer"
+              className="p-[1px] rounded-full shadow-[0px_8px_24px_rgba(0,63,234,0.15)] mb-8 group hover:scale-[1.02] hover:shadow-[0px_12px_28px_rgba(0,63,234,0.2)] transition-all duration-300 cursor-pointer w-[338px] h-[46px]"
+              style={{
+                background: 'linear-gradient(90.22deg, rgba(0, 63, 234, 0.5) -0.29%, rgba(227, 234, 251, 0.751522) 49.74%, #003FEA 99.17%)'
+              }}
             >
-              <Image
-                src="/hero1.png"
-                alt="Startup logos"
-                width={110}
-                height={22}
-                className="h-5 sm:h-6 w-auto object-contain"
-              />
-              <span className="text-xs sm:text-sm font-normal text-gray-900 tracking-tight">
-                50+ startup &amp; founders
-              </span>
+              <div className="flex items-center justify-center gap-3 bg-white w-full h-full rounded-full">
+                <Image
+                  src="/hero1.png"
+                  alt="Startup logos"
+                  width={110}
+                  height={22}
+                  className="h-5 sm:h-6 w-auto object-contain"
+                />
+                <span className="text-xs sm:text-sm font-normal text-gray-900 tracking-tight">
+                  50+ startup &amp; founders
+                </span>
+              </div>
             </motion.div>
 
             {/* Main Headline */}
@@ -197,10 +202,10 @@ export default function Hero() {
           {/* Bottom Fade Gradient Overlay */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 sm:h-48 md:h-[280px] bg-gradient-to-b from-transparent via-[#F2F2F2]/30 via-50% via-[#F2F2F2]/80 via-80% to-[#F2F2F2] z-20" />
 
-          <div className="relative z-10 flex flex-col gap-3 sm:gap-4 md:gap-5 w-full">
+          <div className="relative z-10 flex flex-col gap-1 sm:gap-2 w-full">
             {/* Row 1: Right to Left (animate-marquee) */}
             <div className="overflow-hidden w-full flex">
-              <div className="flex items-center gap-4 sm:gap-6 animate-marquee">
+              <div className="flex items-center gap-1 sm:gap-2 animate-marquee">
                 {row1List.map((src, index) => (
                   <div
                     key={`row1-${index}`}
@@ -220,7 +225,7 @@ export default function Hero() {
 
             {/* Row 2: Left to Right (animate-marquee-reverse) */}
             <div className="overflow-hidden w-full flex">
-              <div className="flex items-center gap-4 sm:gap-6 animate-marquee-reverse">
+              <div className="flex items-center gap-1 sm:gap-2 animate-marquee-reverse">
                 {row2List.map((src, index) => (
                   <div
                     key={`row2-${index}`}

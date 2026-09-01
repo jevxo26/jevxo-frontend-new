@@ -28,7 +28,7 @@ export default function BlogSection() {
         setIsLoading(false);
       }
     };
-    
+
     fetchBlogs();
   }, []);
 
@@ -95,18 +95,23 @@ export default function BlogSection() {
   const mainBlogImageSrc = mainBlog ? getValidImageSrc(mainBlog.coverImage) : null;
 
   return (
-    <section ref={sectionRef} id="blog" className="relative z-10 w-full py-6 md:py-8 bg-[#F2F2F2] flex justify-center border-t border-gray-100 overflow-hidden">
+    <section ref={sectionRef} id="blog" className="relative z-10 w-full py-6 md:py-8  flex justify-center  overflow-hidden">
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col">
-        
+
         {/* Title & Header Row */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
+
+        <div
+          className="bg-transparent mb-10  border border-[#003FEA4D] text-[#252323] w-[160px] h-[40px] rounded-full text-[14px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 shadow-2xs"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
+          Blog & Insights
+        </div>
+
+        <div className="flex pb-8 flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 md:mb-12 w-full">
           {/* Left Title Area */}
           <div className="flex flex-col items-start gap-3.5 lg:w-1/2">
             {/* Pill Badge */}
-            <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-              Blog &amp; Insights
-            </div>
 
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-medium text-[#0f172a] tracking-tight leading-[1.15]">
               <span className="block text-[#0f172a]">Latest Insights &</span>
@@ -126,8 +131,8 @@ export default function BlogSection() {
 
         {/* Blog Grid (Left Main Card + Right 2 Cards Stack) */}
         {!isLoading && blogs.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-12  gap-6 items-stretch">
+
             {/* Left Column: Featured Main Blog Post Card */}
             {mainBlog && (
               <div className="blog-card lg:col-span-6 bg-white rounded-[16px] p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/80 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">

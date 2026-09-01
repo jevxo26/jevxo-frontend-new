@@ -203,7 +203,7 @@ export default function AboutUs() {
 
       <div className="w-full max-w-[95%] lg:max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 flex flex-col items-start">
         {/* About Us Pill */}
-        <div 
+        <div
           className="text-[#252323] text-[14px] font-normal leading-normal inline-flex items-center h-[40px] pt-[9px] pb-[10px] pr-[25px] pl-[20px] gap-2 rounded-full border border-[rgba(0,63,234,0.30)] backdrop-blur-[2.5px] mb-6 sm:mb-8"
           style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
         >
@@ -214,7 +214,7 @@ export default function AboutUs() {
         {/* Scroll Reveal Main Paragraph — premium blur + lift reveal per word */}
         <p
           ref={textRef}
-          className="text-2xl sm:text-3xl md:text-[32px] leading-[1.3] font-normal tracking-[-1px] text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
+          className="text-2xl sm:text-3xl md:text-[32px] leading-[1.3] font-light tracking-[-1px] text-[#1E1E1E] mb-10 sm:mb-12 text-justify hyphens-auto"
           style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
         >
           {words.map((word, i) => {
@@ -228,8 +228,8 @@ export default function AboutUs() {
                   transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
                 className={`inline-block mr-[0.25em] transition-all duration-500 ${isRevealed
-                  ? "text-[#1E1E1E] font-normal opacity-100 blur-none translate-y-0"
-                  : "text-gray-400 font-normal opacity-40 blur-[3px] translate-y-1"
+                  ? "text-[#1E1E1E] font-light opacity-100 blur-none translate-y-0"
+                  : "text-gray-400 font-light opacity-40 blur-[3px] translate-y-1"
                   }`}
               >
                 {word}
@@ -239,7 +239,7 @@ export default function AboutUs() {
         </p>
 
         {/* Mission & Vision Cards */}
-        <div className="about-cards-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mb-12 sm:mb-16">
+        <div className="about-cards-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mb-12 pt-10 sm:mb-16">
           {/* Our Mission Card with Animated Gradient Border */}
           <div className="about-card relative rounded-xl p-[2px] overflow-hidden shadow-sm">
             <div className="absolute inset-[-200%] jevxo-gradient-border" />
@@ -247,8 +247,8 @@ export default function AboutUs() {
               <h3 className="text-[32px] font-medium font-helvetica text-black/70 leading-normal tracking-[-0.64px] mb-4">
                 Our Mission
               </h3>
-              <p className="text-black/50 text-[20px] leading-[30px] font-normal" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
-                We blend strategy, creativity, production, media and AI technology to transform ambition into execution. From breaking silos to building scalable systems, we design growth that is both meaningful and measurable.
+              <p className="text-black/50 text-[20px] leading-[30px] font-light tracking-[-0.5px]" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+                We blend strategy, creativity, production, media and AI technology to transform ambition into execution. From breaking silos to building scalable systems,<br /> we design growth that is both meaningful and measurable.
               </p>
             </div>
           </div>
@@ -260,8 +260,8 @@ export default function AboutUs() {
               <h3 className="text-[32px] font-medium font-helvetica text-black/70 leading-normal tracking-[-0.64px] mb-4">
                 Our Vision
               </h3>
-              <p className="text-black/50 text-[20px] leading-[30px] font-normal" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
-                We believe the future belongs to brands that move first, think differently, and build beyond conventions. Our vision: to shape that future by transforming how brands compete, connect, and endure, across every sectors.
+              <p className="text-black/50 text-[20px] leading-[30px] font-light tracking-[-0.5px]" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+                We believe the future belongs to brands that move first, think differently, and build beyond conventions. Our vision: to shape that future by transforming how brands compete, connect, and endure,<br /> across every sectors.
               </p>
             </div>
           </div>

@@ -23,24 +23,44 @@ export default function Home() {
 
       <Hero />
 
-      <div className="py-[140px]">
+      <div className="py-[30px]">
         <Partners />
       </div>
       <AboutUs />
 
-      <div className="py-[140px]">
+      <div className="py-[30px]">
         <OurService />
       </div>
-      <CaseStudies />
+
+
+      <div className="py-[50px]">
+        <CaseStudies />
+      </div>
       <ProcessSection />
-      <AiSection />
+
+      <div className="py-[50px]">
+        <AiSection />
+      </div>
+
       <ComparisonSection />
-      <PricingSection />
+
+      <div className="py-[50px]">
+        <PricingSection />
+      </div>
+
+
       <BlogSection />
-      <MeetSpecialistSection />
-      <ReadyToBuildSection />
+
+      <div className="py-30">
+        <MeetSpecialistSection />
+      </div>
+
+      {/* <ReadyToBuildSection /> */}
       <FaqSection />
-      <ContactSection />
+
+      <div className="py-[100px]">
+        <ContactSection />
+      </div>
       <TestimonialsSection />
     </div>
   );

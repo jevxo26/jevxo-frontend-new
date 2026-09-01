@@ -124,6 +124,7 @@ export default function PricingSection() {
   const [categories, setCategories] = useState<PackageCategory[]>(DEFAULT_CATEGORIES);
   const [packages, setPackages] = useState<PricingPlan[]>(DEFAULT_PACKAGES);
   const [activeTabId, setActiveTabId] = useState<string>("cat-1");
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Booking Modal State
@@ -144,11 +145,11 @@ export default function PricingSection() {
           packageCategoryApi.getAll(),
           packageApi.getAllPackages()
         ]);
-        
+
         // Extract array if wrapped in standard response format
         const cats = Array.isArray(catsRes) ? catsRes : catsRes?.data || [];
         const pkgs = Array.isArray(pkgsRes) ? pkgsRes : pkgsRes?.data || [];
-        
+
         if (cats && cats.length > 0) {
           setCategories(cats);
           setActiveTabId(cats[0].id);
@@ -156,7 +157,7 @@ export default function PricingSection() {
           setCategories(DEFAULT_CATEGORIES);
           setActiveTabId(DEFAULT_CATEGORIES[0].id);
         }
-        
+
         if (pkgs && pkgs.length > 0) {
           const formattedPackages = pkgs.map((pkg: any) => ({
             id: pkg.id,
@@ -192,7 +193,7 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative z-10 w-full py-8 md:py-12 bg-[#F2F2F2] text-gray-900 flex justify-center overflow-hidden border-t border-gray-200"
+      className="relative z-10 w-full py-8 md:py-12  text-gray-900 flex justify-center overflow-hidden border-t border-gray-200"
     >
       {/* Keyframes for ambient background animation */}
       <style>{`
@@ -264,11 +265,10 @@ export default function PricingSection() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeTabId === tab.id
-                    ? "bg-[#3b82f6] text-white shadow-md shadow-blue-500/30"
-                    : "text-gray-400 hover:text-white"
-                }`}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeTabId === tab.id
+                  ? "bg-[#3b82f6] text-white shadow-md shadow-blue-500/30"
+                  : "text-gray-400 hover:text-white"
+                  }`}
               >
                 {tab.name}
               </button>
@@ -280,6 +280,7 @@ export default function PricingSection() {
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {activePlans.map((plan, idx) => {
             const isHighlighted = plan.isPopular;
+            const isActive = activeCardId === plan.id;
             const buttonStyle = isHighlighted
               ? "bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] hover:from-[#2563eb] hover:to-[#3b82f6] text-white shadow-lg shadow-blue-500/30"
               : "bg-[#252b3b] hover:bg-[#32394c] text-white";
@@ -287,19 +288,27 @@ export default function PricingSection() {
             return (
               <div
                 key={plan.id}
-                className={`relative rounded-[24px] transition-all duration-300 flex flex-col justify-between ${
-                  isHighlighted
-                    ? "p-[2.5px] bg-gradient-to-b from-[#60a5fa] via-[#3b82f6] via-[#ec4899] to-[#3b82f6] bg-[length:200%_200%] animate-[gradient_6s_linear_infinite] shadow-[0_15px_50px_rgba(59,130,246,0.25)]"
-                    : "bg-[#111622] border border-gray-800/80 shadow-xl hover:border-gray-700 p-7 md:p-8"
-                }`}
+                onClick={() => setActiveCardId(plan.id)}
+                className={`relative cursor-pointer rounded-[24px] transition-all duration-300 flex flex-col justify-between ${isActive
+                  ? "border-[1.5px] border-transparent p-7 md:p-8 shadow-[0_15px_50px_rgba(238,72,85,0.15)] scale-[1.02] z-20"
+                  : isHighlighted
+                    ? "p-[2.5px] bg-gradient-to-b from-[#60a5fa] via-[#3b82f6] via-[#ec4899] to-[#3b82f6] bg-[length:200%_200%] animate-[gradient_6s_linear_infinite] shadow-[0_15px_50px_rgba(59,130,246,0.25)] hover:scale-[1.01] z-10"
+                    : "bg-[#111622] border border-gray-800/80 shadow-xl hover:border-gray-700 p-7 md:p-8 hover:scale-[1.01] z-0"
+                  }`}
+                style={
+                  isActive
+                    ? {
+                      background: 'linear-gradient(#111622, #111622) padding-box, linear-gradient(344.14deg, #2746F7 0%, #EE4855 49.69%, #FFFFFF 74.54%, #FA6537 99.39%) border-box'
+                    }
+                    : {}
+                }
               >
                 {/* Inner Card Background for Highlighted Plan */}
                 <div
-                  className={`w-full h-full flex flex-col justify-between ${
-                    isHighlighted
-                      ? "bg-gradient-to-b from-[#162547] via-[#11192e] to-[#0d1322] rounded-[22.5px] p-7 md:p-8"
-                      : ""
-                  }`}
+                  className={`w-full h-full flex flex-col justify-between ${isHighlighted && !isActive
+                    ? "bg-gradient-to-b from-[#162547] via-[#11192e] to-[#0d1322] rounded-[22.5px] p-7 md:p-8"
+                    : ""
+                    }`}
                 >
                   <div>
                     {/* Header: Title & Optional Badge */}
@@ -335,11 +344,10 @@ export default function PricingSection() {
                         {plan.features.map((feature, fIdx) => (
                           <li key={fIdx} className="flex items-center gap-3">
                             <div
-                              className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                                isHighlighted
-                                  ? "bg-[#3b82f6] text-white"
-                                  : "bg-[#252b3b] text-gray-400"
-                              }`}
+                              className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${isHighlighted
+                                ? "bg-[#3b82f6] text-white"
+                                : "bg-[#252b3b] text-gray-400"
+                                }`}
                             >
                               <Check className="w-3 h-3 stroke-[2.5]" />
                             </div>
@@ -373,7 +381,7 @@ export default function PricingSection() {
       {isModalOpen && selectedPlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-[#111622] border border-gray-800 rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl relative text-left">
-            <button 
+            <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
             >
@@ -381,7 +389,7 @@ export default function PricingSection() {
             </button>
             <h3 className="text-2xl font-bold text-white mb-2">Book {selectedPlan.name}</h3>
             <p className="text-gray-400 text-sm mb-6">Fill out the form below and we'll get in touch with you shortly.</p>
-            
+
             <form onSubmit={async (e) => {
               e.preventDefault();
               setIsSubmitting(true);
@@ -403,9 +411,9 @@ export default function PricingSection() {
             }} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
-                <input 
+                <input
                   required
-                  type="text" 
+                  type="text"
                   value={formData.name}
                   onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
@@ -414,9 +422,9 @@ export default function PricingSection() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
-                <input 
+                <input
                   required
-                  type="email" 
+                  type="email"
                   value={formData.userEmail}
                   onChange={e => setFormData(prev => ({ ...prev, userEmail: e.target.value }))}
                   className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
@@ -425,9 +433,9 @@ export default function PricingSection() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Company Name</label>
-                <input 
+                <input
                   required
-                  type="text" 
+                  type="text"
                   value={formData.companyName}
                   onChange={e => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
                   className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
@@ -436,9 +444,9 @@ export default function PricingSection() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Company Email</label>
-                <input 
+                <input
                   required
-                  type="email" 
+                  type="email"
                   value={formData.companyEmail}
                   onChange={e => setFormData(prev => ({ ...prev, companyEmail: e.target.value }))}
                   className="w-full bg-[#0b101d] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-colors"
