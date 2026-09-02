@@ -61,7 +61,10 @@ export default function Home() {
       <div className="py-[100px]">
         <ContactSection />
       </div>
-      <TestimonialsSection />
+
+      <div className="py-[40px]">
+        <TestimonialsSection />
+      </div>
     </div>
   );
 }

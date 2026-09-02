@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Star, Play, Pause, User as UserIcon } from "lucide-react";
+import { Star, Play, User as UserIcon, X } from "lucide-react";
 import { reviewApi, Review } from "../../../../api/reviewApi";
 
 const DEFAULT_REVIEWS: Review[] = [
@@ -9,8 +9,8 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "rev-1",
     reviewText: "Jevxo delivered our entire SaaS MVP in less than 4 weeks. Their code quality and design aesthetic wowed our investors from day one!",
     rating: 5,
-    thumbUrl: "/Jevxo/04.png",
-    videoUrl: "",
+    thumbUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
     clientId: "c1",
     createdAt: "",
     updatedAt: "",
@@ -20,8 +20,8 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "rev-2",
     reviewText: "The team at Jevxo is fast, highly responsive, and exceptionally talented in Next.js and UI/UX design. Highly recommended!",
     rating: 5,
-    thumbUrl: "/Jevxo/05.png",
-    videoUrl: "",
+    thumbUrl: "https://randomuser.me/api/portraits/women/44.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
     clientId: "c2",
     createdAt: "",
     updatedAt: "",
@@ -31,8 +31,8 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "rev-3",
     reviewText: "Working with Jevxo felt like having a senior engineering squad in-house. They transformed our legacy app into a modern product.",
     rating: 5,
-    thumbUrl: "/Jevxo/06.png",
-    videoUrl: "",
+    thumbUrl: "https://randomuser.me/api/portraits/men/45.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
     clientId: "c3",
     createdAt: "",
     updatedAt: "",
@@ -42,8 +42,8 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "rev-4",
     reviewText: "Outstanding design system and pixel-perfect implementation. Our conversion rates increased by 40% after the redesign!",
     rating: 5,
-    thumbUrl: "/Jevxo/07.png",
-    videoUrl: "",
+    thumbUrl: "https://randomuser.me/api/portraits/women/68.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
     clientId: "c4",
     createdAt: "",
     updatedAt: "",
@@ -53,8 +53,8 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "rev-5",
     reviewText: "Their attention to detail and performance optimization is unmatched. Our page load speeds dropped under 1 second.",
     rating: 5,
-    thumbUrl: "/Jevxo/08.png",
-    videoUrl: "",
+    thumbUrl: "https://randomuser.me/api/portraits/men/75.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
     clientId: "c5",
     createdAt: "",
     updatedAt: "",
@@ -64,8 +64,8 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "rev-6",
     reviewText: "Jevxo is our go-to partner for all full-stack web and mobile development. Professional, reliable, and super fast.",
     rating: 5,
-    thumbUrl: "/Jevxo/09.png",
-    videoUrl: "",
+    thumbUrl: "https://randomuser.me/api/portraits/men/86.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
     clientId: "c6",
     createdAt: "",
     updatedAt: "",
@@ -74,9 +74,19 @@ const DEFAULT_REVIEWS: Review[] = [
 ];
 
 export default function TestimonialsSection() {
-  const [playingId, setPlayingId] = useState<string | null>(null);
+  const [playingVideoUrl, setPlayingVideoUrl] = useState<string | null>(null);
   const [reviews, setReviews] = useState<Review[]>(DEFAULT_REVIEWS);
   const [isLoading, setIsLoading] = useState(true);
+
+  const getEmbedUrl = (url: string | undefined | null) => {
+    if (!url) return "";
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[2].length === 11) {
+      return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0`;
+    }
+    return url;
+  };
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -95,29 +105,12 @@ export default function TestimonialsSection() {
         setIsLoading(false);
       }
     };
-    
+
     fetchReviews();
   }, []);
 
-  const togglePlay = (id: string) => {
-    setPlayingId(playingId === id ? null : id);
-  };
-
   const renderCard = (item: Review, keySuffix: string) => {
-    const isPlaying = playingId === `${item.id}-${keySuffix}`;
     const cardKey = `${item.id}-${keySuffix}`;
-    
-    // Extract video ID from YouTube URL if it's a YouTube link, or use standard video URL
-    const getEmbedUrl = (url: string) => {
-      if (!url) return "";
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
-      if (match && match[2].length === 11) {
-        return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0`;
-      }
-      return url;
-    };
-
     const rating = Math.min(Math.max(item.rating || 5, 1), 5);
 
     return (
@@ -125,43 +118,24 @@ export default function TestimonialsSection() {
         key={cardKey}
         className="w-[440px] md:w-[480px] shrink-0 bg-white rounded-[20px] p-4 sm:p-5 border border-gray-100/90 shadow-[0_4px_25px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.08)] flex items-center gap-5 transition-all duration-300 group"
       >
-        {/* Left Side: Video / Image Thumbnail Container */}
-        <div className="w-[160px] sm:w-[180px] md:w-[195px] h-[160px] sm:h-[180px] md:h-[195px] rounded-[16px] relative overflow-hidden bg-gray-900 shrink-0">
-          {isPlaying && item.videoUrl ? (
-            <iframe
-              src={getEmbedUrl(item.videoUrl)}
-              title="Client Testimonial Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="w-full h-full object-cover border-0"
-            />
-          ) : (
-            <div className="w-full h-full relative flex items-center justify-center bg-gray-200">
-              {item.thumbUrl ? (
-                <img src={item.thumbUrl} alt="Thumbnail" className="w-full h-full object-cover opacity-80" />
-              ) : (
-                <UserIcon className="w-16 h-16 text-gray-400" />
-              )}
-            </div>
-          )}
+        {/* Left Side: Image Thumbnail Container with Play Overlay */}
+        <div 
+          className={`w-[160px] sm:w-[180px] md:w-[195px] h-[160px] sm:h-[180px] md:h-[195px] rounded-[16px] relative overflow-hidden bg-gray-900 shrink-0 ${item.videoUrl ? 'cursor-pointer' : ''}`}
+          onClick={() => item.videoUrl ? setPlayingVideoUrl(item.videoUrl) : undefined}
+        >
+          <div className="w-full h-full relative flex items-center justify-center bg-gray-200 group-hover:scale-105 transition-transform duration-500">
+            {item.thumbUrl ? (
+              <img src={item.thumbUrl} alt="Thumbnail" className="w-full h-full object-cover opacity-80" />
+            ) : (
+              <UserIcon className="w-16 h-16 text-gray-400" />
+            )}
+          </div>
 
-          {/* Play / Pause Floating Pill Button */}
+          {/* Corner Play Button Overlay */}
           {item.videoUrl && (
-            <button
-              onClick={() => togglePlay(cardKey)}
-              className={`absolute bottom-3 left-3 w-7 h-7 rounded-full backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 cursor-pointer z-20 ${
-                isPlaying 
-                  ? "bg-black/70 text-white hover:bg-black" 
-                  : "bg-[#c084fc]/85 hover:bg-[#a855f7] text-white"
-              }`}
-              title={isPlaying ? "Close Video" : "Play Video Testimonial"}
-            >
-              {isPlaying ? (
-                <Pause className="w-3.5 h-3.5 fill-current" />
-              ) : (
-                <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-              )}
-            </button>
+            <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110 z-20 border border-white/20">
+              <Play className="w-3.5 h-3.5 fill-white text-white ml-0.5" />
+            </div>
           )}
         </div>
 
@@ -201,17 +175,17 @@ export default function TestimonialsSection() {
   // Divide reviews into 3 rows for the marquee
   const getRowData = (rowNumber: number) => {
     if (reviews.length === 0) return [];
-    
+
     const perRow = Math.ceil(reviews.length / 3);
     const startIdx = (rowNumber - 1) * perRow;
     const endIdx = startIdx + perRow;
-    
+
     let rowReviews = reviews.slice(startIdx, endIdx);
-    
+
     if (rowReviews.length === 0) {
       rowReviews = [...reviews];
     }
-    
+
     const duplicated = [...rowReviews, ...rowReviews, ...rowReviews];
     return duplicated;
   };
@@ -223,7 +197,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="w-full py-6 md:py-8 bg-[#F2F2F2] text-gray-900 relative overflow-hidden flex flex-col items-center justify-center border-t border-gray-100"
+      className="w-full py-6 md:py-8  text-gray-900 relative overflow-hidden flex flex-col items-center justify-center border-t border-gray-100"
     >
       {/* Side Fade Gradient Overlays */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-[#F2F2F2] to-transparent z-20" />
@@ -231,8 +205,11 @@ export default function TestimonialsSection() {
 
       {/* Header Container */}
       <div className="max-w-3xl w-full px-6 flex flex-col items-center text-center mb-10 md:mb-12 relative z-10">
-        <div className="bg-white border border-[#3b82f6]/40 text-[#3b82f6] px-3.5 py-1 rounded-full text-xs font-normal tracking-wide inline-flex items-center gap-1.5 shadow-2xs mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+        <div
+          className="bg-transparent border border-[#003FEA4D] text-[#252323] px-5 h-[40px] rounded-full text-[13px] font-normal leading-none tracking-normal inline-flex justify-center items-center gap-1.5 whitespace-nowrap shadow-2xs mb-4"
+          style={{ fontFamily: '"Helvetica Now Display", sans-serif' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
           What Our Clients Say
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-[#0f172a] tracking-tight leading-tight mb-3">
@@ -259,6 +236,33 @@ export default function TestimonialsSection() {
           {/* Row 3: Marquee Left */}
           <div className="flex animate-marquee gap-6">
             {row3.map((item, idx) => renderCard(item, `r3-${idx}`))}
+          </div>
+        </div>
+      )}
+
+      {/* Video Modal */}
+      {playingVideoUrl && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6"
+          onClick={() => setPlayingVideoUrl(null)}
+        >
+          <div 
+            className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 text-white/80 hover:text-white z-10 bg-black/50 hover:bg-black/80 rounded-full p-2 transition-all cursor-pointer"
+              onClick={() => setPlayingVideoUrl(null)}
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <iframe
+              src={getEmbedUrl(playingVideoUrl)}
+              title="Client Testimonial Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full object-cover border-0"
+            />
           </div>
         </div>
       )}
