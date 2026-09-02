@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { packageApi } from '../../../api/packageApi';
+import { packageCategoryApi } from '../../../api/packageCategoryApi';
 import { Loader2, Plus, Trash2, Edit, X } from 'lucide-react';
 import {
   Table,
@@ -14,6 +15,8 @@ import {
 
 export default function PackageManagementPage() {
   const [packages, setPackages] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [featureInput, setFeatureInput] = useState('');
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -23,14 +26,27 @@ export default function PackageManagementPage() {
     name: '',
     description: '',
     price: 0,
-    features: '', // We will split this string into an array by commas
+    features: [] as string[],
+    category: '',
     duration: '',
     isActive: true,
   });
 
   useEffect(() => {
     fetchPackages();
+    fetchCategories();
   }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await packageCategoryApi.getAll();
+      if (res && res.data) {
+        setCategories(res.data);
+      }
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    }
+  };
 
   const fetchPackages = async () => {
     try {
@@ -45,7 +61,7 @@ export default function PackageManagementPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
 
     if (type === 'checkbox') {
@@ -58,17 +74,30 @@ export default function PackageManagementPage() {
     }
   };
 
+  const addFeature = () => {
+    if (featureInput.trim()) {
+      setFormData((prev) => ({ ...prev, features: [...prev.features, featureInput.trim()] }));
+      setFeatureInput('');
+    }
+  };
+
+  const removeFeature = (index: number) => {
+    setFormData((prev) => ({ ...prev, features: prev.features.filter((_, i) => i !== index) }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Split features by comma and trim whitespace
-      const featureArray = formData.features.split(',').map(f => f.trim()).filter(f => f.length > 0);
-
-      const submitData = {
-        ...formData,
-        features: featureArray
+      const submitData: any = {
+        ...formData
       };
+
+      if (submitData.category) {
+        submitData.category = { id: submitData.category };
+      } else {
+        delete submitData.category;
+      }
 
       if (editingId) {
         await packageApi.updatePackage(editingId, submitData);
@@ -93,7 +122,8 @@ export default function PackageManagementPage() {
         name: pkg.name || '',
         description: pkg.description || '',
         price: pkg.price || 0,
-        features: (pkg.features || []).join(', '),
+        features: pkg.features || [],
+        category: pkg.category?.id || '',
         duration: pkg.duration || '',
         isActive: pkg.isActive,
       });
@@ -103,11 +133,13 @@ export default function PackageManagementPage() {
         name: '',
         description: '',
         price: 0,
-        features: '',
+        features: [],
         duration: '',
         isActive: true,
+        category: '',
       });
     }
+    setFeatureInput('');
     setIsModalOpen(true);
   };
 
@@ -118,10 +150,12 @@ export default function PackageManagementPage() {
       name: '',
       description: '',
       price: 0,
-      features: '',
+      features: [],
       duration: '',
       isActive: true,
+      category: '',
     });
+    setFeatureInput('');
   };
 
   const handleDelete = async (id: string) => {
@@ -342,17 +376,64 @@ export default function PackageManagementPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Features (Comma Separated)
+                  Package Category
                 </label>
-                <textarea
-                  name="features"
-                  required
-                  value={formData.features}
+                <select
+                  name="category"
+                  value={formData.category}
                   onChange={handleChange}
-                  rows={3}
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white resize-none"
-                  placeholder="Feature 1, Feature 2, Feature 3"
-                />
+                  className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                >
+                  <option value="">Select a category (optional)</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Features
+                </label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    type="text"
+                    value={featureInput}
+                    onChange={(e) => setFeatureInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addFeature();
+                      }
+                    }}
+                    className="flex-1 px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                    placeholder="Add a new feature..."
+                  />
+                  <button
+                    type="button"
+                    onClick={addFeature}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition-colors"
+                  >
+                    <Plus className="w-5 h-5" />
+                  </button>
+                </div>
+                
+                {formData.features.length > 0 && (
+                  <ul className="space-y-2 mt-3 max-h-40 overflow-y-auto pr-2">
+                    {formData.features.map((feature, idx) => (
+                      <li key={idx} className="flex justify-between items-center bg-gray-50 dark:bg-gray-800 px-3 py-2 rounded border border-gray-200 dark:border-gray-700">
+                        <span className="text-sm text-gray-700 dark:text-gray-300">{feature}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeFeature(idx)}
+                          className="text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 p-1 rounded transition-colors"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div className="flex items-center gap-2 mt-2">

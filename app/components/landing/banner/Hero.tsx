@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import { bannerApi } from "@/api/bannerApi";
 
 const GRID_COLS = 24;
 const GRID_ROWS = 16;
@@ -41,9 +42,9 @@ export default function Hero() {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const { bannerApi } = await import("../../../../../api/bannerApi");
+
         const data = await bannerApi.getAllBanners();
-        
+
         let fetchedBanners: any[] = [];
         if (Array.isArray(data)) {
           fetchedBanners = data;
@@ -55,7 +56,7 @@ export default function Hero() {
           fetchedBanners.sort((a, b) => (a.order || 0) - (b.order || 0));
           const activeBanners = fetchedBanners.filter(b => b.isActive !== false);
           const urls = activeBanners.map(b => b.photoUrl || b.image || b.url).filter(Boolean);
-          
+
           if (urls.length > 0) {
             const half = Math.ceil(urls.length / 2);
             setRow1(urls.slice(0, half));
