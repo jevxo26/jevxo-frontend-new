@@ -20,14 +20,22 @@ export default function ConcentricCtaSection() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none scale-[0.6] sm:scale-[0.8] lg:scale-100">
         
         {/* Concentric Dashed Rings */}
-        <div className="absolute w-[400px] h-[400px] rounded-full border-[3px] border-dashed border-[#003FEA]/60 animate-[spin_60s_linear_infinite]" />
-        <div className="absolute w-[650px] h-[650px] rounded-full border-[3px] border-dashed border-[#003FEA]/50 animate-[spin_80s_linear_infinite_reverse]" />
-        <div className="absolute w-[950px] h-[950px] rounded-full border-[3px] border-dashed border-[#003FEA]/30 animate-[spin_100s_linear_infinite]" />
-        <div className="absolute w-[1300px] h-[1300px] rounded-full border-[3px] border-dashed border-[#003FEA]/20 animate-[spin_120s_linear_infinite_reverse]" />
+        <svg className="absolute w-[800px] h-[800px] animate-[spin_60s_linear_infinite]" viewBox="0 0 800 800">
+          <circle cx="400" cy="400" r="398" fill="none" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1.5" strokeDasharray="8 14" strokeLinecap="round" />
+        </svg>
+        <svg className="absolute w-[1000px] h-[1000px] animate-[spin_80s_linear_infinite_reverse]" viewBox="0 0 1000 1000">
+          <circle cx="500" cy="500" r="498" fill="none" stroke="rgba(255, 255, 255, 0.3)" strokeWidth="1.5" strokeDasharray="8 14" strokeLinecap="round" />
+        </svg>
+        <svg className="absolute w-[1200px] h-[1200px] animate-[spin_100s_linear_infinite]" viewBox="0 0 1200 1200">
+          <circle cx="600" cy="600" r="598" fill="none" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1.5" strokeDasharray="8 14" strokeLinecap="round" />
+        </svg>
+        <svg className="absolute w-[1400px] h-[1400px] animate-[spin_120s_linear_infinite_reverse]" viewBox="0 0 1400 1400">
+          <circle cx="700" cy="700" r="698" fill="none" stroke="rgba(255, 255, 255, 0.1)" strokeWidth="1.5" strokeDasharray="8 14" strokeLinecap="round" />
+        </svg>
 
         {/* Floating Brand Icons */}
         {/* Ring 1 (Inner) */}
-        <div className="absolute w-[400px] h-[400px] animate-[spin_60s_linear_infinite]">
+        <div className="absolute w-[800px] h-[800px] animate-[spin_60s_linear_infinite]">
           {/* Yellow Sketch-like Icon */}
           <div className="absolute right-10 bottom-16 w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center shadow-lg border border-white/10 animate-[spin_60s_linear_infinite_reverse]">
              <div className="w-5 h-5 bg-[#FFC700] rounded-sm transform rotate-45" />
@@ -39,7 +47,7 @@ export default function ConcentricCtaSection() {
         </div>
 
         {/* Ring 2 */}
-        <div className="absolute w-[650px] h-[650px] animate-[spin_80s_linear_infinite_reverse]">
+        <div className="absolute w-[1000px] h-[1000px] animate-[spin_80s_linear_infinite_reverse]">
           {/* Webflow-like Icon */}
           <div className="absolute right-20 top-32 w-14 h-14 rounded-full bg-[#1a202c] flex items-center justify-center shadow-lg border border-white/10 animate-[spin_80s_linear_infinite]">
              <span className="text-[#4353FF] font-bold text-2xl font-serif">W</span>
@@ -51,7 +59,7 @@ export default function ConcentricCtaSection() {
         </div>
         
         {/* Ring 3 */}
-        <div className="absolute w-[950px] h-[950px] animate-[spin_100s_linear_infinite]">
+        <div className="absolute w-[1200px] h-[1200px] animate-[spin_100s_linear_infinite]">
           <div className="absolute left-32 top-1/3 w-14 h-14 rounded-full bg-red-600 flex items-center justify-center shadow-lg border border-white/10 animate-[spin_100s_linear_infinite_reverse]">
             <span className="text-white font-bold text-lg">Fi</span>
           </div>
