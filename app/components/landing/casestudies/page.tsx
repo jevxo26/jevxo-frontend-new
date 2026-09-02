@@ -15,7 +15,7 @@ const DEFAULT_CASE_STUDIES: Casestudy[] = [
     id: "1",
     title: "AI Workflow Automation Platform",
     shortDescription: "A next-gen SaaS workflow builder powered by LLM orchestration for enterprise teams.",
-    fullDescription: "A next-gen SaaS workflow builder powered by LLM orchestration for enterprise teams.",
+    fullDescription: "A next-gen SaaSs workflow builder powered by LLM orchestration for enterprise teams.",
     photoUrl: "/Jevxo/01.png",
     slug: "ai-workflow-automation",
     projectLink: "#contact",
