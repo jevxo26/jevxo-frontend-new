@@ -40,8 +40,8 @@ export default function PackageManagementPage() {
   const fetchCategories = async () => {
     try {
       const res = await packageCategoryApi.getAll();
-      if (res && res.data) {
-        setCategories(res.data);
+      if (res) {
+        setCategories(Array.isArray(res) ? res : (res.data || []));
       }
     } catch (error) {
       console.error('Failed to fetch categories:', error);
