@@ -31,9 +31,9 @@ export default function BlogDetailsPage() {
         }
 
         const allBlogs = await blogApi.getAllBlogs();
-        const foundBlog = allBlogs.data?.find((b: Blog) => b.slug === slug || b.id === slug) || 
-                          allBlogs.find?.((b: Blog) => b.slug === slug || b.id === slug);
-        
+        const foundBlog = allBlogs.data?.find((b: Blog) => b.slug === slug || b.id === slug) ||
+          allBlogs.find?.((b: Blog) => b.slug === slug || b.id === slug);
+
         if (foundBlog) {
           setBlog(foundBlog);
         }
@@ -92,7 +92,7 @@ export default function BlogDetailsPage() {
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Articles</span>
           </Link>
-          
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1] mb-6">
             {blog.title}
           </h1>
@@ -126,9 +126,9 @@ export default function BlogDetailsPage() {
       <section className="max-w-4xl mx-auto px-6 -mt-8 relative z-20">
         {blog.coverImage ? (
           <div className="w-full aspect-[21/9] md:aspect-[2.5/1] bg-gray-100 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 mb-12">
-            <img 
-              src={blog.coverImage} 
-              alt={blog.title} 
+            <img
+              src={blog.coverImage}
+              alt={blog.title}
               className="w-full h-full object-cover"
             />
           </div>
@@ -136,14 +136,14 @@ export default function BlogDetailsPage() {
           <div className="w-full h-12"></div>
         )}
 
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 prose prose-lg prose-blue max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 prose prose-lg prose-blue max-w-none w-full break-words overflow-hidden">
+          <div dangerouslySetInnerHTML={{ __html: blog.content }} className="w-full max-w-full overflow-x-auto" />
         </div>
 
         {/* Footer Actions */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 py-8 border-t border-gray-200">
           <p className="text-gray-500 font-medium">Thanks for reading!</p>
-          <button 
+          <button
             onClick={() => {
               if (navigator.share) {
                 navigator.share({
