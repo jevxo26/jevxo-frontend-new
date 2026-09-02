@@ -1,5 +1,6 @@
 "use client";
 
+import { partnerApi } from "@/api/partnerApi";
 import React from "react";
 
 export interface PartnerItem {
@@ -21,6 +22,40 @@ const BRAND_IMAGES: PartnerItem[] = [
 ];
 
 export default function Partners() {
+  const [partners, setPartners] = React.useState<PartnerItem[]>(BRAND_IMAGES);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+
+        const data = await partnerApi.getAllPartners();
+
+        let fetchedPartners: any[] = [];
+        if (Array.isArray(data)) {
+          fetchedPartners = data;
+        } else if (data && Array.isArray(data.data)) {
+          fetchedPartners = data.data;
+        }
+
+        if (fetchedPartners.length > 0) {
+          // Map to PartnerItem interface if it differs slightly, or just use as is
+          setPartners(fetchedPartners.map((p: any) => ({
+            id: p.id || p._id,
+            name: p.name,
+            logo: p.logo || p.imageUrl || p.image,
+          })));
+        }
+      } catch (error) {
+        console.error("Error fetching partners:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPartners();
+  }, []);
+
   return (
     <section className="py-6 md:-mt-9 md:py-16 bg-[#F3F3F3] flex flex-col items-center justify-center overflow-hidden">
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6">
@@ -28,11 +63,11 @@ export default function Partners() {
           Top Partners That We <span className="font-dm italic font-normal text-black">Worked With.</span>
         </h2>
 
-        <div 
+        <div
           className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-2 mx-auto justify-center"
           style={{ perspective: "1000px" }}
         >
-          {BRAND_IMAGES.map((partner) => (
+          {partners.slice(0, 8).map((partner) => (
             <div key={partner.id} className="group w-full h-[114px] cursor-pointer">
               <div
                 className="bg-white rounded-xl w-full h-full flex items-center justify-center p-4 sm:p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-transform duration-700 group-hover:[transform:rotateY(360deg)]"

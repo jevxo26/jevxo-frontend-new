@@ -8,7 +8,7 @@ import AiSection from "../components/landing/ai/AiSection";
 import ComparisonSection from "../components/landing/comparison/ComparisonSection";
 import PricingSection from "../components/landing/pricing/PricingSection";
 import CaseStudies from "../components/landing/casestudies/page";
-import ReadyToBuildSection from "../components/landing/cta/ReadyToBuildSection";
+import ConcentricCtaSection from "../components/landing/cta/ConcentricCtaSection";
 import MeetSpecialistSection from "../components/landing/team/MeetSpecialistSection";
 import FaqSection from "../components/landing/faq/FaqSection";
 import BlogSection from "../components/landing/blog/BlogSection";
@@ -17,52 +17,53 @@ import TestimonialsSection from "../components/landing/testimonials/Testimonials
 
 export default function Home() {
   return (
-    // owiejaf9wejf9u jw3eu8heu8r
     <div className="relative min-h-screen w-full bg-[#F2F2F2] text-[#0a0c16] flex flex-col justify-between overflow-hidden">
-
 
       <Hero />
 
-      <div className="py-[30px]">
+      <div className="py-8 md:py-[30px]">
         <Partners />
       </div>
+      
       <AboutUs />
 
-      <div className="py-[30px]">
+      <div className="py-8 md:py-[30px]">
         <OurService />
       </div>
 
-
-      <div className="py-[50px]">
+      <div className="py-10 md:py-[50px]">
         <CaseStudies />
       </div>
+
       <ProcessSection />
 
-      <div className="py-[50px]">
+      <div className="pt-16 pb-10 md:pt-[100px] md:pb-[50px]">
         <AiSection />
       </div>
 
       <ComparisonSection />
 
-      <div className="py-[50px]">
+      <div className="pt-12 pb-16 md:pt-[50px] md:pb-[120px]">
         <PricingSection />
       </div>
 
-
       <BlogSection />
 
-      <div className="py-30">
+      <div className="py-12 md:py-[80px]">
         <MeetSpecialistSection />
       </div>
 
-      {/* <ReadyToBuildSection /> */}
+      <div className="pb-12 md:pb-[80px]">
+        <ConcentricCtaSection />
+      </div>
+
       <FaqSection />
 
-      <div className="py-[100px]">
+      <div className="py-16 md:py-[100px]">
         <ContactSection />
       </div>
 
-      <div className="py-[40px]">
+      <div className="pb-16 md:pb-[80px]">
         <TestimonialsSection />
       </div>
     </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const GRID_COLS = 24;
 const GRID_ROWS = 16;
@@ -18,7 +19,7 @@ const fadeUp: Variants = {
 };
 
 export default function Hero() {
-  const row1 = [
+  const defaultRow1 = [
     "/Jevxo/01.png",
     "/Jevxo/02.png",
     "/Jevxo/03.png",
@@ -26,13 +27,47 @@ export default function Hero() {
     "/Jevxo/05.png",
   ];
 
-  const row2 = [
+  const defaultRow2 = [
     "/Jevxo/06.png",
     "/Jevxo/07.png",
     "/Jevxo/08.png",
     "/Jevxo/09.png",
     "/Jevxo/10.png",
   ];
+
+  const [row1, setRow1] = useState<string[]>(defaultRow1);
+  const [row2, setRow2] = useState<string[]>(defaultRow2);
+
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const { bannerApi } = await import("../../../../../api/bannerApi");
+        const data = await bannerApi.getAllBanners();
+        
+        let fetchedBanners: any[] = [];
+        if (Array.isArray(data)) {
+          fetchedBanners = data;
+        } else if (data && Array.isArray(data.data)) {
+          fetchedBanners = data.data;
+        }
+
+        if (fetchedBanners.length > 0) {
+          fetchedBanners.sort((a, b) => (a.order || 0) - (b.order || 0));
+          const activeBanners = fetchedBanners.filter(b => b.isActive !== false);
+          const urls = activeBanners.map(b => b.photoUrl || b.image || b.url).filter(Boolean);
+          
+          if (urls.length > 0) {
+            const half = Math.ceil(urls.length / 2);
+            setRow1(urls.slice(0, half));
+            setRow2(urls.slice(half));
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching banners:", error);
+      }
+    };
+    fetchBanners();
+  }, []);
 
   // Triplicating arrays to ensure a smooth, unbroken infinite marquee animation
   const row1List = [...row1, ...row1, ...row1];

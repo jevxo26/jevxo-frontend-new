@@ -14,12 +14,14 @@ const nextConfig: NextConfig = {
     ],
   },
   /* config options here */
-  // @ts-expect-error - Next.js config type is slightly restrictive but these options work
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  experimental: {
+    // Optimize memory usage during production builds for limited environments (e.g. VPS/Docker)
+    cpus: 1,
+    workerThreads: false,
+    memoryBasedWorkersCount: true,
   },
 };
 

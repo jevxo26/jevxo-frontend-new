@@ -74,7 +74,7 @@ export default function CaseStudies() {
     const fetchCaseStudies = async () => {
       try {
         const data = await casestudiesApi.getAllCasestudies();
-        let fetched: Casestudy[] = [];
+        let fetched: any[] = [];
         if (Array.isArray(data)) {
           fetched = data;
         } else if (data && data.data && Array.isArray(data.data)) {
@@ -82,12 +82,18 @@ export default function CaseStudies() {
         }
 
         if (fetched && fetched.length > 0) {
-          setCaseStudies(fetched);
+          const mapped = fetched.map((c: any) => ({
+            ...c,
+            id: c.id || c._id,
+            photoUrl: c.photoUrl || c.image || c.imageUrl,
+          }));
+          const active = mapped.filter(c => c.isActive !== false).sort((a, b) => (a.order || 0) - (b.order || 0));
+          setCaseStudies(active.length > 0 ? active : DEFAULT_CASE_STUDIES);
         } else {
           setCaseStudies(DEFAULT_CASE_STUDIES);
         }
       } catch (error) {
-        console.error("Failed to fetch case studies, using fallback data:", error);
+        console.error("Error fetching case studies:", error);
         setCaseStudies(DEFAULT_CASE_STUDIES);
       } finally {
         setIsLoading(false);
