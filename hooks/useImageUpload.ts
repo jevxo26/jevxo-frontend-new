@@ -23,18 +23,8 @@ export const useImageUpload = () => {
       // The backend returns { url: "/cdn/filename.ext", ... }
       const imageUrl = response.data.url;
       
-      // Since your frontend is running on a different port than the backend,
-      // and baseApi's baseURL points to the backend (e.g., localhost:3000 or api.jevxo.com)
-      // we need to return the full URL if we want the image to be displayed correctly in next.js,
-      // or we can configure the backend URL dynamically.
-      // But typically storing just the relative /cdn/... URL is fine if the frontend appends the base API URL to it 
-      // or if we store the full URL. Let's construct the full URL.
-      
-      const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://www.api.jevxo.com';
-      const fullUrl = `${baseURL}${imageUrl}`;
-      
       setIsUploading(false);
-      return fullUrl;
+      return imageUrl;
     } catch (err: any) {
       console.error('Image upload failed:', err);
       setError(err.response?.data?.message || 'Failed to upload image');

@@ -159,6 +159,8 @@ export default function PricingSection() {
         }
 
         if (pkgs && pkgs.length > 0) {
+          const defaultCatForFallback = cats && cats.length > 0 ? cats[0] : DEFAULT_CATEGORIES[0];
+          
           const formattedPackages = pkgs.map((pkg: any) => ({
             id: pkg.id,
             name: pkg.name,
@@ -169,7 +171,7 @@ export default function PricingSection() {
             badgeText: pkg.name.toLowerCase().includes("growth") || pkg.name.toLowerCase().includes("pro") ? "Most Popular" : null,
             features: Array.isArray(pkg.features) ? pkg.features : (pkg.features ? JSON.parse(pkg.features) : []),
             buttonText: "Select This Plan",
-            category: pkg.category
+            category: pkg.category || defaultCatForFallback
           }));
           setPackages(formattedPackages);
         } else {
